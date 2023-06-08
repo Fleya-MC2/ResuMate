@@ -20,7 +20,7 @@ class ChatGptService {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(Config.openAIAuthorizationKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let json: [String: Any] = ["model": "text-davinci-003",
