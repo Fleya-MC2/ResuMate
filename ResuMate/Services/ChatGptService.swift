@@ -20,7 +20,7 @@ class ChatGptService {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let json: [String: Any] = ["model": "text-davinci-003",
@@ -36,6 +36,7 @@ class ChatGptService {
             case .success(let data):
                 completion(.success(data))
             case .failure(let error):
+                print(error)
                 completion(.failure(error))
             }
         }
@@ -69,6 +70,58 @@ class ChatGptService {
                 }
                 break
             case .failure(let error):
+                print(error)
+                completion(.failure(error))
+                break
+            }
+        }
+        
+    }
+    
+    //MARK: You can call function on this file!
+    //MARK: Function to get biodata!
+    func fetchBiodataFromTextOnResume(resumeText: String, completion: @escaping (Result<BiodataModel, Error>) -> Void) {
+        let prompt = """
+    \(resumeText)
+    
+    From the text above, provide me firstName, lastName, phoneNumber, email, professionalMotto, professionalSummary in JSON format
+    """
+        
+        self.fetchChatGptApi(prompt: prompt) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let choices = json["choices"] as? [[String: Any]],
+                       let text = choices.first?["text"] as? String {
+                        let decoder = JSONDecoder()
+                        
+                        if let completedData = text.data(using: .utf8) {
+                            do {
+                                let featureData = try decoder.decode(BiodataModel.self, from: completedData)
+                                completion(.success(featureData))
+                            } catch {
+                                print(error)
+                                completion(.failure(error))
+                            }
+                        } else {
+                            let error = NSError(domain: "BiodataModel Decoding", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to convert completed text to data"])
+                            print(error)
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "JSON Parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON data"])
+                        print(error)
+                        completion(.failure(error))
+                    }
+
+                 } catch let error {
+                    print("run error")
+                    completion(.failure(error))
+                }
+                break
+            case .failure(let error):
+                print(error)
                 completion(.failure(error))
                 break
             }
