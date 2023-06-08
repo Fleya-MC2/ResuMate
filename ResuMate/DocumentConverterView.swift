@@ -12,32 +12,34 @@ import UIKit
 struct DocumentConverterView: View {
     @State private var pdfText: String = ""
     @State private var isShowingDocumentPicker = false
+    @State private var showContentView = false
     
     var body: some View {
-        VStack {
-            Text("PDF to Text Converter")
-                .font(.title)
-                .padding()
-            
-            Button(action: {
-                isShowingDocumentPicker = true
-            }) {
-                Text("Select PDF")
-                    .font(.headline)
+        NavigationStack{
+            VStack {
+                Text("PDF to Text Converter")
+                    .font(.title)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                
+                Button(action: {
+                    isShowingDocumentPicker = true
+                }) {
+                    Text("Select PDF")
+                        .font(.headline)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                //                ScrollView {
+                //                    Text(pdfText)
+                //                        .padding()
+                //                }
             }
-            
-            ScrollView {
-                Text(pdfText)
-                    .padding()
-            }
-        }
-        .sheet(isPresented: $isShowingDocumentPicker) {
-            DocumentPicker { url in
-                pdfToText(fromPDF: url)
+            .sheet(isPresented: $isShowingDocumentPicker) {
+                DocumentPicker { url in
+                    pdfToText(fromPDF: url)
+                }
             }
         }
     }
@@ -60,8 +62,10 @@ struct DocumentConverterView: View {
         
         pdfText = docContent.string
         
-        let words = pdfText.components(separatedBy: .whitespacesAndNewlines)
-        print(words)
+//        let words = pdfText.components(separatedBy: .whitespacesAndNewlines)
+        
+        
+        showContentView = true // Activate the navigation link to show ContentView
     }
 }
 
