@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF232A31963E00B62FED /* BiodataModel.swift */; };
+		23FCDF282A31A8B300B62FED /* DocumentConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */; };
+		23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF292A31AED200B62FED /* EducationModel.swift */; };
+		23FCDF2C2A31BC6800B62FED /* WorkExperienceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF2B2A31BC6800B62FED /* WorkExperienceModel.swift */; };
+		23FCDF2E2A31C01500B62FED /* OrganizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF2D2A31C01500B62FED /* OrganizationModel.swift */; };
 		6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */; };
 		6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BE2A3188C100D26574 /* ContentView.swift */; };
 		6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80C02A3188C200D26574 /* Assets.xcassets */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		23FCDF232A31963E00B62FED /* BiodataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiodataModel.swift; sourceTree = "<group>"; };
+		23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentConverterView.swift; sourceTree = "<group>"; };
+		23FCDF292A31AED200B62FED /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
+		23FCDF2B2A31BC6800B62FED /* WorkExperienceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkExperienceModel.swift; sourceTree = "<group>"; };
+		23FCDF2D2A31C01500B62FED /* OrganizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationModel.swift; sourceTree = "<group>"; };
 		6CCD80B92A3188C100D26574 /* ResuMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResuMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResuMateApp.swift; sourceTree = "<group>"; };
 		6CCD80BE2A3188C100D26574 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +54,9 @@
 			isa = PBXGroup;
 			children = (
 				23FCDF232A31963E00B62FED /* BiodataModel.swift */,
+				23FCDF292A31AED200B62FED /* EducationModel.swift */,
+				23FCDF2B2A31BC6800B62FED /* WorkExperienceModel.swift */,
+				23FCDF2D2A31C01500B62FED /* OrganizationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -75,6 +86,7 @@
 				6CCD80BE2A3188C100D26574 /* ContentView.swift */,
 				6CCD80C02A3188C200D26574 /* Assets.xcassets */,
 				6CCD80C52A3188C200D26574 /* Persistence.swift */,
+				23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */,
 				6CCD80C72A3188C200D26574 /* ResuMate.xcdatamodeld */,
 				6CCD80C22A3188C200D26574 /* Preview Content */,
 			);
@@ -168,12 +180,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23FCDF282A31A8B300B62FED /* DocumentConverterView.swift in Sources */,
 				23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */,
 				6CCD80C62A3188C200D26574 /* Persistence.swift in Sources */,
 				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
 				6CCD80D12A318BC900D26574 /* APIManager.swift in Sources */,
+				23FCDF2E2A31C01500B62FED /* OrganizationModel.swift in Sources */,
 				6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */,
 				6CCD80C92A3188C200D26574 /* ResuMate.xcdatamodeld in Sources */,
+				23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */,
+				23FCDF2C2A31BC6800B62FED /* WorkExperienceModel.swift in Sources */,
 				6CCD80D32A318EF100D26574 /* ChatGptService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
