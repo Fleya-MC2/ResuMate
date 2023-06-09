@@ -8,10 +8,10 @@
 import Foundation
 
 struct BiodataModel: Codable {
-    let firstName: String
-    let lastName: String
-    let phoneNumber: String
-    let email: String
-    let professionalMotto: String
-    let professionalSummary: String
+    let firstName: String?
+    let lastName: String?
+    let phoneNumber: String?
+    let email: String?
+    let professionalMotto: String?
+    let professionalSummary: String?
 }

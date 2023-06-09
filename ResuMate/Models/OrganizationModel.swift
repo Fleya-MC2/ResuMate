@@ -8,9 +8,9 @@
 import Foundation
 
 struct OrganizationModel: Codable, Hashable {
-    let role: String
-    let organization: String
-    let startDate: String
-    let endDate: String
-    var description: String = ""
+    let role: String?
+    let organization: String?
+    let startDate: String?
+    let endDate: String?
+    let description: String?
 }

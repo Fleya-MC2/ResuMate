@@ -16,6 +16,9 @@
 		23FCDF322A322F4900B62FED /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF312A322F4900B62FED /* AchievementModel.swift */; };
 		23FCDF342A323AD800B62FED /* RelevancyScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF332A323AD800B62FED /* RelevancyScoreModel.swift */; };
 		23FCDF3A2A323B9300B62FED /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF392A323B9300B62FED /* Config.swift */; };
+		23FCDF562A32E5D100B62FED /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */; };
+		23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF572A33103900B62FED /* UploadResumeView.swift */; };
+		23FCDF5A2A33147900B62FED /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23FCDF592A33147900B62FED /* Config.plist */; };
 		6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */; };
 		6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BE2A3188C100D26574 /* ContentView.swift */; };
 		6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80C02A3188C200D26574 /* Assets.xcassets */; };
@@ -37,6 +40,9 @@
 		23FCDF312A322F4900B62FED /* AchievementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		23FCDF332A323AD800B62FED /* RelevancyScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelevancyScoreModel.swift; sourceTree = "<group>"; };
 		23FCDF392A323B9300B62FED /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Helpers/Config.swift; sourceTree = SOURCE_ROOT; };
+		23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
+		23FCDF572A33103900B62FED /* UploadResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResumeView.swift; sourceTree = "<group>"; };
+		23FCDF592A33147900B62FED /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		6CCD80B92A3188C100D26574 /* ResuMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResuMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResuMateApp.swift; sourceTree = "<group>"; };
 		6CCD80BE2A3188C100D26574 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 				6CCD80CF2A318BB800D26574 /* Services */,
 				6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */,
 				6CCD80BE2A3188C100D26574 /* ContentView.swift */,
+				23FCDF572A33103900B62FED /* UploadResumeView.swift */,
+				23FCDF592A33147900B62FED /* Config.plist */,
 				6CCD80C02A3188C200D26574 /* Assets.xcassets */,
 				6CCD80C52A3188C200D26574 /* Persistence.swift */,
 				23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */,
@@ -129,6 +137,7 @@
 			children = (
 				6CCD80D02A318BC900D26574 /* APIManager.swift */,
 				6CCD80D22A318EF100D26574 /* ChatGptService.swift */,
+				23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD80C42A3188C200D26574 /* Preview Assets.xcassets in Resources */,
+				23FCDF5A2A33147900B62FED /* Config.plist in Resources */,
 				6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,9 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23FCDF562A32E5D100B62FED /* ResumeViewModel.swift in Sources */,
 				23FCDF282A31A8B300B62FED /* DocumentConverterView.swift in Sources */,
 				23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */,
 				6CCD80D52A31A8B200D26574 /* SuggestionModel.swift in Sources */,
+				23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */,
 				6CCD80C62A3188C200D26574 /* Persistence.swift in Sources */,
 				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
 				6CCD80D12A318BC900D26574 /* APIManager.swift in Sources */,
