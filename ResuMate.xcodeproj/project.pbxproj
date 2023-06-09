@@ -15,10 +15,8 @@
 		23FCDF302A32238500B62FED /* VolunteerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF2F2A32238500B62FED /* VolunteerModel.swift */; };
 		23FCDF322A322F4900B62FED /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF312A322F4900B62FED /* AchievementModel.swift */; };
 		23FCDF342A323AD800B62FED /* RelevancyScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF332A323AD800B62FED /* RelevancyScoreModel.swift */; };
-		23FCDF3A2A323B9300B62FED /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF392A323B9300B62FED /* Config.swift */; };
 		23FCDF562A32E5D100B62FED /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */; };
 		23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF572A33103900B62FED /* UploadResumeView.swift */; };
-		23FCDF5A2A33147900B62FED /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23FCDF592A33147900B62FED /* Config.plist */; };
 		6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */; };
 		6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BE2A3188C100D26574 /* ContentView.swift */; };
 		6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80C02A3188C200D26574 /* Assets.xcassets */; };
@@ -30,6 +28,7 @@
 		6CCD80D52A31A8B200D26574 /* SuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */; };
 		6CCD80EB2A337B7B00D26574 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80EA2A337B7B00D26574 /* Config.swift */; };
 		6CCD80ED2A337B8C00D26574 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80EC2A337B8C00D26574 /* Config.plist */; };
+		6CCD80EF2A337CF900D26574 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80EE2A337CF900D26574 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,6 @@
 		23FCDF2F2A32238500B62FED /* VolunteerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerModel.swift; sourceTree = "<group>"; };
 		23FCDF312A322F4900B62FED /* AchievementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		23FCDF332A323AD800B62FED /* RelevancyScoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelevancyScoreModel.swift; sourceTree = "<group>"; };
-		23FCDF392A323B9300B62FED /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Helpers/Config.swift; sourceTree = SOURCE_ROOT; };
 		23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
 		23FCDF572A33103900B62FED /* UploadResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResumeView.swift; sourceTree = "<group>"; };
 		23FCDF592A33147900B62FED /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
@@ -57,6 +55,7 @@
 		6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionModel.swift; sourceTree = "<group>"; };
 		6CCD80EA2A337B7B00D26574 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		6CCD80EC2A337B8C00D26574 /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		6CCD80EE2A337CF900D26574 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +87,7 @@
 		23FCDF382A323B5C00B62FED /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				23FCDF392A323B9300B62FED /* Config.swift */,
+				6CCD80EE2A337CF900D26574 /* Config.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -243,7 +242,7 @@
 				23FCDF322A322F4900B62FED /* AchievementModel.swift in Sources */,
 				6CCD80C92A3188C200D26574 /* ResuMate.xcdatamodeld in Sources */,
 				23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */,
-				23FCDF3A2A323B9300B62FED /* Config.swift in Sources */,
+				6CCD80EF2A337CF900D26574 /* Config.swift in Sources */,
 				23FCDF2C2A31BC6800B62FED /* WorkExperienceModel.swift in Sources */,
 				6CCD80D32A318EF100D26574 /* ChatGptService.swift in Sources */,
 			);
