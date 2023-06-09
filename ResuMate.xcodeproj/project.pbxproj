@@ -112,6 +112,7 @@
 		6CCD80BB2A3188C100D26574 /* ResuMate */ = {
 			isa = PBXGroup;
 			children = (
+				23FCDF382A323B5C00B62FED /* Helpers */,
 				6CCD80EC2A337B8C00D26574 /* Config.plist */,
 				6CCD80E92A337B7B00D26574 /* Helpers */,
 				23FCDF222A31962A00B62FED /* Models */,
