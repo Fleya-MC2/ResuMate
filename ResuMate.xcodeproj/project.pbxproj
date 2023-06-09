@@ -28,6 +28,8 @@
 		6CCD80D12A318BC900D26574 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80D02A318BC900D26574 /* APIManager.swift */; };
 		6CCD80D32A318EF100D26574 /* ChatGptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80D22A318EF100D26574 /* ChatGptService.swift */; };
 		6CCD80D52A31A8B200D26574 /* SuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */; };
+		6CCD80EB2A337B7B00D26574 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80EA2A337B7B00D26574 /* Config.swift */; };
+		6CCD80ED2A337B8C00D26574 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80EC2A337B8C00D26574 /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		6CCD80D02A318BC900D26574 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		6CCD80D22A318EF100D26574 /* ChatGptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGptService.swift; sourceTree = "<group>"; };
 		6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionModel.swift; sourceTree = "<group>"; };
+		6CCD80EA2A337B7B00D26574 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		6CCD80EC2A337B8C00D26574 /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				23FCDF382A323B5C00B62FED /* Helpers */,
+				6CCD80EC2A337B8C00D26574 /* Config.plist */,
+				6CCD80E92A337B7B00D26574 /* Helpers */,
 				23FCDF222A31962A00B62FED /* Models */,
 				6CCD80CF2A318BB800D26574 /* Services */,
 				6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */,
@@ -140,6 +146,14 @@
 				23FCDF552A32E5D100B62FED /* ResumeViewModel.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6CCD80E92A337B7B00D26574 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6CCD80EA2A337B7B00D26574 /* Config.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,7 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD80C42A3188C200D26574 /* Preview Assets.xcassets in Resources */,
-				23FCDF5A2A33147900B62FED /* Config.plist in Resources */,
+				6CCD80ED2A337B8C00D26574 /* Config.plist in Resources */,
 				6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +232,7 @@
 				23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */,
 				6CCD80D52A31A8B200D26574 /* SuggestionModel.swift in Sources */,
 				23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */,
+				6CCD80EB2A337B7B00D26574 /* Config.swift in Sources */,
 				6CCD80C62A3188C200D26574 /* Persistence.swift in Sources */,
 				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
 				6CCD80D12A318BC900D26574 /* APIManager.swift in Sources */,
