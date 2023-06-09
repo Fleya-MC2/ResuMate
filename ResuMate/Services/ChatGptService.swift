@@ -608,7 +608,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me title, place, year, description only in achievement section in array JSON format
+    From the text above, provide me title, year, description only in achievement section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
