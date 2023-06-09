@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct Job: Identifiable {
+struct JobModel: Identifiable {
     let id: UUID
     let name: String
     let position: String
     let category: String
     let image: String
     let score: Int
-    let scoreStatus: ScoreStatus
+    let scoreStatus: ScoreStatusModel
     let endDate: Date
     
-    init(id: UUID, name: String, position: String, category: String, image: String, score: Int, scoreStatus: ScoreStatus, endDate: Date) {
+    init(id: UUID, name: String, position: String, category: String, image: String, score: Int, scoreStatus: ScoreStatusModel, endDate: Date) {
             self.id = id
             self.name = name
             self.position = position

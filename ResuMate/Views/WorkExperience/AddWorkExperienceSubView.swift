@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddWorkExp: View {
+struct AddWorkExperienceSubView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
 
     @State var position: String = ""
@@ -31,7 +31,7 @@ struct AddWorkExp: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
                     NavigationLink{
-                        WorkExperience()
+                        WorkExperienceView()
                     } label:{
                         Image(systemName: "chevron.backward")
                             .frame(height: 17)

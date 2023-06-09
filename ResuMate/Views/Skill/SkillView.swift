@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Skill: View {
+struct SkillView: View {
 
     var body: some View {
         InputTag()

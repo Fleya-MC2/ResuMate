@@ -1,43 +1,14 @@
 //
-//  GeneratePhrases.swift
-//  JobMate
+//  FirstStepView.swift
+//  ResuMate
 //
-//  Created by Luthfi Asmara on 08/06/23.
+//  Created by Muhammad Adha Fajri Jonison on 09/06/23.
 //
 
+import Foundation
 import SwiftUI
 
-enum GeneratePhrasesPage {
-    case generatePhrases
-    case sQuestion
-    case tQuestion
-    case aQuestion
-    case rQuestion
-}
-struct GeneratePhrases: View {
-    @State private var currentPage: GeneratePhrasesPage = .generatePhrases
-    @State var progress: CGFloat = 0.2
-    @State var step: Int = 1
-    
-    var body: some View {
-        VStack{
-            switch currentPage {
-            case .generatePhrases:
-                FirstStep(step: $step, progress: $progress, currentPage: $currentPage)
-            case .sQuestion:
-                SQuestion(step: $step, progress: $progress, currentPage: $currentPage)
-            case .tQuestion:
-                TQuestion(step: $step, progress: $progress, currentPage: $currentPage)
-            case .aQuestion:
-                AQuestion(step: $step, progress: $progress, currentPage: $currentPage)
-            case .rQuestion:
-                RQuestion(step: $step, progress: $progress, currentPage: $currentPage)
-            }
-        }
-    }
-}
-
-struct FirstStep: View{
+struct FirstStepSubView: View{
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
@@ -86,6 +57,3 @@ struct FirstStep: View{
 
     }
 }
-
-
-

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModalPersonalData: View {
+struct ModalPersonalDataSubView: View {
     @Binding var isSuggestion: Bool
     @Binding var isGenerate: Bool
     var body: some View {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PersonalData: View {
+struct PersonalDataView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
 
     @State var firstname: String = ""
@@ -21,7 +21,7 @@ struct PersonalData: View {
     
     var body: some View {
         if isGenerate {
-            GeneratePhrases()
+            GeneratePhrasesView()
         }
         else{
        
@@ -29,7 +29,7 @@ struct PersonalData: View {
                 
                 VStack{
                     
-                    CustomToolbar2(titleToolbar: "Personal Data", destination: HomePage(selection: 1))
+                    CustomToolbar2(titleToolbar: "Personal Data", destination: HomeView(selection: 1))
                     
                     
                     ScrollView{
@@ -73,7 +73,7 @@ struct PersonalData: View {
                     }
                     BigButton(text: "Submit", isButtonactive: true)
                 }.sheet(isPresented: $isSuggestion) {
-                    ModalPersonalData(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
+                    ModalPersonalDataSubView(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
                         .presentationDetents([.medium])
                 
                 

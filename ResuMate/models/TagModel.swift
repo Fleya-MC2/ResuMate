@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Tag: Identifiable, Hashable {
+struct TagModel: Identifiable, Hashable {
     let id = UUID()
     let name: String
     var width: CGFloat? = nil

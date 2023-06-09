@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EducationalBackground: View {
+struct EducationView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
 
     @State var isButtonActive: Bool = true
@@ -18,7 +18,7 @@ struct EducationalBackground: View {
         
         NavigationStack{
             VStack{
-                CustomToolbar(titleToolbar: "Educational Background", destinationL: HomePage(selection: 1), destinationT: AddEducation())
+                CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationSubView())
                 Spacer().frame(height: 17)
                 Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                     .blacktext17()
@@ -26,7 +26,7 @@ struct EducationalBackground: View {
                     .padding(.horizontal, 20)
                 Spacer().frame(height: 40)
                 NavigationLink{
-                    AddEducation()
+                    AddEducationSubView()
                 }label:{
                     HStack{
                         Image(systemName: "plus.circle.fill")

@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct WorkExperience: View {
+struct WorkExperienceView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
 
     var body: some View {
         NavigationStack{
             VStack{
-                CustomToolbar(titleToolbar: "Work Experience", destinationL: HomePage(selection: 1), destinationT: AddWorkExp())
+                CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceSubView())
                 HStack{
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.strongblue)

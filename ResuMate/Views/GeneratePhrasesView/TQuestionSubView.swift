@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TQuestion: View {
+struct TQuestionSubView: View {
     @State var tqAnswer: String = ""
     @Binding var step: Int
     @Binding var progress: CGFloat

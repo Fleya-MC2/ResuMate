@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScoreStatus: Identifiable {
+struct ScoreStatusModel: Identifiable {
     let id: UUID
     let color: Color
     
@@ -18,8 +18,8 @@ struct ScoreStatus: Identifiable {
 }
 
 // Contoh data status skor
-let scoreStatuses: [ScoreStatus] = [
-    ScoreStatus(id: UUID(), color: .red),
-    ScoreStatus(id: UUID(), color: .orange),
-    ScoreStatus(id: UUID(), color: .green)
+let scoreStatuses: [ScoreStatusModel] = [
+    ScoreStatusModel(id: UUID(), color: .red),
+    ScoreStatusModel(id: UUID(), color: .orange),
+    ScoreStatusModel(id: UUID(), color: .green)
 ]

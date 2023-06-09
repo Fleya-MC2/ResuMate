@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AQuestion: View {
+struct AQuestionSubView: View {
     @State var aqAnswer: String = ""
     @Binding var step: Int
     @Binding var progress: CGFloat

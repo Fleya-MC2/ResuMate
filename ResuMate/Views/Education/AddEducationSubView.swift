@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddEducation: View {
+struct AddEducationSubView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
 
     @State var major: String = ""
@@ -20,7 +20,7 @@ struct AddEducation: View {
     var body: some View {
         NavigationStack{
             VStack{
-                CustomToolbar2(titleToolbar: "Add Education", destination: EducationalBackground())
+                CustomToolbar2(titleToolbar: "Add Education", destination: EducationView())
                 BigForm(title: "Major", placeholder: "String", fill: $major)
                 BigForm(title: "Institution", placeholder: "String", fill: $institution)
                 HStack{
