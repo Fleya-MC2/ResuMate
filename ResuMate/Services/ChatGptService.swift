@@ -51,7 +51,7 @@ class ChatGptService {
                 do {
                     print("[fetchSuggestionByJobTitle][fetchChatGptApi]")
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-
+                    
                     // Check if the JSON response contains an 'error' key.
                     if let error = json?["error"] as? [String: Any] {
                         let errorMessage = error["message"] as? String ?? "Unknown error occurred"
@@ -97,7 +97,7 @@ class ChatGptService {
                         print(error)
                         completion(.failure(error))
                     }
-
+                    
                 } catch {
                     completion(.failure(error))
                 }
@@ -117,7 +117,7 @@ class ChatGptService {
         2. What's your responsibility in that challenge? \(answer2)
         3. What action did you take to tackle that challenge? \(answer3)
         4. What was the result of your actions? \(answer4)
-
+        
         Generate a list of job accomplishments based on the data i gave above on a CV in array json format with field name "suggestion"
         """
         
@@ -175,7 +175,7 @@ class ChatGptService {
                         print(error)
                         completion(.failure(error))
                     }
-
+                    
                 } catch {
                     completion(.failure(error))
                 }
@@ -249,7 +249,7 @@ class ChatGptService {
                         print(error)
                         completion(.failure(error))
                     }
-
+                    
                 } catch {
                     completion(.failure(error))
                 }
@@ -261,7 +261,7 @@ class ChatGptService {
             }
         }
     }
-
+    
     //MARK: You can call function on this file!
     //MARK: Function to get biodata!
     func fetchBiodataFromTextOnResume(resumeText: String, completion: @escaping (Result<BiodataModel, Error>) -> Void) {
@@ -298,7 +298,7 @@ class ChatGptService {
                         print(error)
                         completion(.failure(error))
                     }
-                 } catch let error {
+                } catch let error {
                     print("run error")
                     completion(.failure(error))
                 }
@@ -354,7 +354,6 @@ class ChatGptService {
                         // Convert the text back to Data for parsing
                         if let jsonData = text.data(using: .utf8) {
                             do {
-                                // Decode the data to an array of SuggestionModel
                                 let suggestions = try JSONDecoder().decode([EducationModel].self, from: jsonData)
                                 completion(.success(suggestions))
                             } catch {
@@ -535,7 +534,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me role, organization, startDate in Date, endDate in Date, description just in organization section in array JSON format
+    From the text above, provide me role, place, startDate in Date, endDate in Date, description just in volunteer section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in

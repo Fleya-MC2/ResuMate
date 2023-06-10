@@ -4,7 +4,7 @@
         <attribute name="achivementDescription" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="resume" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resume" inverseName="achievements" inverseEntity="Resume"/>
     </entity>
     <entity name="Education" representedClassName="Education" syncable="YES" codeGenerationType="class">
@@ -45,7 +45,7 @@
         <relationship name="organizations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Organization" inverseName="resume" inverseEntity="Organization"/>
         <relationship name="persons" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="resume" inverseEntity="Person"/>
         <relationship name="volunteers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Volunteer" inverseName="resume" inverseEntity="Volunteer"/>
-        <relationship name="work_experiences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Work_Experience" inverseName="resume" inverseEntity="Work_Experience"/>
+        <relationship name="workExperiences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkExperience" inverseName="resume" inverseEntity="WorkExperience"/>
     </entity>
     <entity name="Volunteer" representedClassName="Volunteer" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -56,13 +56,13 @@
         <attribute name="volunteerDescription" optional="YES" attributeType="String"/>
         <relationship name="resume" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resume" inverseName="volunteers" inverseEntity="Resume"/>
     </entity>
-    <entity name="Work_Experience" representedClassName="Work_Experience" syncable="YES" codeGenerationType="class">
+    <entity name="WorkExperience" representedClassName="WorkExperience" syncable="YES" codeGenerationType="class">
         <attribute name="company" optional="YES" attributeType="String"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="position" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="workDescription" optional="YES" attributeType="String"/>
-        <relationship name="resume" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resume" inverseName="work_experiences" inverseEntity="Resume"/>
+        <relationship name="resume" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resume" inverseName="workExperiences" inverseEntity="Resume"/>
     </entity>
 </model>

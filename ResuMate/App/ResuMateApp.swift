@@ -13,7 +13,7 @@ struct ResuMateApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TestCoreDataView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
