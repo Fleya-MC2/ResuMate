@@ -9,6 +9,6 @@ import Foundation
 
 struct AchievementModel: Codable, Hashable {
     let title: String?
-    let year: String?
+    let year: Date?
     var description: String?
 }

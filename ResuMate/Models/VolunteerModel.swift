@@ -10,7 +10,7 @@ import Foundation
 struct VolunteerModel: Codable, Hashable {
     var role: String?
     var place: String?
-    var startDate: String?
-    var endDate: String?
+    var startDate: Date?
+    var endDate: Date?
     var description: String?
 }

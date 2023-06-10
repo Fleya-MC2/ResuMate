@@ -10,8 +10,8 @@ import Foundation
 struct EducationModel: Codable, Hashable {
     let major: String?
     let institution: String?
-    let startDate: String?
-    let endDate: String?
+    let startDate: Date?
+    let endDate: Date?
     let gpa: String?
     let description: String?
 }

@@ -10,7 +10,7 @@ import Foundation
 struct OrganizationModel: Codable, Hashable {
     let role: String?
     let organization: String?
-    let startDate: String?
-    let endDate: String?
+    let startDate: Date?
+    let endDate: Date?
     let description: String?
 }

@@ -316,7 +316,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me major, institution, startDate, endDate, gpa, description just in education section in array JSON format
+    From the text above, provide me major, institution, startDate in Date, endDate in Date, gpa, description just in education section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -389,7 +389,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me position, company, startDate, endDate, description just in work experience section in array JSON format
+    From the text above, provide me position, company, startDate in Date, endDate in Date, description just in work experience section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -462,7 +462,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me role, organization, startDate, endDate, description just in organization section in array JSON format
+    From the text above, provide me role, organization, startDate in Date, endDate in Date, description just in organization section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -535,7 +535,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me role, organization, startDate, endDate, description just in organization section in array JSON format
+    From the text above, provide me role, organization, startDate in Date, endDate in Date, description just in organization section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -608,7 +608,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me title, year, description only in achievement section in array JSON format
+    From the text above, provide me title, year in Date, description only in achievement section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
