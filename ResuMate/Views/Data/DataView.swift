@@ -8,9 +8,10 @@
 import SwiftUI
 
 
-
 struct DataView: View {
     @State var isHaveOne: Bool = false
+    @EnvironmentObject var cardLists: CardLists
+    
     
     var body: some View {
 //        NavigationStack{
@@ -23,7 +24,7 @@ struct DataView: View {
                                 .strongblue20()
                                 .fontWeight(.semibold)
                             Image(systemName: "square.and.arrow.up.fill")
-                                .foregroundColor(.darkblue)
+                                .foregroundColor(.darkBlue)
                         }
                         .padding(.trailing, 20)
                     }
@@ -33,59 +34,36 @@ struct DataView: View {
                     Title(title: "Your Data")
                     Subtitle(subtitle: "Ceklist all this section below for create resume now!")
                 }.frame(width: 300)
+                
                 Spacer().frame(height: 55)
                 ScrollView(.vertical, showsIndicators: false){
-                    Spacer().frame(height: 20)
-//                    ForEach(navigationItems) { item in
-//                        NavigationLink(value: item) {
-//                            CardList(label: item.label, img: item.img, isFilled: false)
-//
-//                        }
-//
-//                        .listStyle(.plain)
-//                        .navigationBarTitleDisplayMode(.inline)
-//                        .navigationDestination(for: NavigationItem.self) { item in
-//                            switch item.menu {
-//                            case .personaldata:
-//                                PersonalData(navigationItemPath: $navigationItemPath)
-//                            case .workexp:
-//                                WorkExperience(navigationItemPath: $navigationItemPath)
-//                           case .skill:
-//                                Skill(navigationItemPath: $navigationItemPath)
-//                           case .education:
-//                                EducationalBackground(navigationItemPath: $navigationItemPath)
-//                           case .addworkexp:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//                           case .organization:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//                           case .achievement:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//
-//
-//                            }
-//                        }
-//
-//                    }
                     Spacer().frame(height: 20)
                     NavigationLink{
                         PersonalDataView()
                     }label: {
-                        DataCard(label: "Personal Data", img: "personal-data", isFilled: true)
+                        DataCard(label: "Personal Data", img: .personalData, isFilled: cardLists.isPersonalDataFilled)
                     }
+                    
                     NavigationLink{
                         WorkExperienceView()
                     }label: {
-                        DataCard(label: "Work Experience", img: "work-exp", isFilled: false)
+                        DataCard(label: "Work Experience", img: .workExperience, isFilled: cardLists.isWorkExpFilled)
                     }
+                    
                     NavigationLink{
                         EducationView()
                     }label: {
-                        DataCard(label: "Educational Background", img: "education", isFilled: true)
+                        DataCard(label: "Educational Background", img: .education, isFilled: cardLists.isEducationFilled)
                     }
-                    DataCard(label: "Organization Experience", img: "organization", isFilled: false)
-                    DataCard(label: "Skill", img: "skill", isFilled: false)
-                    DataCard(label: "Achievement", img: "achievement", isFilled: false)
-                    DataCard(label: "Voluntering", img: "voluntering", isFilled: false)
+                    
+                    
+                    DataCard(label: "Organization Experience", img: .organization, isFilled: cardLists.isOrganizationFilled)
+                    
+                    DataCard(label: "Skill", img: .skill, isFilled: cardLists.isSkillFilled)
+                    
+                    DataCard(label: "Achievement", img: .achievment, isFilled: cardLists.isAchievementFilled)
+                    
+                    DataCard(label: "Voluntering", img: .volunteering, isFilled: cardLists.isVolunteringFilled)
                 }
             }
 //        }.navigationBarBackButtonHidden(true)

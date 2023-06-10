@@ -14,6 +14,7 @@ enum GeneratePhrasesPage {
     case aQuestion
     case rQuestion
 }
+
 struct GeneratePhrasesView: View {
     @State private var currentPage: GeneratePhrasesPage = .generatePhrases
     @State var progress: CGFloat = 0.2
@@ -23,15 +24,15 @@ struct GeneratePhrasesView: View {
         VStack{
             switch currentPage {
             case .generatePhrases:
-                FirstStepSubView(step: $step, progress: $progress, currentPage: $currentPage)
+                FirstStepView(step: $step, progress: $progress, currentPage: $currentPage)
             case .sQuestion:
-                SQuestionSubView(step: $step, progress: $progress, currentPage: $currentPage)
+                SQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
             case .tQuestion:
-                TQuestionSubView(step: $step, progress: $progress, currentPage: $currentPage)
+                TQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
             case .aQuestion:
-                AQuestionSubView(step: $step, progress: $progress, currentPage: $currentPage)
+                AQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
             case .rQuestion:
-                RQuestionSubView(step: $step, progress: $progress, currentPage: $currentPage)
+                RQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
             }
         }
     }

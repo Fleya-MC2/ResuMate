@@ -21,13 +21,13 @@ extension View {
     
     
     func strongblue20() -> some View{
-        self.font(.system(size: 20)).foregroundColor(.darkblue)
+        self.font(.system(size: 20)).foregroundColor(.darkBlue)
     }
     func strongblue17() -> some View{
-        self.font(.system(size: 17)).foregroundColor(.darkblue)
+        self.font(.system(size: 17)).foregroundColor(.darkBlue)
     }
     func strongblue15() -> some View{
-        self.font(.system(size: 15)).foregroundColor(.darkblue)
+        self.font(.system(size: 15)).foregroundColor(.darkBlue)
     }
     
     func white17() -> some View{
@@ -46,9 +46,9 @@ extension Color {
     static let navy = Color("Navy")
     static let light = Color("light")
     static let lightBlue = Color("LightBlue")
-    static let darkblue = Color("DarkBlue")
+    static let darkBlue = Color("DarkBlue")
     static let lightGray = Color("LightGray")
     static let darkGray = Color("DarkGray")
-    static let greencheck = Color("GreenCheck")
+    static let lightGreen = Color("LightGreen")
     static let modal = Color("Modal")
 }

@@ -14,9 +14,9 @@ struct InfoCard: View {
             Spacer().frame(height: 16)
             HStack(alignment: .top){
                 Image(systemName: "info.circle.fill")
-                    .foregroundColor(.darkblue)
+                    .foregroundColor(.darkBlue)
                 Text(info)
-                    .foregroundColor(.darkblue)
+                    .foregroundColor(.darkBlue)
                     .font(.system(size: 16))
                     .frame(width: 320)
             }

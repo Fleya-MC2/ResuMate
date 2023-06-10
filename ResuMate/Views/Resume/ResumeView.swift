@@ -17,7 +17,7 @@ struct ResumeView: View {
                         .strongblue20()
                         .fontWeight(.semibold)
                     Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.darkblue)
+                        .foregroundColor(.darkBlue)
                 }
                 .padding(.trailing, 20)
             }
@@ -38,7 +38,7 @@ struct ResumeView: View {
                     
                     Image(systemName: "plus")
                         .font(.system(size: 50, weight: .semibold))
-                        .foregroundColor(.darkblue)
+                        .foregroundColor(.darkBlue)
                         .frame(width: 156, height: 213)
                         .background(Color.darkGray)
                     Text("Create Resume")

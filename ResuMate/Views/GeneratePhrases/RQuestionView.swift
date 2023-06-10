@@ -7,17 +7,35 @@
 
 import SwiftUI
 
-struct RQuestionSubView: View {
+struct RQuestionView: View {
     @State var rqAnswer: String = ""
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
     @State var isLoading: Bool = false
+    @State var isNextPage: Bool = false
+    @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
+    
     var body: some View {
-        if isLoading{
-            LoadingScreen()
+        if isNextPage{
+            switch cardLists.currentPageView {
+            case "personalData":
+                PersonalDataView()
+            case "workExp":
+                WorkExperienceView()
+            case "education":
+                EducationView()
+            default:
+                LoadingScreen()
+            }
+            
         }else{
             
+            if isLoading{
+                LoadingScreen()
+            }else{
+                
                 VStack{
                     GeneratePhrasesToolbar(titleToolbar: "Auto Generate Phrases") {
                         progress = progress - 0.20
@@ -30,11 +48,13 @@ struct RQuestionSubView: View {
                     GeneratePhrasesForm(question: "RQuestion", fill: $rqAnswer)
                     Spacer()
                     Button{
+                        gpAnswer.rquestion = rqAnswer
                         isLoading = true
                         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
                             withAnimation {
-                                
+                                saveStarData()
                                 isLoading = false
+                                isNextPage = true
                             }
                         }
                     } label: {
@@ -43,10 +63,22 @@ struct RQuestionSubView: View {
                     Spacer().frame(height: 50)
                     
                 }
-            .navigationBarBackButtonHidden(true)
+                .navigationBarBackButtonHidden(true)
                 
+            }
         }
     }
+     func saveStarData() {
+         let newStar = Star(id: UUID(), squestion: gpAnswer.squestion, tquestion: gpAnswer.tquestion, aquestion: gpAnswer.aquestion, rquestion: gpAnswer.rquestion)
+             cardLists.starData.append(newStar)
+         print(newStar)
+            
+            // Reset form fields
+//            squestion = ""
+//            tquestion = ""
+//            aquestion = ""
+//            rquestion = ""
+        }
 }
 
 //struct RQuestion_Previews: PreviewProvider {

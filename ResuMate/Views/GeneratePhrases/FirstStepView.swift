@@ -8,10 +8,42 @@
 import Foundation
 import SwiftUI
 
-struct FirstStepSubView: View{
+class GeneratePhrasesAnswer: ObservableObject {
+    @AppStorage("squestion") var squestion: String = ""
+    @AppStorage("tquestion") var tquestion: String = ""
+    @AppStorage("aquestion") var aquestion: String = ""
+    @AppStorage("rquestion") var rquestion: String = ""
+    
+}
+struct GeneratePhrases: View {
+    @State private var currentPage: GeneratePhrasesPage = .generatePhrases
+    @State var progress: CGFloat = 0.2
+    @State var step: Int = 1
+    
+    var body: some View {
+        VStack{
+            switch currentPage {
+            case .generatePhrases:
+                FirstStepView(step: $step, progress: $progress, currentPage: $currentPage)
+            case .sQuestion:
+                SQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
+            case .tQuestion:
+                TQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
+            case .aQuestion:
+                AQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
+            case .rQuestion:
+                RQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
+            }
+        }
+    }
+}
+
+struct FirstStepView: View{
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    
+
     var body: some View{
         
             VStack{
@@ -27,7 +59,7 @@ struct FirstStepSubView: View{
                 Text("We Help You")
                     .font(.system(size: 22))
                     .bold()
-                    .foregroundColor(.darkblue)
+                    .foregroundColor(.darkBlue)
                 Spacer().frame(height: 10)
                 Text("We can help you generate phrases that describe you more with STAR method. Answer the question and let us work.")
                     .multilineTextAlignment(.center)
