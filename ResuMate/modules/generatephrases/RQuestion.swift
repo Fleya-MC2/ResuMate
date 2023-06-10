@@ -16,6 +16,7 @@ struct RQuestion: View {
     @State var isNextPage: Bool = false
     @EnvironmentObject var cardLists: CardLists
     @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
+    @State var isButtonActive: Bool = true
     
     var body: some View {
         if isNextPage{
@@ -65,7 +66,7 @@ struct RQuestion: View {
                             }
                         }
                     } label: {
-                        BigButton(text: "Submit", isButtonactive: true)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
                     }
                     Spacer().frame(height: 50)
                     

@@ -19,8 +19,10 @@ struct AddWorkExp: View {
     @State var isdescription: Bool = false
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
 
 
 
@@ -35,6 +37,7 @@ struct AddWorkExp: View {
         }
         else{
             NavigationStack{
+                VStack{
                 ScrollView{
                     VStack{
                         Spacer().frame(height: 50)
@@ -86,18 +89,32 @@ struct AddWorkExp: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 30)
                     }
-                    Spacer()
-                    Button{
-                        //                            if isButtonActive == true {
-                        saveWorkExp()
-                        isSubmit = true
-                        //                            }
+                    
+                }
+                Spacer()
+                Button{
+                                                if isButtonActive == true {
+                    saveWorkExp()
+                    isSubmit = true
+                                                }
+                    
+                }label: {
+                    BigButton(text: "Submit", isButtonactive: $isButtonActive)
+                    
+                }
+                .onReceive(timer) { time in
+                    
+                    if position != "" &&
+                        company != "" &&
+                        description != "" {
+                        isButtonActive = true
+                        print("%%%\(isButtonActive)")
                         
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: isButtonActive)
-                        
+                    }else{
+                        isButtonActive = false
                     }
                 }
+            }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
                         NavigationLink{

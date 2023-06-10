@@ -23,17 +23,18 @@ class CardLists: ObservableObject {
     @Published var organization: [Organize] = []
     @Published var volunteer: [Volunteer] = []
     @Published var starData: [Star] = []
+    
 }
 
 
 
 struct HomePage: View {
     @EnvironmentObject var cardLists: CardLists
-
     @State var selection = 1
     
     
     var body: some View {
+        
         NavigationStack{
             TabView(selection: $selection) {
                 ResumeView().tabItem {
@@ -57,6 +58,7 @@ struct HomePage: View {
             
             
         }.navigationBarBackButtonHidden(true)
+           
     }
 }
 

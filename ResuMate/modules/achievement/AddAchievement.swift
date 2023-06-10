@@ -17,7 +17,9 @@ struct AddAchievement: View {
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
     
     
@@ -30,6 +32,7 @@ struct AddAchievement: View {
             }
             else{
                 NavigationStack{
+                    VStack{
                     ScrollView{
                         VStack{
                             Spacer().frame(height: 50)
@@ -38,18 +41,31 @@ struct AddAchievement: View {
                             createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
                             
                         }
-                        Spacer()
-                        Button{
-                            //                            if isButtonActive == true {
-                            saveAchievement()
-                            isSubmit = true
-                            //                            }
+                        
+                    }
+                    Spacer()
+                    Button{
+                                                    if isButtonActive {
+                        saveAchievement()
+                        isSubmit = true
+                                                    }
+                        
+                    }label: {
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
+                        
+                    }
+                    .onReceive(timer) { time in
+                        
+                        if achieve != "" &&
+                            year != ""  {
+                            isButtonActive = true
+                            print("%%%\(isButtonActive)")
                             
-                        }label: {
-                            BigButton(text: "Submit", isButtonactive: isButtonActive)
-                            
+                        }else{
+                            isButtonActive = false
                         }
                     }
+                }
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink{

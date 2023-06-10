@@ -11,6 +11,8 @@ struct WorkExperience: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonactive: Bool = false
     @State var isSubmit: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
     var body: some View {
         if isSubmit {
@@ -54,13 +56,21 @@ struct WorkExperience: View {
                     
                     Spacer()
                     Button{
-                        cardLists.isWorkExpFilled = false
-                        isSubmit = true
+                        if isButtonactive{
+                            cardLists.isWorkExpFilled = true
+                            isSubmit = true
+                        }
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: isButtonactive)
+                        BigButton(text: "Submit", isButtonactive: $isButtonactive)
                     }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onReceive(timer) { time in
+                    
+                    if cardLists.workExp.count != 0 {
+                        isButtonactive = true
+                    }
+                    print(isButtonactive)
                 }
-                
                 
                 
             }.navigationBarBackButtonHidden(true)

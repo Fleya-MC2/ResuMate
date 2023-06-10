@@ -13,6 +13,8 @@ struct SQuestion: View {
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
     @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
+    @State var isButtonActive: Bool = true
+
     
     var body: some View {
         
@@ -42,7 +44,7 @@ struct SQuestion: View {
                     
                     
                 }label: {
-                    BigButton(text: "Next", isButtonactive: true)
+                    BigButton(text: "Next", isButtonactive: $isButtonActive)
                 }
                 
                 Spacer().frame(height: 50)

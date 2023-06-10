@@ -10,7 +10,7 @@ import SwiftUI
 struct EducationalBackground: View {
 //    @Binding var navigationItemPath: [NavigationItem]
     @EnvironmentObject var cardLists: CardLists
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
     
     @State var lengthEduData = 0
@@ -59,17 +59,25 @@ struct EducationalBackground: View {
                     }
                     Spacer()
                     Button{
-                        cardLists.isEducationFilled = false
-                        isSubmit = true
+                        if isButtonActive{
+                            cardLists.isEducationFilled = true
+                            isSubmit = true
+                        }
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: isButtonActive)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
                     }
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 
-                
+                    .onReceive(timer) { time in
+                        
+                        if cardLists.education.count != 0 {
+                            isButtonActive = true
+                        }
+                        print(isButtonActive)
+                    }
                 
             }.navigationBarBackButtonHidden(true)
             

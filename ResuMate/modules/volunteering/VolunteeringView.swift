@@ -9,8 +9,10 @@ import SwiftUI
 
 struct Volunteering: View {
     @EnvironmentObject var cardLists: CardLists
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
         if isSubmit{
             DataView()
@@ -53,16 +55,24 @@ struct Volunteering: View {
                     }
                     Spacer()
                     Button{
-                        cardLists.isVolunteringFilled = false
-                        isSubmit = true
+                        if isButtonActive{
+                            cardLists.isVolunteringFilled = true
+                            isSubmit = true
+                        }
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: isButtonActive)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
                     }
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                
+                    .onReceive(timer) { time in
+                        
+                        if cardLists.volunteer.count != 0 {
+                            isButtonActive = true
+                        }
+                        print(isButtonActive)
+                    }
                 
                 
             }.navigationBarBackButtonHidden(true)

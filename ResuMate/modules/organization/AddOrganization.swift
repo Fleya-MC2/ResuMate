@@ -20,7 +20,8 @@ struct AddOrganization: View {
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     
@@ -33,67 +34,82 @@ struct AddOrganization: View {
             }
             else{
                 NavigationStack{
-                    ScrollView{
-                        VStack{
-                            Spacer().frame(height: 50)
-                            
-                            createBigForm(title: "Position", placeholder: "String", fill: $position, isCheck: $isposition)
-                            createBigForm(title: "Organization", placeholder: "String", fill: $organization, isCheck: $isorganization)
-                            HStack{
-                                DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
-                                DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
-                            }
-                            VStack(alignment: .leading){
+                    VStack{
+                        ScrollView{
+                            VStack{
+                                Spacer().frame(height: 50)
+                                
+                                createBigForm(title: "Position", placeholder: "String", fill: $position, isCheck: $isposition)
+                                createBigForm(title: "Organization", placeholder: "String", fill: $organization, isCheck: $isorganization)
                                 HStack{
-                                    Text("Description")
-                                        .blacktext17()
-                                        .fontWeight(.regular)
-                                        .padding(.bottom, 10)
-                                    Spacer()
-                                    
-                                    Button{
-                                        isSuggestion.toggle()
-                                    }label: {
-                                        HStack{
-                                            Text("Suggestion")
-                                                .strongblue15()
-                                                .fontWeight(.semibold)
-                                            Image(systemName: "sparkles")
-                                                .foregroundColor(.strongblue)
+                                    DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
+                                    DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
+                                }
+                                VStack(alignment: .leading){
+                                    HStack{
+                                        Text("Description")
+                                            .blacktext17()
+                                            .fontWeight(.regular)
+                                            .padding(.bottom, 10)
+                                        Spacer()
+                                        
+                                        Button{
+                                            isSuggestion.toggle()
+                                        }label: {
+                                            HStack{
+                                                Text("Suggestion")
+                                                    .strongblue15()
+                                                    .fontWeight(.semibold)
+                                                Image(systemName: "sparkles")
+                                                    .foregroundColor(.strongblue)
+                                            }
+                                            .padding(.bottom, 10)
                                         }
-                                        .padding(.bottom, 10)
+                                        
                                     }
+                                    HStack{
+                                        TextField("String", text: $description)
+                                            .padding(.leading, 20)
+                                        Spacer()
+                                        
+                                    }.background(Rectangle().fill(.white)
+                                        .frame(height: 48)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                        )
+                                    )
+                                    .foregroundColor(.black)
+                                    
                                     
                                 }
-                                HStack{
-                                    TextField("String", text: $description)
-                                        .padding(.leading, 20)
-                                    Spacer()
-                                    
-                                }.background(Rectangle().fill(.white)
-                                    .frame(height: 48)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                    )
-                                )
-                                .foregroundColor(.black)
-                                
-                                
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 30)
                             }
-                            .padding(.horizontal, 20)
-                            .padding(.bottom, 30)
+                            
                         }
                         Spacer()
                         Button{
-                            //                            if isButtonActive == true {
+                                                        if isButtonActive{
                             saveOrganization()
                             isSubmit = true
-                            //                            }
+                                                        }
                             
                         }label: {
-                            BigButton(text: "Submit", isButtonactive: isButtonActive)
+                            BigButton(text: "Submit", isButtonactive: $isButtonActive)
                             
+                        }
+                        .onReceive(timer) { time in
+                            
+                            if position != "" &&
+                                organization != "" &&
+                                description != "" {
+                                isButtonActive = true
+                                print("%%%\(isButtonActive)")
+                                
+                            }else{
+                                isButtonActive = false
+                            }
                         }
                     }
                     .toolbar {

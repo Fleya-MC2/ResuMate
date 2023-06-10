@@ -23,7 +23,9 @@ struct AddEducation: View {
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
-    @State var isButtonActive: Bool = true
+    @State var isButtonActive: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
 
     
     
@@ -87,14 +89,27 @@ struct AddEducation: View {
                         
                         Spacer()
                         Button{
-//                            if isButtonActive == true {
+                            if isButtonActive == true {
                                 saveEducation()
                                 isSubmit = true
-//                            }
+                            }
                             
                         }label: {
-                            BigButton(text: "Submit", isButtonactive: isButtonActive)
+                            BigButton(text: "Submit", isButtonactive: $isButtonActive)
                             
+                        }
+                        .onReceive(timer) { time in
+                            
+                            if major != "" &&
+                                institution != "" &&
+                                score != "" &&
+                                description != "" {
+                                isButtonActive = true
+                                print("%%%\(isButtonActive)")
+                                
+                            }else{
+                                isButtonActive = false
+                            }
                         }
                         
                     }

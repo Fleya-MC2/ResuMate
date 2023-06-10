@@ -11,6 +11,8 @@ struct ModalAchievement: View {
     @EnvironmentObject var cardLists: CardLists
     @Binding var isSuggestion: Bool
     @Binding var isGenerate: Bool
+    @State var isButtonActive: Bool = false
+
     var body: some View {
         NavigationStack{
             VStack{
@@ -49,7 +51,7 @@ struct ModalAchievement: View {
                     isSuggestion.toggle()
                     cardLists.currentPageView = "achievement"
                 }label: {
-                    BigButton(text: "Need something more?", isButtonactive: true)
+                    BigButton(text: "Need something more?", isButtonactive: $isButtonActive)
                 }
                 
                 

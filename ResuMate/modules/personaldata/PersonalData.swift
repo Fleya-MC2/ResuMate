@@ -26,6 +26,8 @@ struct PersonalData: View {
     @State var ismotto: Bool = false
     @State var issummary: Bool = false
     @State var isButtonActive: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
 
     
@@ -95,21 +97,29 @@ struct PersonalData: View {
                     Button{
                         if isButtonActive == true {
                             saveBioData()
-                            cardLists.isPersonalDataFilled = false
+                            cardLists.isPersonalDataFilled = true
                             isSubmit = true
                         }
                         
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: isButtonActive)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
                             
                     }
-                    .onChange(of: $isButtonActive.wrappedValue, perform: { value in
-                        if firstname != "" {
-                            self.isButtonActive = true
-                        } else {
-                            self.isButtonActive = false
+                    .onReceive(timer) { time in
+                        
+                        if firstname != "" &&
+                            lastname != "" &&
+                            email != "" &&
+                            phone != "" &&
+                            motto != "" &&
+                            summary != "" {
+                            isButtonActive = true
+                            print("%%%\(isButtonActive)")
+                            
+                        }else{
+                            isButtonActive = false
                         }
-                    })
+                    }
                     
                 }.sheet(isPresented: $isSuggestion) {
                     ModalPersonalData(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
