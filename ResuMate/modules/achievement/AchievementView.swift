@@ -1,38 +1,32 @@
 //
-//  EducationalBackground.swift
-//  JobMate
+//  Achievement.swift
+//  ResuMate
 //
-//  Created by Luthfi Asmara on 08/06/23.
+//  Created by Luthfi Asmara on 10/06/23.
 //
 
 import SwiftUI
 
-struct EducationalBackground: View {
-//    @Binding var navigationItemPath: [NavigationItem]
+struct AchievementView: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = true
     @State var isSubmit: Bool = false
-    
-    @State var lengthEduData = 0
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     var body: some View {
         if isSubmit{
             DataView()
         }else{
             NavigationStack{
                 VStack{
-                    CustomToolbar(titleToolbar: "Educational Background", destinationL: HomePage(selection: 1), destinationT: AddEducation())
+                    CustomToolbar(titleToolbar: "Achievement", destinationL: HomePage(selection: 1), destinationT: AddAchievement())
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
                         .fontWeight(.light)
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
-                    
-                    ForEach(cardLists.education){ itm in
+                    ForEach(cardLists.achievement){ itm in
                         HStack{
-                            Text("\(itm.major) - \(itm.Institution)")
+                            Text("\(itm.achieve) - \(itm.year)")
                                 .blacktext15()
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -44,14 +38,14 @@ struct EducationalBackground: View {
                             .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         
                     }
-                    if cardLists.education.count == 0 {
+                    if cardLists.achievement.count == 0 {
                         NavigationLink{
-                            AddEducation()
+                            AddAchievement()
                         }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.strongblue)
-                                Text("Add Education")
+                                Text("Add Achievement")
                                     .strongblue15()
                                     .fontWeight(.semibold)
                             }
@@ -59,7 +53,7 @@ struct EducationalBackground: View {
                     }
                     Spacer()
                     Button{
-                        cardLists.isEducationFilled = false
+                        cardLists.isAchievementFilled = false
                         isSubmit = true
                     }label: {
                         BigButton(text: "Submit", isButtonactive: isButtonActive)
@@ -75,11 +69,4 @@ struct EducationalBackground: View {
             
         }
     }
-    
 }
-
-//struct EducationalBackground_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EducationalBackground()
-//    }
-//}

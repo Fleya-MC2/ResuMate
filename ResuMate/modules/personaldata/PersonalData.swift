@@ -25,6 +25,7 @@ struct PersonalData: View {
     @State var isphone: Bool = false
     @State var ismotto: Bool = false
     @State var issummary: Bool = false
+    @State var isButtonActive: Bool = false
     
 
     
@@ -44,7 +45,7 @@ struct PersonalData: View {
                         Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                             .blacktext17()
                             .fontWeight(.regular)
-                        Spacer().frame(height: 33)
+                        Spacer().frame(height: 40)
                         createBigForm(title: "First Name", placeholder: "String", fill: $firstname, isCheck: $isfirstname)
                         createBigForm(title: "Last Name", placeholder: "String", fill: $lastname, isCheck: $islastname)
                         createBigForm(title: "Email", placeholder: "String", fill: $email, isCheck: $isemail)
@@ -92,13 +93,23 @@ struct PersonalData: View {
                         .padding(.bottom, 30)
                     }
                     Button{
-                        saveBioData()
-                        cardLists.isPersonalDataFilled = true
-                        isSubmit = true
+                        if isButtonActive == true {
+                            saveBioData()
+                            cardLists.isPersonalDataFilled = false
+                            isSubmit = true
+                        }
                         
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: true)
+                        BigButton(text: "Submit", isButtonactive: isButtonActive)
+                            
                     }
+                    .onChange(of: $isButtonActive.wrappedValue, perform: { value in
+                        if firstname != "" {
+                            self.isButtonActive = true
+                        } else {
+                            self.isButtonActive = false
+                        }
+                    })
                     
                 }.sheet(isPresented: $isSuggestion) {
                     ModalPersonalData(isSuggestion: $isSuggestion, isGenerate: $isGenerate)

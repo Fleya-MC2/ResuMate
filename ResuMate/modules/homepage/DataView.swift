@@ -29,14 +29,25 @@ struct DataView: View {
                         .padding(.trailing, 20)
                     }
                 }
-                Spacer().frame(height: 60)
+                
+                ScrollView(.vertical, showsIndicators: false){
+                    
                 VStack{
+                    Spacer().frame(height: 60)
                     TitleView(title: "Your Data")
                     SubtitleView(subtitle: "Ceklist all this section below for create resume now!")
                 }.frame(width: 300)
-                
+//                ForEach(cardLists.bioData) { bio in
+//                                VStack(alignment: .leading) {
+//                                    Text("Name: \(bio.firstname) \(bio.lastname)").foregroundColor(.black)
+//                                    Text("Email: \(bio.email)").foregroundColor(.black)
+//                                    Text("Phone: \(bio.phone)").foregroundColor(.black)
+//                                    Text("Motto: \(bio.motto)").foregroundColor(.black)
+//                                    Text("Summary: \(bio.summary)").foregroundColor(.black)
+//                                }
+//                }
                 Spacer().frame(height: 55)
-                ScrollView(.vertical, showsIndicators: false){
+               
                     Spacer().frame(height: 20)
                     NavigationLink{
                         PersonalData()
@@ -56,11 +67,29 @@ struct DataView: View {
                         CardList(label: "Educational Background", img: "education", isFilled: cardLists.isEducationFilled)
                     }
                     
+                    NavigationLink{
+                        Organization()
+                    }label: {
+                        CardList(label: "Organization Experience", img: "organization", isFilled: cardLists.isOrganizationFilled)
+                    }
                     
-                    CardList(label: "Organization Experience", img: "organization", isFilled: cardLists.isOrganizationFilled)
-                    CardList(label: "Skill", img: "skill", isFilled: cardLists.isSkillFilled)
-                    CardList(label: "Achievement", img: "achievement", isFilled: cardLists.isAchievementFilled)
-                    CardList(label: "Voluntering", img: "voluntering", isFilled: cardLists.isVolunteringFilled)
+                    NavigationLink{
+                        Skill()
+                    }label: {
+                        CardList(label: "Skill", img: "skill", isFilled: cardLists.isSkillFilled)
+                    }
+                    
+                    NavigationLink{
+                        AchievementView()
+                    }label: {
+                        CardList(label: "Achievement", img: "achievement", isFilled: cardLists.isAchievementFilled)
+                    }
+                    
+                    NavigationLink{
+                        Volunteering()
+                    }label: {
+                        CardList(label: "Voluntering", img: "voluntering", isFilled: cardLists.isVolunteringFilled)
+                    }
                 }
             }
         }.navigationBarBackButtonHidden(true)

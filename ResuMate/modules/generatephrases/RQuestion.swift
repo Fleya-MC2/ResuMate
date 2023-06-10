@@ -25,7 +25,14 @@ struct RQuestion: View {
             case "workExp":
                 AddWorkExp()
             case "education":
-                EducationalBackground()
+                AddEducation()
+            case "organization":
+                AddOrganization()
+            case "volunteering":
+                AddVolunteering()
+            case "achievement":
+                AddAchievement()
+            
             default:
                 LoadingScreen()
             }
@@ -68,17 +75,17 @@ struct RQuestion: View {
             }
         }
     }
-     func saveStarData() {
-         let newStar = Star(id: UUID(), squestion: gpAnswer.squestion, tquestion: gpAnswer.tquestion, aquestion: gpAnswer.aquestion, rquestion: gpAnswer.rquestion)
-             cardLists.starData.append(newStar)
-         print(newStar)
-            
-            // Reset form fields
-//            squestion = ""
-//            tquestion = ""
-//            aquestion = ""
-//            rquestion = ""
-        }
+    func saveStarData() {
+        let newStar = Star(id: UUID(), squestion: gpAnswer.squestion, tquestion: gpAnswer.tquestion, aquestion: gpAnswer.aquestion, rquestion: gpAnswer.rquestion)
+        cardLists.starData.append(newStar)
+        print(newStar)
+        
+        // Reset form fields
+        //            squestion = ""
+        //            tquestion = ""
+        //            aquestion = ""
+        //            rquestion = ""
+    }
 }
 
 //struct RQuestion_Previews: PreviewProvider {

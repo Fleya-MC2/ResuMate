@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddWorkExp: View {
-
+    @EnvironmentObject var cardLists: CardLists
     @State var position: String = ""
     @State var company: String = ""
     @State var startDate: Date = Date()
@@ -19,63 +19,84 @@ struct AddWorkExp: View {
     @State var isdescription: Bool = false
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
+    @State var isButtonActive: Bool = true
+    @State var isSubmit: Bool = false
+
+
 
 
     
     var body: some View {
+        if isSubmit{
+            WorkExperience()
+        } else{
         if isGenerate {
             GeneratePhrases()
         }
         else{
             NavigationStack{
-                VStack{
-                    createBigForm(title: "Position", placeholder: "String", fill: $position, isCheck: $isposition)
-                    createBigForm(title: "Company", placeholder: "String", fill: $company, isCheck: $iscompany)
-                    HStack{
-                        DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
-                        DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
-                    }
-                    VStack(alignment: .leading){
+                ScrollView{
+                    VStack{
+                        Spacer().frame(height: 50)
+                        
+                        createBigForm(title: "Position", placeholder: "String", fill: $position, isCheck: $isposition)
+                        createBigForm(title: "Company", placeholder: "String", fill: $company, isCheck: $iscompany)
                         HStack{
-                            Text("Description")
-                                .blacktext17()
-                                .fontWeight(.regular)
-                                .padding(.bottom, 10)
-                            Spacer()
-                            
-                            Button{
-                                isSuggestion.toggle()
-                            }label: {
-                                HStack{
-                                    Text("Suggestion")
-                                        .strongblue15()
-                                        .fontWeight(.semibold)
-                                    Image(systemName: "sparkles")
-                                        .foregroundColor(.strongblue)
+                            DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
+                            DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
+                        }
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text("Description")
+                                    .blacktext17()
+                                    .fontWeight(.regular)
+                                    .padding(.bottom, 10)
+                                Spacer()
+                                
+                                Button{
+                                    isSuggestion.toggle()
+                                }label: {
+                                    HStack{
+                                        Text("Suggestion")
+                                            .strongblue15()
+                                            .fontWeight(.semibold)
+                                        Image(systemName: "sparkles")
+                                            .foregroundColor(.strongblue)
+                                    }
+                                    .padding(.bottom, 10)
                                 }
-                                .padding(.bottom, 10)
+                                
                             }
+                            HStack{
+                                TextField("String", text: $description)
+                                    .padding(.leading, 20)
+                                Spacer()
+                                
+                            }.background(Rectangle().fill(.white)
+                                .frame(height: 48)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                )
+                            )
+                            .foregroundColor(.black)
+                            
                             
                         }
-                        HStack{
-                            TextField("String", text: $description)
-                                .padding(.leading, 20)
-                            Spacer()
-                            
-                        }.background(Rectangle().fill(.white)
-                            .frame(height: 48)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                            )
-                        )
-                        .foregroundColor(.black)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 30)
+                    }
+                    Spacer()
+                    Button{
+                        //                            if isButtonActive == true {
+                        saveWorkExp()
+                        isSubmit = true
+                        //                            }
                         
+                    }label: {
+                        BigButton(text: "Submit", isButtonactive: isButtonActive)
                         
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 30)
-                    Spacer()
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
@@ -98,6 +119,7 @@ struct AddWorkExp: View {
             }.navigationBarBackButtonHidden(true)
         }
     }
+    }
     func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
         BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
             .onChange(of: fill.wrappedValue, perform: { _ in
@@ -108,6 +130,12 @@ struct AddWorkExp: View {
         isposition = !position.isEmpty
         iscompany = !company.isEmpty
         isdescription = !description.isEmpty
+        
+    }
+    func saveWorkExp() {
+        let newWorkExp = WorkExp(id: UUID(), position: position, company: company, startDate: startDate, endDate: endDate, description: description)
+        cardLists.workExp.append(newWorkExp)
+        print(newWorkExp)
         
     }
 

@@ -16,28 +16,124 @@ struct AddEducation: View {
     @State var endDate: Date = Date()
     @State var score: String = ""
     @State var description: String = ""
+    @State var ismajor: Bool = false
+    @State var isinstitution: Bool = false
+    @State var isscore: Bool = false
+    @State var isdescription: Bool = false
+    @State var isSuggestion: Bool = false
+    @State var isGenerate: Bool = false
+    @State var isSubmit: Bool = false
+    @State var isButtonActive: Bool = true
+
+    
     
     var body: some View {
-        NavigationStack{
-            VStack{
-                CustomToolbar2(titleToolbar: "Add Education", destination: EducationalBackground())
-//                BigForm(title: "Major", placeholder: "String", fill: $major)
-//                BigForm(title: "Institution", placeholder: "String", fill: $institution)
-//                HStack{
-//                    DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
-//                    DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
-//                }
-//                BigForm(title: "GPA/Score", placeholder: "String", fill: $score)
-//                BigForm(title: "Description", placeholder: "String", fill: $description)
-                Spacer()
-                
+        if isSubmit{
+            EducationalBackground()
+        } else{
+            if isGenerate{
+                GeneratePhrases()
+            } else {
+                NavigationStack{
+                    VStack{
+                        CustomToolbar2(titleToolbar: "Add Education", destination: EducationalBackground())
+                        createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
+                        createBigForm(title: "Institution", placeholder: "String", fill: $institution, isCheck: $isinstitution)
+                        HStack{
+                            DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
+                            DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
+                        }
+                        createBigForm(title: "GPA/Score", placeholder: "String", fill: $score, isCheck: $isscore)
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text("Description")
+                                    .blacktext17()
+                                    .fontWeight(.regular)
+                                    .padding(.bottom, 10)
+                                Spacer()
+                                
+                                Button{
+                                    isSuggestion.toggle()
+                                }label: {
+                                    HStack{
+                                        Text("Suggestion")
+                                            .strongblue15()
+                                            .fontWeight(.semibold)
+                                        Image(systemName: "sparkles")
+                                            .foregroundColor(.strongblue)
+                                    }
+                                    .padding(.bottom, 10)
+                                }
+                                
+                            }
+                            HStack{
+                                TextField("String", text: $description)
+                                    .padding(.leading, 20)
+                                Spacer()
+                                
+                            }.background(Rectangle().fill(.white)
+                                .frame(height: 48)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                )
+                            )
+                            .foregroundColor(.black)
+                            
+                            
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 30)
+                        
+                        Spacer()
+                        Button{
+//                            if isButtonActive == true {
+                                saveEducation()
+                                isSubmit = true
+//                            }
+                            
+                        }label: {
+                            BigButton(text: "Submit", isButtonactive: isButtonActive)
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                    
+                }
+                .sheet(isPresented: $isSuggestion) {
+                    ModalEducation(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
+                        .presentationDetents([.medium])
+                    
+                }.navigationBarBackButtonHidden(true)
             }
-            
-            
-            
-            
-        }.navigationBarBackButtonHidden(true)
+        }
     }
+    func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
+        BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
+            .onChange(of: fill.wrappedValue, perform: { _ in
+                updateFilledStatus()
+            })
+    }
+    private func updateFilledStatus() {
+        ismajor = !major.isEmpty
+        isinstitution = !institution.isEmpty
+        
+    }
+    func saveEducation() {
+        let newEducation = Education(id: UUID(), major: major, Institution: institution, startDate: startDate, endDate: endDate, score: score, description: description)
+       cardLists.education.append(newEducation)
+        print(newEducation)
+           // Reset form fields
+//            firstname = ""
+//            lastname = ""
+//            email = ""
+//            phone = ""
+//            motto = ""
+//            summary = ""
+       }
 }
 
 //struct AddEducation_Previews: PreviewProvider {

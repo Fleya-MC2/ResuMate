@@ -16,18 +16,32 @@ struct InputTag: View {
     var body: some View {
         VStack{
             Spacer()
-            HStack{
-                FormViewBiodata(placeholder: "Enter Your Skill", fill: $newTag)
-                Button{
-                    print(newTag)
-                    addTag()
-                    
-                }label: {
-                    Text("tambah")
-                        .padding(.leading, 10)
+            VStack(alignment: .leading){
+                HStack{
+                    Text("Search Skill")
+                        .blacktext17()
+                        .fontWeight(.regular)
+                        .padding(.bottom, 10)
+                    Spacer()
                 }
-                
-            }.padding(.horizontal, 20)
+                Spacer().frame(height: 5)
+                HStack{
+                    TextField("placeholder", text: $newTag)
+                        .padding(.leading, 20)
+                    
+                    
+                }.background(Rectangle().fill(.white)
+                    .frame(height: 48)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    )
+                )
+                .foregroundColor(.black)
+    //            BasedForm(placeholder: placeholder, fill: $fill, isCheck: $isCheck)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 30)
             Spacer().frame(height: 20)
             GeometryReader { geometryProxy in
                 FlexibleView(

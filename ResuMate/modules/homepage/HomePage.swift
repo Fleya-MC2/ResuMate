@@ -17,6 +17,11 @@ class CardLists: ObservableObject {
     @AppStorage("isVolunteringFilled") var isVolunteringFilled: Bool = false
     @AppStorage("currentPageView") var currentPageView: String = ""
     @Published var bioData: [Bio] = []
+    @Published var education: [Education] = []
+    @Published var achievement: [Achievement] = []
+    @Published var workExp: [WorkExp] = []
+    @Published var organization: [Organize] = []
+    @Published var volunteer: [Volunteer] = []
     @Published var starData: [Star] = []
 }
 

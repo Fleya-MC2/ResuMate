@@ -10,7 +10,12 @@ import SwiftUI
 struct Skill: View {
 
     var body: some View {
-        InputTag()
+        VStack{
+           
+            CustomToolbar2(titleToolbar: "Skill", destination: DataView())
+            Spacer().frame(height: 27)
+            InputTag()
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
