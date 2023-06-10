@@ -10,7 +10,7 @@ import SwiftUI
 struct SkillView: View {
 
     var body: some View {
-        InputTag()
+        TagForm()
     }
 }
 

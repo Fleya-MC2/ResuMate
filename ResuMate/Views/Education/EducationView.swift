@@ -18,7 +18,7 @@ struct EducationView: View {
         
         NavigationStack{
             VStack{
-                CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationSubView())
+                CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationView())
                 Spacer().frame(height: 17)
                 Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                     .blacktext17()
@@ -26,11 +26,11 @@ struct EducationView: View {
                     .padding(.horizontal, 20)
                 Spacer().frame(height: 40)
                 NavigationLink{
-                    AddEducationSubView()
+                    AddEducationView()
                 }label:{
                     HStack{
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.strongblue)
+                            .foregroundColor(.darkblue)
                         Text("Add Education")
                             .strongblue15()
                             .fontWeight(.semibold)

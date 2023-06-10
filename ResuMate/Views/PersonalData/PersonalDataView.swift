@@ -59,34 +59,29 @@ struct PersonalDataView: View {
                                             .strongblue15()
                                             .fontWeight(.semibold)
                                         Image(systemName: "sparkles")
-                                            .foregroundColor(.strongblue)
+                                            .foregroundColor(.darkblue)
                                     }
                                     .padding(.bottom, 10)
                                 }
                                 
                             }
                             
-                            BasedForm(placeholder: "String", fill: $summary)
+                            BaseForm(placeholder: "String", fill: $summary)
                         }
                         .padding(.horizontal, 20)
                         .padding(.bottom, 30)
                     }
                     BigButton(text: "Submit", isButtonactive: true)
                 }.sheet(isPresented: $isSuggestion) {
-                    ModalPersonalDataSubView(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
+                    SuggestionSheet(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
                         .presentationDetents([.medium])
-                
-                
-                
-                
-                
             }.navigationBarBackButtonHidden(true)
         }
     }
 }
 
-//struct PersonalData_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PersonalData(navigationItemPath: <#T##Binding<[NavigationItem]>#>)
-//    }
-//}
+struct PersonalData_Previews: PreviewProvider {
+    static var previews: some View {
+        PersonalDataView()
+    }
+}

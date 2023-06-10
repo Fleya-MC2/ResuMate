@@ -31,14 +31,14 @@ struct JobModel: Identifiable {
 
 
 // Contoh data pekerjaan
-let jobLists: [Job] = [
-    Job(id: UUID(), name: "Gojek", position: "FrontEnd Dev", category: "Part-Time", image: "tokped", score: 40, scoreStatus: scoreStatuses[0], endDate: Date()),
-    Job(id: UUID(), name: "Tokpedia", position: "Backend Dev", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
-    Job(id: UUID(), name: "Shopee", position: "iOs Dev", category: "Part-Time", image: "tokped", score: 80, scoreStatus: scoreStatuses[2], endDate: Date()),
-    Job(id: UUID(), name: "Gojek", position: "Android Dev", category: "Part-Time", image: "tokped", score: 75, scoreStatus: scoreStatuses[2], endDate: Date()),
-    Job(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
-    Job(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
-    Job(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
+let jobLists: [JobModel] = [
+    JobModel(id: UUID(), name: "Gojek", position: "FrontEnd Dev", category: "Part-Time", image: "tokped", score: 40, scoreStatus: scoreStatuses[0], endDate: Date()),
+    JobModel(id: UUID(), name: "Tokpedia", position: "Backend Dev", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
+    JobModel(id: UUID(), name: "Shopee", position: "iOs Dev", category: "Part-Time", image: "tokped", score: 80, scoreStatus: scoreStatuses[2], endDate: Date()),
+    JobModel(id: UUID(), name: "Gojek", position: "Android Dev", category: "Part-Time", image: "tokped", score: 75, scoreStatus: scoreStatuses[2], endDate: Date()),
+    JobModel(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
+    JobModel(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
+    JobModel(id: UUID(), name: "Gojek", position: "Digital Marketing", category: "Part-Time", image: "tokped", score: 60, scoreStatus: scoreStatuses[1], endDate: Date()),
     
 
 ]

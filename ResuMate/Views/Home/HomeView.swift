@@ -13,27 +13,31 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             TabView(selection: $selection) {
-                ResumeView().tabItem {
+                ResumeView()
+                    .border(width: 0.5, edges: [.bottom], color: .lightGray)
+                    .tabItem {
+
                     VStack{
+//                        Divider()
                         Image(systemName: "doc.fill.badge.plus")
                         Text("Resume")
                     }
-                }.tag(0)
-                DataView().tabItem {
+                }
+                .tag(0)
+
+                DataView()
+                    .border(width: 0.5, edges: [.bottom], color: .lightGray)
+                    .tabItem {
                     Image(systemName: "person.text.rectangle")
                     Text("Data")
                 }.tag(1)
-                
             }
-//            .background(Color.red)
-            .accentColor(.strongblue)
+            .accentColor(.darkblue)
             .colorMultiply(.white)
-               
-                
-               
-            
-            
         }.navigationBarBackButtonHidden(true)
+            .onAppear {
+                UITabBar.appearance().backgroundColor = .white
+            }
     }
 }
 

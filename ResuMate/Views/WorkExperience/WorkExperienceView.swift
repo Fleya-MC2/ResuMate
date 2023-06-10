@@ -13,10 +13,10 @@ struct WorkExperienceView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceSubView())
+                CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView())
                 HStack{
                     Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.strongblue)
+                        .foregroundColor(.darkblue)
                     Text("Add Work Experience")
                         .strongblue15()
                         .fontWeight(.semibold)
