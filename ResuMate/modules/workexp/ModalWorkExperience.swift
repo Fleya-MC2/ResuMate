@@ -1,13 +1,13 @@
 //
-//  ModalPersonalData.swift
-//  JobMate
+//  ModalWorkExperience.swift
+//  ResuMate
 //
-//  Created by Luthfi Asmara on 09/06/23.
+//  Created by Luthfi Asmara on 10/06/23.
 //
 
 import SwiftUI
 
-struct ModalPersonalData: View {
+struct ModalWorkExperience: View {
     @EnvironmentObject var cardLists: CardLists
     @Binding var isSuggestion: Bool
     @Binding var isGenerate: Bool
@@ -15,7 +15,7 @@ struct ModalPersonalData: View {
         NavigationStack{
             VStack{
                 HStack{
-                    Text("Personal Data")
+                    Text("Work Experience")
                         .blacktext15()
                         .fontWeight(.semibold)
                     Spacer()
@@ -39,18 +39,15 @@ struct ModalPersonalData: View {
                 Divider()
                 Spacer().frame(height: 30)
                 ScrollView{
-                    ForEach(0..<3){_ in
-                        RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid")
-                    }
-                    
+                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid")
+                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd")
                     
                 }
                 Spacer()
                 Button{
                     isGenerate.toggle()
                     isSuggestion.toggle()
-                    cardLists.currentPageView = "personalData"
-                    
+                    cardLists.currentPageView = "workExp"
                 }label: {
                     BigButton(text: "Need something more?", isButtonactive: true)
                 }
@@ -64,22 +61,3 @@ struct ModalPersonalData: View {
     }
 }
 
-//struct ModalPersonalData_Previews: PreviewProvider {
-//    var isSuggestion: Bool = false
-//    static var previews: some View {
-//        
-//        ModalPersonalData(isSuggestion: isSuggestion)
-//    }
-//}
-
-struct RecomendationBox: View{
-    @State var recomendText: String
-    var body: some View{
-        Text(recomendText)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 5)
-            .frame(width: 340)
-            .background(.white)
-            .cornerRadius(9)
-    }
-}

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EducationalBackground: View {
 //    @Binding var navigationItemPath: [NavigationItem]
-
+    @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = true
     @State var lengthEduData = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()

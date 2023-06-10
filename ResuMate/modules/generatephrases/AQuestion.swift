@@ -12,6 +12,7 @@ struct AQuestion: View {
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
     var body: some View {
         
             VStack{
@@ -26,7 +27,7 @@ struct AQuestion: View {
                 
                 Spacer()
                 Button{
-                    
+                    gpAnswer.aquestion = aqAnswer
                         if progress == 1{
                             progress = 1
                         }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PersonalData: View {
-//    @Binding var navigationItemPath: [NavigationItem]
-
+    //    @Binding var navigationItemPath: [NavigationItem]
+    @EnvironmentObject var cardLists: CardLists
     @State var firstname: String = ""
     @State var lastname: String = ""
     @State var email: String = ""
@@ -18,31 +18,38 @@ struct PersonalData: View {
     @State var summary: String = ""
     @State var isSuggestion: Bool = false
     @State var isGenerate: Bool = false
+    @State var isSubmit: Bool = false
+    @State var isfirstname: Bool = false
+    @State var islastname: Bool = false
+    @State var isemail: Bool = false
+    @State var isphone: Bool = false
+    @State var ismotto: Bool = false
+    @State var issummary: Bool = false
+    
+
+    
     
     var body: some View {
-        if isGenerate {
-            GeneratePhrases()
-        }
-        else{
-       
-                
-                
+        if isSubmit{
+            DataView()
+        }else{
+            if isGenerate {
+                GeneratePhrases()
+            }
+            else{
                 VStack{
-                    
                     CustomToolbar2(titleToolbar: "Personal Data", destination: HomePage(selection: 1))
-                    
-                    
                     ScrollView{
                         Spacer().frame(height: 17)
                         Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                             .blacktext17()
                             .fontWeight(.regular)
                         Spacer().frame(height: 33)
-                        BigForm(title: "First Name", placeholder: "String", fill: $firstname)
-                        BigForm(title: "Last Name", placeholder: "String", fill: $lastname)
-                        BigForm(title: "Email", placeholder: "String", fill: $lastname)
-                        BigForm(title: "Phone Number", placeholder: "String", fill: $lastname)
-                        BigForm(title: "Professional Motto", placeholder: "String", fill: $lastname)
+                        createBigForm(title: "First Name", placeholder: "String", fill: $firstname, isCheck: $isfirstname)
+                        createBigForm(title: "Last Name", placeholder: "String", fill: $lastname, isCheck: $islastname)
+                        createBigForm(title: "Email", placeholder: "String", fill: $email, isCheck: $isemail)
+                        createBigForm(title: "Phone Number", placeholder: "String", fill: $phone, isCheck: $isphone)
+                        createBigForm(title: "Professional Motto", placeholder: "String", fill: $motto, isCheck: $ismotto)
                         VStack(alignment: .leading){
                             HStack{
                                 Text("Professional Summary")
@@ -65,28 +72,67 @@ struct PersonalData: View {
                                 }
                                 
                             }
+                            HStack{
+                                TextField("String", text: $summary)
+                                    .padding(.leading, 20)
+                                Spacer()
+                                
+                            }.background(Rectangle().fill(.white)
+                                .frame(height: 48)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                )
+                            )
+                            .foregroundColor(.black)
                             
-                            BasedForm(placeholder: "String", fill: $summary)
+                            
                         }
                         .padding(.horizontal, 20)
                         .padding(.bottom, 30)
                     }
-                    BigButton(text: "Submit", isButtonactive: true)
+                    Button{
+                        saveBioData()
+                        cardLists.isPersonalDataFilled = true
+                        isSubmit = true
+                        
+                    }label: {
+                        BigButton(text: "Submit", isButtonactive: true)
+                    }
+                    
                 }.sheet(isPresented: $isSuggestion) {
                     ModalPersonalData(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
                         .presentationDetents([.medium])
-                
-                
-                
-                
-                
-            }.navigationBarBackButtonHidden(true)
+                    
+                }.navigationBarBackButtonHidden(true)
+            }
         }
     }
+    private func updateFilledStatus() {
+        isfirstname = !firstname.isEmpty
+        islastname = !lastname.isEmpty
+        isemail = !email.isEmpty
+        isphone = !phone.isEmpty
+        ismotto = !motto.isEmpty
+        issummary = !summary.isEmpty
+    }
+    func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
+        BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
+            .onChange(of: fill.wrappedValue, perform: { _ in
+                updateFilledStatus()
+            })
+    }
+     func saveBioData() {
+            let newBio = Bio(id: UUID(), firstname: firstname, lastname: lastname, email: email, phone: phone, motto: motto, summary: summary)
+        cardLists.bioData.append(newBio)
+         print(newBio)
+            // Reset form fields
+//            firstname = ""
+//            lastname = ""
+//            email = ""
+//            phone = ""
+//            motto = ""
+//            summary = ""
+        }
 }
 
-//struct PersonalData_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PersonalData(navigationItemPath: <#T##Binding<[NavigationItem]>#>)
-//    }
-//}

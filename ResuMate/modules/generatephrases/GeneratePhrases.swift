@@ -14,6 +14,14 @@ enum GeneratePhrasesPage {
     case aQuestion
     case rQuestion
 }
+
+class GeneratePhrasesAnswer: ObservableObject {
+    @AppStorage("squestion") var squestion: String = ""
+    @AppStorage("tquestion") var tquestion: String = ""
+    @AppStorage("aquestion") var aquestion: String = ""
+    @AppStorage("rquestion") var rquestion: String = ""
+    
+}
 struct GeneratePhrases: View {
     @State private var currentPage: GeneratePhrasesPage = .generatePhrases
     @State var progress: CGFloat = 0.2
@@ -41,6 +49,8 @@ struct FirstStep: View{
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    
+
     var body: some View{
         
             VStack{

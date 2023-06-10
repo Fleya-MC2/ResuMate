@@ -38,7 +38,6 @@
 		DE52F2B62A33340400061411 /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A02A33340400061411 /* CustomToolbar.swift */; };
 		DE52F2B72A33340400061411 /* InfoBoxGeneratePhrases.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A12A33340400061411 /* InfoBoxGeneratePhrases.swift */; };
 		DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A22A33340400061411 /* AdaptiveForm.swift */; };
-		DE52F2B92A33340400061411 /* BasedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A32A33340400061411 /* BasedForm.swift */; };
 		DE52F2BA2A33340400061411 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A42A33340400061411 /* OnboardingButton.swift */; };
 		DE52F2BB2A33340400061411 /* SubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A52A33340400061411 /* SubtitleView.swift */; };
 		DE52F2BC2A33340400061411 /* EmptyResumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A62A33340400061411 /* EmptyResumeData.swift */; };
@@ -55,6 +54,9 @@
 		DE52F2CB2A33349000061411 /* ScoreStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2C82A33349000061411 /* ScoreStatus.swift */; };
 		DE52F2CC2A33349000061411 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2C92A33349000061411 /* Tag.swift */; };
 		DE52F2CD2A33349000061411 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2CA2A33349000061411 /* Job.swift */; };
+		DE52F2CF2A33C4BD00061411 /* ModalWorkExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2CE2A33C4BD00061411 /* ModalWorkExperience.swift */; };
+		DE52F2D12A34518D00061411 /* Bio.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2D02A34518D00061411 /* Bio.swift */; };
+		DE52F2D32A34597000061411 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2D22A34597000061411 /* Star.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +92,6 @@
 		DE52F2A02A33340400061411 /* CustomToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		DE52F2A12A33340400061411 /* InfoBoxGeneratePhrases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBoxGeneratePhrases.swift; sourceTree = "<group>"; };
 		DE52F2A22A33340400061411 /* AdaptiveForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveForm.swift; sourceTree = "<group>"; };
-		DE52F2A32A33340400061411 /* BasedForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasedForm.swift; sourceTree = "<group>"; };
 		DE52F2A42A33340400061411 /* OnboardingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		DE52F2A52A33340400061411 /* SubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitleView.swift; sourceTree = "<group>"; };
 		DE52F2A62A33340400061411 /* EmptyResumeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResumeData.swift; sourceTree = "<group>"; };
@@ -107,6 +108,9 @@
 		DE52F2C82A33349000061411 /* ScoreStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreStatus.swift; sourceTree = "<group>"; };
 		DE52F2C92A33349000061411 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DE52F2CA2A33349000061411 /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		DE52F2CE2A33C4BD00061411 /* ModalWorkExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalWorkExperience.swift; sourceTree = "<group>"; };
+		DE52F2D02A34518D00061411 /* Bio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bio.swift; sourceTree = "<group>"; };
+		DE52F2D22A34597000061411 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 			children = (
 				DE52F27E2A3333C600061411 /* AddWorkExp.swift */,
 				DE52F27F2A3333C600061411 /* WorkExperience.swift */,
+				DE52F2CE2A33C4BD00061411 /* ModalWorkExperience.swift */,
 			);
 			path = workexp;
 			sourceTree = "<group>";
@@ -251,7 +256,6 @@
 				DE52F2A02A33340400061411 /* CustomToolbar.swift */,
 				DE52F2A12A33340400061411 /* InfoBoxGeneratePhrases.swift */,
 				DE52F2A22A33340400061411 /* AdaptiveForm.swift */,
-				DE52F2A32A33340400061411 /* BasedForm.swift */,
 				DE52F2A42A33340400061411 /* OnboardingButton.swift */,
 				DE52F2A52A33340400061411 /* SubtitleView.swift */,
 				DE52F2A62A33340400061411 /* EmptyResumeData.swift */,
@@ -275,6 +279,8 @@
 				DE52F2C82A33349000061411 /* ScoreStatus.swift */,
 				DE52F2C92A33349000061411 /* Tag.swift */,
 				DE52F2CA2A33349000061411 /* Job.swift */,
+				DE52F2D02A34518D00061411 /* Bio.swift */,
+				DE52F2D22A34597000061411 /* Star.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -355,7 +361,6 @@
 				DE52F2C32A33340400061411 /* SmallButton.swift in Sources */,
 				6CCD80C62A3188C200D26574 /* Persistence.swift in Sources */,
 				DE52F2B42A33340400061411 /* TitleView.swift in Sources */,
-				DE52F2B92A33340400061411 /* BasedForm.swift in Sources */,
 				DE52F28F2A3333C600061411 /* AddWorkExp.swift in Sources */,
 				DE52F2C02A33340400061411 /* CardList.swift in Sources */,
 				DE52F2C62A33340400061411 /* CustomToolbar2.swift in Sources */,
@@ -365,11 +370,14 @@
 				DE52F28A2A3333C600061411 /* RQuestion.swift in Sources */,
 				DE52F28E2A3333C600061411 /* Skill.swift in Sources */,
 				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
+				DE52F2D32A34597000061411 /* Star.swift in Sources */,
 				DE52F2B32A33340400061411 /* CustomToolbarButton.swift in Sources */,
+				DE52F2D12A34518D00061411 /* Bio.swift in Sources */,
 				DE52F2BD2A33340400061411 /* TitleToolbar.swift in Sources */,
 				DE52F2BC2A33340400061411 /* EmptyResumeData.swift in Sources */,
 				DE52F2872A3333C600061411 /* TQuestion.swift in Sources */,
 				DE52F28C2A3333C600061411 /* ResumeView.swift in Sources */,
+				DE52F2CF2A33C4BD00061411 /* ModalWorkExperience.swift in Sources */,
 				DE52F2CB2A33349000061411 /* ScoreStatus.swift in Sources */,
 				DE52F2922A3333C600061411 /* AddEducation.swift in Sources */,
 				DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */,

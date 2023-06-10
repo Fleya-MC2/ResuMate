@@ -11,6 +11,7 @@ struct BigForm: View {
     @State var title: String
     @State var placeholder: String
     @Binding var fill: String
+    @Binding var isCheck: Bool
     @State var birthdate: Date = Date()
     
     var body: some View{
@@ -23,7 +24,25 @@ struct BigForm: View {
                     .padding(.bottom, 10)
                 Spacer()
             }
-            BasedForm(placeholder: placeholder, fill: $fill)
+            Spacer().frame(height: 5)
+            HStack{
+                TextField(placeholder, text: $fill)
+                    .padding(.leading, 20)
+                Spacer()
+                if isCheck{
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(.greencheck)
+                        .padding(.trailing, 15)
+                }
+            }.background(Rectangle().fill(.white)
+                .frame(height: 48)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                )
+            )
+            .foregroundColor(.black)
+//            BasedForm(placeholder: placeholder, fill: $fill, isCheck: $isCheck)
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 30)

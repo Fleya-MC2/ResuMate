@@ -10,11 +10,18 @@ import SwiftUI
 @main
 struct ResuMateApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject  var cardLists = CardLists()
+    @StateObject var gpAnswer = GeneratePhrasesAnswer()
+
+    
+
 
     var body: some Scene {
         WindowGroup {
             HomePage()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(cardLists)
+                .environmentObject(gpAnswer)
         }
     }
 }

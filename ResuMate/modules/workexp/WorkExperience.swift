@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WorkExperience: View {
-//    @Binding var navigationItemPath: [NavigationItem]
+    @EnvironmentObject var cardLists: CardLists
 
     var body: some View {
         NavigationStack{
@@ -22,12 +22,20 @@ struct WorkExperience: View {
                         .fontWeight(.semibold)
                 }
                 Spacer()
+                NavigationLink{
+                    DataView()
+                }label: {
+                    BigButton(text: "Submit", isButtonactive: true)
+                }.onAppear{
+                    cardLists.isWorkExpFilled = true
+                }
             }
             
             
             
         }.navigationBarBackButtonHidden(true)
     }
+    
 }
 
 //struct WorkExperience_Previews: PreviewProvider {

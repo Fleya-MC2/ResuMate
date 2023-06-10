@@ -8,9 +8,10 @@
 import SwiftUI
 
 
-
 struct DataView: View {
     @State var isHaveOne: Bool = false
+    @EnvironmentObject var cardLists: CardLists
+    
     
     var body: some View {
         NavigationStack{
@@ -33,67 +34,41 @@ struct DataView: View {
                     TitleView(title: "Your Data")
                     SubtitleView(subtitle: "Ceklist all this section below for create resume now!")
                 }.frame(width: 300)
+                
                 Spacer().frame(height: 55)
                 ScrollView(.vertical, showsIndicators: false){
-                    Spacer().frame(height: 20)
-//                    ForEach(navigationItems) { item in
-//                        NavigationLink(value: item) {
-//                            CardList(label: item.label, img: item.img, isFilled: false)
-//
-//                        }
-//
-//                        .listStyle(.plain)
-//                        .navigationBarTitleDisplayMode(.inline)
-//                        .navigationDestination(for: NavigationItem.self) { item in
-//                            switch item.menu {
-//                            case .personaldata:
-//                                PersonalData(navigationItemPath: $navigationItemPath)
-//                            case .workexp:
-//                                WorkExperience(navigationItemPath: $navigationItemPath)
-//                           case .skill:
-//                                Skill(navigationItemPath: $navigationItemPath)
-//                           case .education:
-//                                EducationalBackground(navigationItemPath: $navigationItemPath)
-//                           case .addworkexp:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//                           case .organization:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//                           case .achievement:
-//                                AddWorkExp(navigationItemPath: $navigationItemPath)
-//
-//
-//                            }
-//                        }
-//
-//                    }
                     Spacer().frame(height: 20)
                     NavigationLink{
                         PersonalData()
                     }label: {
-                        CardList(label: "Personal Data", img: "personal-data", isFilled: true)
+                        CardList(label: "Personal Data", img: "personal-data", isFilled: cardLists.isPersonalDataFilled)
                     }
+                    
                     NavigationLink{
                         WorkExperience()
                     }label: {
-                        CardList(label: "Work Experience", img: "work-exp", isFilled: false)
+                        CardList(label: "Work Experience", img: "work-exp", isFilled: cardLists.isWorkExpFilled)
                     }
+                    
                     NavigationLink{
                         EducationalBackground()
                     }label: {
-                        CardList(label: "Educational Background", img: "education", isFilled: true)
+                        CardList(label: "Educational Background", img: "education", isFilled: cardLists.isEducationFilled)
                     }
-                    CardList(label: "Organization Experience", img: "organization", isFilled: false)
-                    CardList(label: "Skill", img: "skill", isFilled: false)
-                    CardList(label: "Achievement", img: "achievement", isFilled: false)
-                    CardList(label: "Voluntering", img: "voluntering", isFilled: false)
+                    
+                    
+                    CardList(label: "Organization Experience", img: "organization", isFilled: cardLists.isOrganizationFilled)
+                    CardList(label: "Skill", img: "skill", isFilled: cardLists.isSkillFilled)
+                    CardList(label: "Achievement", img: "achievement", isFilled: cardLists.isAchievementFilled)
+                    CardList(label: "Voluntering", img: "voluntering", isFilled: cardLists.isVolunteringFilled)
                 }
             }
         }.navigationBarBackButtonHidden(true)
     }
 }
 
-struct DataView_Previews: PreviewProvider {
-    static var previews: some View {
-        DataView()
-    }
-}
+//struct DataView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DataView()
+//    }
+//}

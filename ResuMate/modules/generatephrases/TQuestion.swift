@@ -12,6 +12,7 @@ struct TQuestion: View {
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
     var body: some View {
             VStack{
                 GeneratePhrasesToolbar(titleToolbar: "Auto Generate Phrases") {
@@ -24,7 +25,7 @@ struct TQuestion: View {
                 GeneratePhrasesForm(question: "TQuestion", fill: $tqAnswer)
                 Spacer()
                 Button{
-                    
+                   gpAnswer.tquestion = tqAnswer
                         if progress == 1{
                             progress = 1
                             

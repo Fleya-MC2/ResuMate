@@ -7,9 +7,26 @@
 
 import SwiftUI
 
+class CardLists: ObservableObject {
+    @AppStorage("isPersonalDataFilled") var isPersonalDataFilled: Bool = false
+    @AppStorage("isEducationFilled") var isEducationFilled: Bool = false
+    @AppStorage("isWorkExpFilled") var isWorkExpFilled: Bool = false
+    @AppStorage("isOrganizationFilled") var isOrganizationFilled: Bool = false
+    @AppStorage("isSkillFilled") var isSkillFilled: Bool = false
+    @AppStorage("isAchievementFilled") var isAchievementFilled: Bool = false
+    @AppStorage("isVolunteringFilled") var isVolunteringFilled: Bool = false
+    @AppStorage("currentPageView") var currentPageView: String = ""
+    @Published var bioData: [Bio] = []
+    @Published var starData: [Star] = []
+}
+
+
+
 struct HomePage: View {
+    @EnvironmentObject var cardLists: CardLists
+
+    @State var selection = 1
     
-    @State var selection = 0
     
     var body: some View {
         NavigationStack{
