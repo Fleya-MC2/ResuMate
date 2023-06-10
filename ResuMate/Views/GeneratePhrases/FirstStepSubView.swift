@@ -19,7 +19,7 @@ struct FirstStepSubView: View{
                 CustomToolbar2(titleToolbar: "Auto Generate Phrases", destination: HomeView(selection:1))
                     
                 ProgressBar(progress: progress, step: step)
-                Image("generate-phrases")
+                Image("GeneratePhrases")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 274)

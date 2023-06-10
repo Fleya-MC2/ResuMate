@@ -11,7 +11,7 @@ struct LoadingScreen: View {
     var body: some View {
         VStack{
             
-            Image("loading")
+            Image("Loading")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 270)
