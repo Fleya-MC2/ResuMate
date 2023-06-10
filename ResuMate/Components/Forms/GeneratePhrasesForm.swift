@@ -10,6 +10,7 @@ import SwiftUI
 struct GeneratePhrasesForm: View {
     @State var question: String
     @Binding var fill: String
+    @State var placeholder: String = ""
     var body: some View {
         VStack{
             Spacer().frame(height: 88)
@@ -20,7 +21,19 @@ struct GeneratePhrasesForm: View {
                 Spacer()
             }
             HStack{
-                BaseForm(placeholder: "sss", fill: $fill)
+                HStack{
+                    TextField(placeholder, text: $fill)
+                        .padding(.leading, 20)
+                    Spacer()
+                    
+                }.background(Rectangle().fill(.white)
+                    .frame(height: 48)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    )
+                )
+                .foregroundColor(.black)
             }
         }
         .padding(.horizontal, 25)

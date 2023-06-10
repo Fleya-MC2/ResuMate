@@ -7,9 +7,19 @@
 
 import SwiftUI
 
+enum DataImage : String {
+    case personalData = "person.fill"
+    case workExperience = "suitcase.fill"
+    case education = "graduationcap.fill"
+    case organization = "person.3.fill"
+    case skill = "crown.fill"
+    case achievment = "trophy.fill"
+    case volunteering = "figure.2.arms.open"
+}
+
 struct DataCard: View {
     @State var label: String
-    @State var img: String
+    @State var img: DataImage
     @State var isFilled: Bool
     var body: some View {
         ZStack{
@@ -19,12 +29,17 @@ struct DataCard: View {
                     .bold()
                     
                 Spacer()
-                Image(img)
+                
+                Image(systemName: img.rawValue)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 52)
+                    .frame(width: getImageWidth(image: img))
+                    .foregroundColor(.white)
+                    .rotationEffect(Angle(degrees: -10.63))
                 
-                
+                if isFilled{
+                    Spacer().frame(width: 18)
+                }
             }
             .padding(.leading, 15)
             .padding(.trailing, 25)
@@ -38,16 +53,35 @@ struct DataCard: View {
                         Spacer()
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 36))
-                            .foregroundColor(.greencheck )
+                            .foregroundColor(.lightGreen)
                             .background(Circle().fill(.white))
                 }.offset(x:-20, y: -30)
             }
+        }
+    }
+    
+    func getImageWidth(image: DataImage) -> CGFloat {
+        switch image {
+        case .personalData:
+            return 54
+        case .workExperience:
+            return 72
+        case .education:
+            return 80
+        case .organization:
+            return 106
+        case .skill:
+            return 78
+        case .achievment:
+            return 63
+        case .volunteering:
+            return 75
         }
     }
 }
 
 struct CardList_Previews: PreviewProvider {
     static var previews: some View {
-        DataCard(label: "Personal Data", img: "personal-data", isFilled: true)
+        DataCard(label: "Personal Data", img: .organization, isFilled: false)
     }
 }

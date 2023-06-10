@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddEducationView: View {
 //    @Binding var navigationItemPath: [NavigationItem]
-
+    @EnvironmentObject var cardLists: CardLists
     @State var major: String = ""
     @State var institution: String = ""
     @State var startDate: Date = Date()
@@ -21,14 +21,14 @@ struct AddEducationView: View {
         NavigationStack{
             VStack{
                 CustomToolbar2(titleToolbar: "Add Education", destination: EducationView())
-                BigForm(title: "Major", placeholder: "String", fill: $major)
-                BigForm(title: "Institution", placeholder: "String", fill: $institution)
-                HStack{
-                    DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
-                    DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
-                }
-                BigForm(title: "GPA/Score", placeholder: "String", fill: $score)
-                BigForm(title: "Description", placeholder: "String", fill: $description)
+//                BigForm(title: "Major", placeholder: "String", fill: $major)
+//                BigForm(title: "Institution", placeholder: "String", fill: $institution)
+//                HStack{
+//                    DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
+//                    DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
+//                }
+//                BigForm(title: "GPA/Score", placeholder: "String", fill: $score)
+//                BigForm(title: "Description", placeholder: "String", fill: $description)
                 Spacer()
             }
         }.navigationBarBackButtonHidden(true)
