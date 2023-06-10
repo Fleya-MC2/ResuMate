@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061338822A34415000658211 /* FirstResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338812A34415000658211 /* FirstResume.swift */; };
+		061338842A34431600658211 /* JustifiedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338832A34431600658211 /* JustifiedText.swift */; };
+		061338862A34434600658211 /* ResumeTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338852A34434600658211 /* ResumeTitleText.swift */; };
+		061338882A34436600658211 /* ResumeSubtitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338872A34436600658211 /* ResumeSubtitleText.swift */; };
+		0613388A2A34437C00658211 /* ResumeDetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338892A34437C00658211 /* ResumeDetailText.swift */; };
 		23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF232A31963E00B62FED /* BiodataModel.swift */; };
 		23FCDF282A31A8B300B62FED /* DocumentConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */; };
 		23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF292A31AED200B62FED /* EducationModel.swift */; };
@@ -74,6 +79,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		061338812A34415000658211 /* FirstResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResume.swift; sourceTree = "<group>"; };
+		061338832A34431600658211 /* JustifiedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedText.swift; sourceTree = "<group>"; };
+		061338852A34434600658211 /* ResumeTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeTitleText.swift; sourceTree = "<group>"; };
+		061338872A34436600658211 /* ResumeSubtitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSubtitleText.swift; sourceTree = "<group>"; };
+		061338892A34437C00658211 /* ResumeDetailText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeDetailText.swift; sourceTree = "<group>"; };
 		23FCDF232A31963E00B62FED /* BiodataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiodataModel.swift; sourceTree = "<group>"; };
 		23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentConverterView.swift; sourceTree = "<group>"; };
 		23FCDF292A31AED200B62FED /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
@@ -152,6 +162,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061338802A34411800658211 /* Resumes */ = {
+			isa = PBXGroup;
+			children = (
+				061338812A34415000658211 /* FirstResume.swift */,
+			);
+			path = Resumes;
+			sourceTree = "<group>";
+		};
 		23FCDF222A31962A00B62FED /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,13 +309,17 @@
 			path = Loaders;
 			sourceTree = "<group>";
 		};
-		6C4EE26D2A3434D3007B0E21 /* Titles */ = {
+		6C4EE26D2A3434D3007B0E21 /* Texts */ = {
 			isa = PBXGroup;
 			children = (
 				DE52F29E2A33340400061411 /* Title.swift */,
 				DE52F2A52A33340400061411 /* Subtitle.swift */,
+				061338832A34431600658211 /* JustifiedText.swift */,
+				061338852A34434600658211 /* ResumeTitleText.swift */,
+				061338872A34436600658211 /* ResumeSubtitleText.swift */,
+				061338892A34437C00658211 /* ResumeDetailText.swift */,
 			);
-			path = Titles;
+			path = Texts;
 			sourceTree = "<group>";
 		};
 		6CCD80B02A3188C100D26574 = {
@@ -425,9 +447,10 @@
 		DE52F29A2A33340400061411 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				061338802A34411800658211 /* Resumes */,
 				6C09FB152A3436EC003E11D5 /* Cards */,
 				6C09FB142A3435BA003E11D5 /* Toolbars */,
-				6C4EE26D2A3434D3007B0E21 /* Titles */,
+				6C4EE26D2A3434D3007B0E21 /* Texts */,
 				6C4EE26C2A34345C007B0E21 /* Loaders */,
 				6C4EE26B2A3433A4007B0E21 /* ProgressBars */,
 				6C0AC17A2A343181009BA336 /* Forms */,
@@ -531,11 +554,13 @@
 				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
 				6CCD80D12A318BC900D26574 /* APIManager.swift in Sources */,
 				23FCDF342A323AD800B62FED /* RelevancyScoreModel.swift in Sources */,
+				0613388A2A34437C00658211 /* ResumeDetailText.swift in Sources */,
 				23FCDF2E2A31C01500B62FED /* OrganizationModel.swift in Sources */,
 				6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */,
 				23FCDF302A32238500B62FED /* VolunteerModel.swift in Sources */,
 				23FCDF322A322F4900B62FED /* AchievementModel.swift in Sources */,
 				DE52F2B32A33340400061411 /* CustomToolbarButton.swift in Sources */,
+				061338822A34415000658211 /* FirstResume.swift in Sources */,
 				DE52F2BD2A33340400061411 /* TitleToolbar.swift in Sources */,
 				DE52F2BC2A33340400061411 /* EmptyResumeDataView.swift in Sources */,
 				DE52F2872A3333C600061411 /* TQuestionSubView.swift in Sources */,
@@ -554,6 +579,7 @@
 				23FCDF5D2A33814300B62FED /* Config.swift in Sources */,
 				6C2B69E32A339B61006A571C /* EdgeBorder.swift in Sources */,
 				DE52F28B2A3333C600061411 /* DataView.swift in Sources */,
+				061338882A34436600658211 /* ResumeSubtitleText.swift in Sources */,
 				DE52F2B62A33340400061411 /* CustomToolbar.swift in Sources */,
 				DE52F2BB2A33340400061411 /* Subtitle.swift in Sources */,
 				DE52F28D2A3333C600061411 /* HomeView.swift in Sources */,
@@ -561,12 +587,14 @@
 				DE52F2B12A33340400061411 /* DateForm.swift in Sources */,
 				DE52F2BF2A33340400061411 /* TagForm.swift in Sources */,
 				6C7336FC2A338656006EF850 /* FirstStepSubView.swift in Sources */,
+				061338862A34434600658211 /* ResumeTitleText.swift in Sources */,
 				6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */,
 				DE52F2C12A33340400061411 /* Loading.swift in Sources */,
 				DE52F2B22A33340400061411 /* BigForm.swift in Sources */,
 				6C97FA7D2A339A4000BB4715 /* Extensions.swift in Sources */,
 				DE52F2B72A33340400061411 /* InfoCard.swift in Sources */,
 				DE52F2CC2A33349000061411 /* TagModel.swift in Sources */,
+				061338842A34431600658211 /* JustifiedText.swift in Sources */,
 				DE52F2C52A33340400061411 /* GeneratePhrasesForm.swift in Sources */,
 				6CCD80C92A3188C200D26574 /* ResuMate.xcdatamodeld in Sources */,
 				23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */,
