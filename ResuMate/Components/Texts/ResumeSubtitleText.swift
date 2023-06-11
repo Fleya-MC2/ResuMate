@@ -14,7 +14,6 @@ struct ResumeSubtitleText: View {
         HStack {
             Text(text)
                 .fontWeight(.medium)
-                .fontWeight(.regular)
                 .font(.system(size: 9))
         }
     }

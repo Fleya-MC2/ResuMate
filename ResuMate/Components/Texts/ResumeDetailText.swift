@@ -13,9 +13,8 @@ struct ResumeDetailText: View {
     var body: some View {
         HStack {
             Text(text)
-                .fontWeight(.regular)
                 .font(.system(size: 8))
-            Spacer()
+//            Spacer()
             
         }
     }

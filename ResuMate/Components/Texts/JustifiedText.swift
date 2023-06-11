@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct JustifiedText: UIViewRepresentable {
     @Binding var height: CGFloat
     
     var text: String
+    var fontSize: CGFloat
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -19,6 +21,7 @@ struct JustifiedText: UIViewRepresentable {
         textView.textAlignment = .justified
         textView.backgroundColor = .clear
         textView.isScrollEnabled = true
+        textView.font = UIFont.systemFont(ofSize: fontSize) // Set the font size
 
         return textView
     }

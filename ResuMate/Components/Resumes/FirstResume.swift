@@ -12,6 +12,9 @@ struct FirstResume: View {
 
     var body: some View {
         VStack{
+            
+            // BIODATA
+            
             VStack {
                 Text("Caca Merica")
                     .fontWeight(.bold)
@@ -23,9 +26,10 @@ struct FirstResume: View {
            
             JustifiedText(
                 height: $textHeight,
-                text: "Lorem ipsum dolor Lorem ipsum dolorLorem ipsum kkokoknlokok hgjk jhkkhkh h  dolorLorem ipdssum dolorLorem ipsum dsf dolorLorem icxpsumj ijidsj jijdsij doldsorLorem nkk ipssdum dolorLorem nknknkipsum dcdsdadasdsadasdsoem ipsum dolorLorem ipsum dolfd fd sdf,lmllucvvm fds ffd sd sfds sfd  sdf sdf sd fl df  f dsf df sd df sdf d ksdsfds f dsf ds lfds  nj jnjsdffkhulub sdbksj d sdsda fksd fkjdsbfj jsjddkjksjf odsrLorem ipsum dolorLdsoresdm ipsum dolorLorem ipsum dolordsLorem ipsum dolordwdw dwad d kdqwhdelqw.")
+                text: "Caca Merica adalah seorang admin perkantoran dengan pengalaman 3+ tahun. Beliau juga memiliki ketrampilan organisasi, manajemen waktu, administrasi, dan keuangan yang luar biasa. Keterampilan tersebut terbukti oleh pengalaman dia di berbagai perusahaan seperti meningkatkan efisiensi Kantor Perusahaan ABC sebesar 15% melalui keahlian pada software manajemen kantor",
+                fontSize: 10
+            )
                 .frame(height: textHeight)
-                .font(.system(size: 10))
             VStack {
                 HStack {
                     ResumeTitleText(text:"PENGALAMAN KERJA")
@@ -39,9 +43,25 @@ struct FirstResume: View {
                         Spacer()
                         ResumeSubtitleText(text: "September 2020 - Sekarang")
                     }
-                    VStack{
-                        ResumeDetailText(text: "- Mengelola daftar gaji ")
-                        ResumeDetailText(text: "- Berkomunikasi bersama manager")
+                    HStack(alignment: .top) {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 4))
+                                .padding(.top, 11)
+                        }
+                        JustifiedText(height: $textHeight, text: "﻿MEngelola dafar gajisdaas kalsdjnasd",fontSize: 8
+                        )
+                        .frame(height: textHeight)
+                    }
+                    HStack(alignment: .top) {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 4))
+                                .padding(.top, 11)
+                        }
+                        JustifiedText(height: $textHeight, text: "﻿Berkomunikasi bersama ketua",fontSize: 8
+                        )
+                        .frame(height: textHeight)
                     }
                 }
                 VStack {
@@ -50,9 +70,25 @@ struct FirstResume: View {
                         Spacer()
                         ResumeSubtitleText(text: "September 2015 - September 2020")
                     }
-                    VStack{
-                        ResumeDetailText(text: "- Mengelola daftar gaji")
-                        ResumeDetailText(text: "- Berkomunikasi bersama manager")
+                    HStack(alignment: .top) {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 4))
+                                .padding(.top, 11)
+                        }
+                        JustifiedText(height: $textHeight, text: "﻿MEngelola dafar gajisdaas kalsdjnasd",fontSize: 8
+                        )
+                        .frame(height: textHeight)
+                    }
+                    HStack(alignment: .top) {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .font(.system(size: 4))
+                                .padding(.top, 11)
+                        }
+                        JustifiedText(height: $textHeight, text: "﻿Berkomunikasi bersama ketua",fontSize: 8
+                        )
+                        .frame(height: textHeight)
                     }
                 }
 
@@ -73,6 +109,7 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "- IPK 3,65 ")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 VStack {
@@ -83,7 +120,9 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "- Nilai Akhir = 84,78")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         ResumeDetailText(text: "- Sekretaris OSIS 2013/2014")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
 
@@ -103,7 +142,9 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "- Mengelola daftar gaji ")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         ResumeDetailText(text: "- Berkomunikasi bersama manager")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 VStack {
@@ -114,7 +155,9 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "- Mengelola daftar gaji")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         ResumeDetailText(text: "- Berkomunikasi bersama manager")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
 
@@ -134,6 +177,7 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "  Terpilih sebagai salah satu penerima dari 500 orang")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 VStack {
@@ -144,6 +188,7 @@ struct FirstResume: View {
                     }
                     VStack{
                         ResumeDetailText(text: "   Pemenang utama Lomba Statistika")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
 
@@ -163,13 +208,20 @@ struct FirstResume: View {
                     HStack{
                         VStack{
                             ResumeDetailText(text: "- Kemampuan manajemen waktu")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             ResumeDetailText(text: "- Kemampuan berorganisasi")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             ResumeDetailText(text: "- Komunikasi")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                        
+                        
                         VStack{
                             
                             ResumeDetailText(text: "- Kemampuan menjalin relasi")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             ResumeDetailText(text: "- Kemampuan analisis")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                 }
@@ -181,8 +233,11 @@ struct FirstResume: View {
                     HStack{
                         VStack{
                             ResumeDetailText(text: "- MS Excel")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             ResumeDetailText(text: "- MS Powerpoint")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             ResumeDetailText(text: "- MS Word")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         
                     }

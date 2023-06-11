@@ -12,6 +12,7 @@
 		061338862A34434600658211 /* ResumeTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338852A34434600658211 /* ResumeTitleText.swift */; };
 		061338882A34436600658211 /* ResumeSubtitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338872A34436600658211 /* ResumeSubtitleText.swift */; };
 		0613388A2A34437C00658211 /* ResumeDetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338892A34437C00658211 /* ResumeDetailText.swift */; };
+		0613388E2A347F0C00658211 /* SecondResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0613388D2A347F0C00658211 /* SecondResume.swift */; };
 		23FCDF242A31963E00B62FED /* BiodataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF232A31963E00B62FED /* BiodataModel.swift */; };
 		23FCDF282A31A8B300B62FED /* DocumentConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */; };
 		23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF292A31AED200B62FED /* EducationModel.swift */; };
@@ -84,6 +85,7 @@
 		061338852A34434600658211 /* ResumeTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeTitleText.swift; sourceTree = "<group>"; };
 		061338872A34436600658211 /* ResumeSubtitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSubtitleText.swift; sourceTree = "<group>"; };
 		061338892A34437C00658211 /* ResumeDetailText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeDetailText.swift; sourceTree = "<group>"; };
+		0613388D2A347F0C00658211 /* SecondResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondResume.swift; sourceTree = "<group>"; };
 		23FCDF232A31963E00B62FED /* BiodataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiodataModel.swift; sourceTree = "<group>"; };
 		23FCDF272A31A8B300B62FED /* DocumentConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentConverterView.swift; sourceTree = "<group>"; };
 		23FCDF292A31AED200B62FED /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				061338812A34415000658211 /* FirstResume.swift */,
+				0613388D2A347F0C00658211 /* SecondResume.swift */,
 			);
 			path = Resumes;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */,
 				DE52F2932A3333C600061411 /* SuggestionSheet.swift in Sources */,
 				DE52F2C42A33340400061411 /* AtomicComponent.swift in Sources */,
+				0613388E2A347F0C00658211 /* SecondResume.swift in Sources */,
 				DE52F2902A3333C600061411 /* WorkExperienceView.swift in Sources */,
 				DE52F2942A3333C600061411 /* PersonalDataView.swift in Sources */,
 				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,

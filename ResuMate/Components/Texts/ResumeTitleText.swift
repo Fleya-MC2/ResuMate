@@ -14,7 +14,6 @@ struct ResumeTitleText: View {
         HStack {
             Text(text)
                 .fontWeight(.bold)
-                .fontWeight(.regular)
                 .font(.system(size: 11))
             Spacer()
             
