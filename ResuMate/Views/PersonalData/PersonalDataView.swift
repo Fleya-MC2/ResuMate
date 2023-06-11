@@ -91,17 +91,24 @@ struct PersonalDataView: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 30)
                     }
-                    Button{
-                        saveBioData()
-                        cardLists.isPersonalDataFilled = true
-                        isSubmit = true
-                        
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: true)
-                    }
-                    
+ 
+                        BigButton(text: "Submit", isButtonactive: true) {
+                            saveBioData()
+                            cardLists.isPersonalDataFilled = true
+                            isSubmit = true
+                        }
                 }.sheet(isPresented: $isSuggestion) {
-                    SuggestionSheet(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
+                    SelectItemSheet(
+                        text: "Personal Data",
+                        isClosedButtonClicked: {
+                            isSuggestion = false
+                        },
+                        isGeneratePhraseButtonEnabled: true,
+                        isGeneratePhraseButtonClicked: {
+                            cardLists.currentPageView = Page.personalData.rawValue
+                            isSuggestion = false
+                            isGenerate = true
+                        })
                         .presentationDetents([.medium])
                     
                 }.navigationBarBackButtonHidden(true)

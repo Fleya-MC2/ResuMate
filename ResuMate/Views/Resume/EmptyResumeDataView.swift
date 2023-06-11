@@ -28,7 +28,7 @@ struct EmptyResumeDataView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.darkGray.opacity(0.4))
+        .background(Color.mediumDarkGray.opacity(0.4))
     }
 }
 

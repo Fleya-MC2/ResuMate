@@ -47,19 +47,19 @@ struct RQuestionView: View {
                     
                     GeneratePhrasesForm(question: "RQuestion", fill: $rqAnswer)
                     Spacer()
-                    Button{
-                        gpAnswer.rquestion = rqAnswer
-                        isLoading = true
-                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                            withAnimation {
-                                saveStarData()
-                                isLoading = false
-                                isNextPage = true
+
+                        BigButton(text: "Submit", isButtonactive: true) {
+                            gpAnswer.rquestion = rqAnswer
+                            isLoading = true
+                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                                withAnimation {
+                                    saveStarData()
+                                    isLoading = false
+                                    isNextPage = true
+                                }
                             }
                         }
-                    } label: {
-                        BigButton(text: "Submit", isButtonactive: true)
-                    }
+                    
                     Spacer().frame(height: 50)
                     
                 }

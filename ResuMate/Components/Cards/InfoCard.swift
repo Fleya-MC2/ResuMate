@@ -23,7 +23,7 @@ struct InfoCard: View {
             Spacer()
         }
         .frame(width: 368, height: 98)
-        .background(Color.darkGray.opacity(0.4))
+        .background(Color.mediumDarkGray.opacity(0.4))
         .cornerRadius(10)
     }
 }

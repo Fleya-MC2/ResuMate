@@ -43,7 +43,7 @@ struct TagForm: View {
                     .padding( 10)
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.darkGray)
+                            .fill(Color.mediumDarkGray)
                         )
                 }
                 .padding(.horizontal, 10)

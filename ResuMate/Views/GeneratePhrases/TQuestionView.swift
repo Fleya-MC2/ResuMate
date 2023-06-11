@@ -24,22 +24,20 @@ struct TQuestionView: View {
                 ProgressBar(progress: progress, step: step)
                 GeneratePhrasesForm(question: "TQuestion", fill: $tqAnswer)
                 Spacer()
-                Button{
-                   gpAnswer.tquestion = tqAnswer
-                        if progress == 1{
-                            progress = 1
-                            
-                        }
-                        else{
-                            progress = progress + 0.20
-                            currentPage = .aQuestion
-                            step = 4
-                        }
-                    
-                    
-                }label: {
-                    BigButton(text: "Next", isButtonactive: true)
-                }
+ 
+                    BigButton(text: "Next", isButtonactive: true) {
+                        gpAnswer.tquestion = tqAnswer
+                             if progress == 1{
+                                 progress = 1
+                                 
+                             }
+                             else{
+                                 progress = progress + 0.20
+                                 currentPage = .aQuestion
+                                 step = 4
+                             }
+                    }
+                
                 
                 Spacer().frame(height: 50)
             }

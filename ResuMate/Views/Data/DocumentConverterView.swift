@@ -37,7 +37,7 @@ struct DocumentConverterView: View {
                 //                }
             }
             .sheet(isPresented: $isShowingDocumentPicker) {
-                DocumentPicker { url in
+                DocumentImporter { url in
                     pdfToText(fromPDF: url)
                 }
             }
@@ -66,40 +66,6 @@ struct DocumentConverterView: View {
         
         
         showContentView = true // Activate the navigation link to show ContentView
-    }
-}
-
-struct DocumentPicker: UIViewControllerRepresentable {
-    var onDocumentSelected: (URL?) -> Void
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf], asCopy: true)
-        documentPicker.delegate = context.coordinator
-        return documentPicker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
-        // No update needed
-    }
-    
-    class Coordinator: NSObject, UIDocumentPickerDelegate {
-        let parent: DocumentPicker
-        
-        init(_ parent: DocumentPicker) {
-            self.parent = parent
-        }
-        
-        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            parent.onDocumentSelected(urls.first)
-        }
-        
-        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            parent.onDocumentSelected(nil)
-        }
     }
 }
 

@@ -15,7 +15,6 @@ struct Title: View {
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.black)
             Spacer()
-            
         }
     }
 }

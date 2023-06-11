@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WorkExperienceView: View {
     @EnvironmentObject var cardLists: CardLists
+    
+    @State var isSubmitClicked: Bool = false
 
     var body: some View {
         NavigationStack{
@@ -22,18 +24,19 @@ struct WorkExperienceView: View {
                         .fontWeight(.semibold)
                 }
                 Spacer()
-                NavigationLink{
-                    DataView()
-                }label: {
-                    BigButton(text: "Submit", isButtonactive: true)
+                    
+                    BigButton(text: "Submit", isButtonactive: true) {
+                        isSubmitClicked = true
+                    
                 }.onAppear{
                     cardLists.isWorkExpFilled = true
                 }
             }
-            
-            
-            
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationDestination(isPresented: $isSubmitClicked, destination: {
+            DataView()
+        })
+        .navigationBarBackButtonHidden(true)
     }
     
 }

@@ -37,7 +37,10 @@ struct EducationView: View {
                     }
                 }
                 Spacer()
-                BigButton(text: "Submit", isButtonactive: isButtonActive)
+                
+                BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                    
+                }
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
             

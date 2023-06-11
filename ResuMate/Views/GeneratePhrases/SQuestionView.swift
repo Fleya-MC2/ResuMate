@@ -29,21 +29,19 @@ struct SQuestionView: View {
                    
                 
                 Spacer()
-                Button{
-                    gpAnswer.squestion = sqAnswer
-                    if progress == 1{
-                        progress = 1
+
+                    BigButton(text: "Next", isButtonactive: true) {
+                        gpAnswer.squestion = sqAnswer
+                        if progress == 1{
+                            progress = 1
+                        }
+                        else{
+                            progress = progress + 0.20
+                            step = 3
+                            currentPage = .tQuestion
+                        }
                     }
-                    else{
-                        progress = progress + 0.20
-                        step = 3
-                        currentPage = .tQuestion
-                    }
-                    
-                    
-                }label: {
-                    BigButton(text: "Next", isButtonactive: true)
-                }
+                
                 
                 Spacer().frame(height: 50)
             }
