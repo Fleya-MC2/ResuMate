@@ -51,7 +51,7 @@ struct RQuestionView: View {
                         currentPage = .aQuestion
                     }
                     InfoCard(info: "RQuestion")
-                    ProgressBar(progress: progress, step: step)
+                    StepBar(progress: progress, step: step)
                     
                     GeneratePhrasesForm(question: "RQuestion", fill: $rqAnswer)
                     Spacer()

@@ -18,6 +18,8 @@ struct CreateResumeView: View {
             
             ScrollView {
                 VStack{
+                    //                    Title(title: "Create Resume")
+                    
                     Subtitle(subtitle: "Select one template that most describe yourself.")
                 }.frame(width: 300)
                 

@@ -35,6 +35,10 @@
 		6C09FB172A343E4B003E11D5 /* CreateResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C09FB162A343E4B003E11D5 /* CreateResumeView.swift */; };
 		6C2B69E32A339B61006A571C /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B69E22A339B61006A571C /* EdgeBorder.swift */; };
 		6C3AEFCC2A360D11003EB1F3 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3AEFCB2A360D11003EB1F3 /* Config.plist */; };
+		6C3AEFCE2A360EC0003EB1F3 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3AEFCD2A360EC0003EB1F3 /* Config.plist */; };
+		6C3AEFD22A360F2C003EB1F3 /* UploadResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */; };
+		6C3AEFD42A361006003EB1F3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD32A361006003EB1F3 /* ImageButton.swift */; };
+		6C3AEFD62A3616D9003EB1F3 /* UploadBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD52A3616D9003EB1F3 /* UploadBar.swift */; };
 		6C47D8BE2A3484ED002F1689 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47D8BC2A3484ED002F1689 /* Menu.swift */; };
 		6C47D8BF2A3484ED002F1689 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47D8BD2A3484ED002F1689 /* NavigationItem.swift */; };
 		6C6985CE2A3464AE008E0C7D /* ModalWorkExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6985CD2A3464AE008E0C7D /* ModalWorkExperience.swift */; };
@@ -104,7 +108,7 @@
 		DE52F2BB2A33340400061411 /* Subtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A52A33340400061411 /* Subtitle.swift */; };
 		DE52F2BC2A33340400061411 /* EmptyResumeDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A62A33340400061411 /* EmptyResumeDataView.swift */; };
 		DE52F2BD2A33340400061411 /* TitleToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A72A33340400061411 /* TitleToolbar.swift */; };
-		DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A82A33340400061411 /* ProgressBar.swift */; };
+		DE52F2BE2A33340400061411 /* StepBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A82A33340400061411 /* StepBar.swift */; };
 		DE52F2BF2A33340400061411 /* TagForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2A92A33340400061411 /* TagForm.swift */; };
 		DE52F2C02A33340400061411 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2AA2A33340400061411 /* DataCard.swift */; };
 		DE52F2C12A33340400061411 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F2AB2A33340400061411 /* Loading.swift */; };
@@ -147,6 +151,10 @@
 		6C09FB162A343E4B003E11D5 /* CreateResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateResumeView.swift; sourceTree = "<group>"; };
 		6C2B69E22A339B61006A571C /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		6C3AEFCB2A360D11003EB1F3 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		6C3AEFCD2A360EC0003EB1F3 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResume.swift; sourceTree = "<group>"; };
+		6C3AEFD32A361006003EB1F3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		6C3AEFD52A3616D9003EB1F3 /* UploadBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBar.swift; sourceTree = "<group>"; };
 		6C47D8BC2A3484ED002F1689 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		6C47D8BD2A3484ED002F1689 /* NavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		6C6985CD2A3464AE008E0C7D /* ModalWorkExperience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalWorkExperience.swift; sourceTree = "<group>"; };
@@ -217,7 +225,7 @@
 		DE52F2A52A33340400061411 /* Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subtitle.swift; sourceTree = "<group>"; };
 		DE52F2A62A33340400061411 /* EmptyResumeDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResumeDataView.swift; sourceTree = "<group>"; };
 		DE52F2A72A33340400061411 /* TitleToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleToolbar.swift; sourceTree = "<group>"; };
-		DE52F2A82A33340400061411 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		DE52F2A82A33340400061411 /* StepBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepBar.swift; sourceTree = "<group>"; };
 		DE52F2A92A33340400061411 /* TagForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagForm.swift; sourceTree = "<group>"; };
 		DE52F2AA2A33340400061411 /* DataCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		DE52F2AB2A33340400061411 /* Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -355,6 +363,7 @@
 				DE52F29D2A33340400061411 /* CustomToolbarButton.swift */,
 				DE52F2A42A33340400061411 /* OnboardingButton.swift */,
 				DE52F2AD2A33340400061411 /* SmallButton.swift */,
+				6C3AEFD32A361006003EB1F3 /* ImageButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -378,12 +387,15 @@
 		6C0AC1782A3430E3009BA336 /* Resume */ = {
 			isa = PBXGroup;
 			children = (
-				DE52F2792A3333C600061411 /* ResumeView.swift */,
 				DE52F2A62A33340400061411 /* EmptyResumeDataView.swift */,
 				6C09FB162A343E4B003E11D5 /* CreateResumeView.swift */,
 				6CD43BAF2A34936A004DDCE4 /* SelectResumeDataView.swift */,
 				6C983AF72A34DCC600CCAEFF /* PreviewResumeView.swift */,
 				6C8E6DFC2A35CA090048C263 /* SaveResumeView.swift */,
+				6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */,
+				DE52F2792A3333C600061411 /* ResumeView.swift */,
+				6C3AEFD02A360EFC003EB1F3 /* Generate */,
+				6C3AEFCF2A360EF4003EB1F3 /* Upload */,
 			);
 			path = Resume;
 			sourceTree = "<group>";
@@ -409,6 +421,20 @@
 			path = Forms;
 			sourceTree = "<group>";
 		};
+		6C3AEFCF2A360EF4003EB1F3 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
+		6C3AEFD02A360EFC003EB1F3 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generate;
+			sourceTree = "<group>";
+		};
 		6C47D8BB2A3484ED002F1689 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,7 +448,8 @@
 		6C4EE26B2A3433A4007B0E21 /* ProgressBars */ = {
 			isa = PBXGroup;
 			children = (
-				DE52F2A82A33340400061411 /* ProgressBar.swift */,
+				DE52F2A82A33340400061411 /* StepBar.swift */,
+				6C3AEFD52A3616D9003EB1F3 /* UploadBar.swift */,
 			);
 			path = ProgressBars;
 			sourceTree = "<group>";
@@ -530,6 +557,7 @@
 				6CCD80C52A3188C200D26574 /* Persistence.swift */,
 				6CCD80C72A3188C200D26574 /* ResuMate.xcdatamodeld */,
 				6CCD80C22A3188C200D26574 /* Preview Content */,
+				6C3AEFCD2A360EC0003EB1F3 /* Config.plist */,
 			);
 			path = ResuMate;
 			sourceTree = "<group>";
@@ -724,6 +752,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C3AEFCE2A360EC0003EB1F3 /* Config.plist in Resources */,
 				6CCD80C42A3188C200D26574 /* Preview Assets.xcassets in Resources */,
 				6C3AEFCC2A360D11003EB1F3 /* Config.plist in Resources */,
 				6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */,
@@ -802,14 +831,16 @@
 				DE52F2922A3333C600061411 /* AddEducationView.swift in Sources */,
 				6CB48E162A360078001A61A6 /* ModalVolunteering.swift in Sources */,
 				DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */,
-				DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */,
+				DE52F2BE2A33340400061411 /* StepBar.swift in Sources */,
 				DE52F2932A3333C600061411 /* SelectItemSheet.swift in Sources */,
+				6C3AEFD42A361006003EB1F3 /* ImageButton.swift in Sources */,
 				DE52F2C42A33340400061411 /* AtomicComponent.swift in Sources */,
 				0613388E2A347F0C00658211 /* SecondResume.swift in Sources */,
 				DE52F2902A3333C600061411 /* WorkExperienceView.swift in Sources */,
 				DE52F2942A3333C600061411 /* PersonalDataView.swift in Sources */,
 				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,
 				DE52F2C22A33340400061411 /* BigButton.swift in Sources */,
+				6C3AEFD22A360F2C003EB1F3 /* UploadResume.swift in Sources */,
 				DE52F2B52A33340400061411 /* GeneratePhrasesToolbar.swift in Sources */,
 				6CB48E1A2A360078001A61A6 /* AddAchievement.swift in Sources */,
 				23FCDF5D2A33814300B62FED /* Config.swift in Sources */,
@@ -826,7 +857,7 @@
 				DE52F2CB2A33349000061411 /* ScoreStatusModel.swift in Sources */,
 				DE52F2922A3333C600061411 /* AddEducationView.swift in Sources */,
 				DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */,
-				DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */,
+				DE52F2BE2A33340400061411 /* StepBar.swift in Sources */,
 				DE52F2932A3333C600061411 /* SelectItemSheet.swift in Sources */,
 				DE52F2C42A33340400061411 /* AtomicComponent.swift in Sources */,
 				6C47D8BE2A3484ED002F1689 /* Menu.swift in Sources */,
@@ -835,6 +866,7 @@
 				6CB48E172A360078001A61A6 /* AddVolunteering.swift in Sources */,
 				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,
 				DE52F2C22A33340400061411 /* BigButton.swift in Sources */,
+				6C3AEFD62A3616D9003EB1F3 /* UploadBar.swift in Sources */,
 				DE52F2B52A33340400061411 /* GeneratePhrasesToolbar.swift in Sources */,
 				DE52F28B2A3333C600061411 /* DataView.swift in Sources */,
 				6CD43BB52A34ACDD004DDCE4 /* AddItemHeaderView.swift in Sources */,
