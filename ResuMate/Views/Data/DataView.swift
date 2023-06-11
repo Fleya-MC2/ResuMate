@@ -68,7 +68,7 @@ struct DataView: View {
                     }
                     
                     NavigationLink{
-                        Organization()
+                        OrganizationView()
                     }label: {
                         DataCard(label: "Organization Experience", img: .organization, isFilled: cardLists.isOrganizationFilled)
                     }

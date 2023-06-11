@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Volunteer: Identifiable {
+struct Volunteerr: Identifiable {
     let id: UUID
     var position: String
     var volunteer: String

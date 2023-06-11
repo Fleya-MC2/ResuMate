@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct EducationModel: Codable, Hashable {
+struct EducationModel: Codable, Hashable, Identifiable {
+    var id: UUID? = UUID()
     let major: String?
     let institution: String?
     let startDate: String?

@@ -101,7 +101,7 @@ struct AddAchievement: View {
         
     }
     func saveAchievement() {
-        let newAchievement = Achievement(id: UUID(), achieve: achieve, year: year)
+        let newAchievement = Achievementt(id: UUID(), achieve: achieve, year: year)
         cardLists.achievement.append(newAchievement)
         print(newAchievement)
         

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct OrganizationModel: Codable, Hashable {
+struct OrganizationModel: Codable, Hashable, Identifiable {
+    var id: UUID? = UUID()
     let role: String?
     let organization: String?
     let startDate: String?

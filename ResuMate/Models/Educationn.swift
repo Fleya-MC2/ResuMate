@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Education: Identifiable {
+struct Educationn: Identifiable {
     let id: UUID
     var major: String
     var Institution: String

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct WorkExperienceModel: Codable, Hashable {
+struct WorkExperienceModel: Codable, Hashable, Identifiable {
+    var id: UUID? = UUID()
     let position: String?
     let company: String?
     let startDate: String?

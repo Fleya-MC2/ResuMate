@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Organization: View {
+struct OrganizationView: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false

@@ -27,7 +27,7 @@ struct AddOrganization: View {
     
     var body: some View {
         if isSubmit{
-            Organization()
+            OrganizationView()
         }else{
             if isGenerate {
                 GeneratePhrases()
@@ -115,7 +115,7 @@ struct AddOrganization: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink{
-                                Organization()
+                                OrganizationView()
                             } label:{
                                 Image(systemName: "chevron.backward")
                                     .frame(height: 17)

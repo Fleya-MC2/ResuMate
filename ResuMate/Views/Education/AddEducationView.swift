@@ -138,7 +138,7 @@ struct AddEducationView: View {
         
     }
     func saveEducation() {
-        let newEducation = Education(id: UUID(), major: major, Institution: institution, startDate: startDate, endDate: endDate, score: score, description: description)
+        let newEducation = Educationn(id: UUID(), major: major, Institution: institution, startDate: startDate, endDate: endDate, score: score, description: description)
        cardLists.education.append(newEducation)
         print(newEducation)
            // Reset form fields

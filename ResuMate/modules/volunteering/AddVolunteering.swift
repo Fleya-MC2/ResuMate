@@ -149,7 +149,7 @@ struct AddVolunteering: View {
         
     }
     func saveVolunteer() {
-        let newVolunteer = Volunteer(id: UUID(), position: position, volunteer: volunteer, startDate: startDate, endDate: endDate, description: description)
+        let newVolunteer = Volunteerr(id: UUID(), position: position, volunteer: volunteer, startDate: startDate, endDate: endDate, description: description)
         cardLists.volunteer.append(newVolunteer)
         print(newVolunteer)
         
