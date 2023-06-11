@@ -26,6 +26,7 @@ struct Organization: View {
                         .fontWeight(.light)
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
+                    
                     ForEach(cardLists.organization){ itm in
                         HStack{
                             Text("\(itm.position) - \(itm.organization)")
@@ -35,11 +36,13 @@ struct Organization: View {
                                 .foregroundColor(.black)
                             
                         }.padding(.horizontal, 20)
-                        .frame(width: 338, height: 55)
+                            .frame(width: 338, height: 55)
                             .cornerRadius(9)
                             .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         
                     }
+                    
+                
                     if cardLists.organization.count == 0 {
                         NavigationLink{
                             AddOrganization()
@@ -80,5 +83,8 @@ struct Organization: View {
             
         }
     }
+    
+        
+        
 }
 
