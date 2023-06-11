@@ -47,6 +47,7 @@ struct UploadResume: View {
                 
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

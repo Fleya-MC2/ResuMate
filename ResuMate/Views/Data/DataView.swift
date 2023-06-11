@@ -19,14 +19,19 @@ struct DataView: View {
                 if !isHaveOne{
                     HStack{
                         Spacer()
-                        HStack{
-                            Text("Upload Resume")
-                                .strongblue20()
-                                .fontWeight(.semibold)
-                            Image(systemName: "square.and.arrow.up.fill")
-                                .foregroundColor(.darkBlue)
+                        NavigationLink {
+                            UploadResume()
+                        } label: {
+                            HStack{
+                                Text("Upload Resume")
+                                    .strongblue20()
+                                    .fontWeight(.semibold)
+                                Image(systemName: "square.and.arrow.up.fill")
+                                    .foregroundColor(.darkBlue)
+                            }
+                            .padding(.trailing, 20)
                         }
-                        .padding(.trailing, 20)
+
                     }
                 }
                 
