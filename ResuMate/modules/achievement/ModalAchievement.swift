@@ -1,5 +1,5 @@
 //
-//  ModalWorkExperience.swift
+//  ModalAchievement.swift
 //  ResuMate
 //
 //  Created by Luthfi Asmara on 10/06/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModalWorkExperience: View {
+struct ModalAchievement: View {
     @EnvironmentObject var cardLists: CardLists
     @Binding var isSuggestion: Bool
     @Binding var isGenerate: Bool
@@ -17,7 +17,7 @@ struct ModalWorkExperience: View {
         NavigationStack{
             VStack{
                 HStack{
-                    Text("Work Experience")
+                    Text("Achievement")
                         .blacktext15()
                         .fontWeight(.semibold)
                     Spacer()
@@ -49,7 +49,7 @@ struct ModalWorkExperience: View {
                 Button{
                     isGenerate.toggle()
                     isSuggestion.toggle()
-                    cardLists.currentPageView = "workExp"
+                    cardLists.currentPageView = "achievement"
                 }label: {
                     BigButton(text: "Need something more?", isButtonactive: $isButtonActive)
                 }

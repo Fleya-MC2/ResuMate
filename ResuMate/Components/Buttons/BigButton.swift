@@ -10,7 +10,7 @@ import SwiftUI
 struct BigButton: View {
     
     @State var text: String
-    @State var isButtonactive: Bool
+    @Binding var isButtonactive: Bool
     var body: some View {
         Text(text)
             .white15()
@@ -22,8 +22,8 @@ struct BigButton: View {
     }
 }
 
-struct BigButton_Previews: PreviewProvider {
-    static var previews: some View {
-        BigButton(text: "Next", isButtonactive: false)
-    }
-}
+//struct BigButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BigButton(text: "Next", isButtonactive: false)
+//    }
+//}

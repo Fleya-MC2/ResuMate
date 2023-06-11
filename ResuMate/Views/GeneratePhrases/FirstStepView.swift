@@ -42,6 +42,8 @@ struct FirstStepView: View{
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    @State var isButtonActive: Bool = true
+
     
 
     var body: some View{
@@ -79,7 +81,7 @@ struct FirstStepView: View{
                     
                     
                 }label: {
-                    BigButton(text: "Next", isButtonactive: true)
+                    BigButton(text: "Next", isButtonactive: $isButtonActive)
                 }
                 
                 Spacer().frame(height: 50)

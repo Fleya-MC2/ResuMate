@@ -13,7 +13,7 @@ enum DataImage : String {
     case education = "graduationcap.fill"
     case organization = "person.3.fill"
     case skill = "crown.fill"
-    case achievment = "trophy.fill"
+    case achievement = "trophy.fill"
     case volunteering = "figure.2.arms.open"
 }
 
@@ -72,7 +72,7 @@ struct DataCard: View {
             return 106
         case .skill:
             return 78
-        case .achievment:
+        case .achievement:
             return 63
         case .volunteering:
             return 75

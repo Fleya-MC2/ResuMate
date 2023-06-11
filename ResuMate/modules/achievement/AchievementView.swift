@@ -1,34 +1,34 @@
 //
-//  WorkExperience.swift
-//  JobMate
+//  Achievement.swift
+//  ResuMate
 //
-//  Created by Luthfi Asmara on 08/06/23.
+//  Created by Luthfi Asmara on 10/06/23.
 //
 
 import SwiftUI
 
-struct WorkExperienceView: View {
+struct AchievementView: View {
     @EnvironmentObject var cardLists: CardLists
-    @State var isButtonactive: Bool = false
+    @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    
     var body: some View {
-        if isSubmit {
+        if isSubmit{
             DataView()
-        } else{
+        }else{
             NavigationStack{
                 VStack{
-                    CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView())
+                    CustomToolbar(titleToolbar: "Achievement", destinationL: HomeView(selection: 1), destinationT: AddAchievement())
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
-                        .fontWeight(.regular)
+                        .fontWeight(.light)
+                        .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
-                    ForEach(cardLists.workExp){ itm in
+                    ForEach(cardLists.achievement){ itm in
                         HStack{
-                            Text("\(itm.position) - \(itm.company)")
+                            Text("\(itm.achieve) - \(itm.year)")
                                 .blacktext15()
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -40,47 +40,43 @@ struct WorkExperienceView: View {
                             .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         
                     }
-                    if cardLists.workExp.count == 0 {
+                    if cardLists.achievement.count == 0 {
                         NavigationLink{
-                            AddWorkExperienceView()
-                        }label: {
+                            AddAchievement()
+                        }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.darkBlue)
-                                Text("Add Work Experience")
+                                Text("Add Achievement")
                                     .strongblue15()
                                     .fontWeight(.semibold)
                             }
                         }
                     }
-                    
                     Spacer()
                     Button{
-                        if isButtonactive{
-                            cardLists.isWorkExpFilled = true
+                        if isButtonActive{
+                            cardLists.isAchievementFilled = true
                             isSubmit = true
                         }
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonactive)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onReceive(timer) { time in
                     
-                    if cardLists.workExp.count != 0 {
-                        isButtonactive = true
+                    
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .onReceive(timer) { time in
+                        
+                        if cardLists.achievement.count != 0 {
+                            isButtonActive = true
+                        }
+                        print(isButtonActive)
                     }
-                    print(isButtonactive)
-                }
+                
                 
                 
             }.navigationBarBackButtonHidden(true)
+            
         }
     }
-    
 }
-
-//struct WorkExperience_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkExperience()
-//    }
-//}

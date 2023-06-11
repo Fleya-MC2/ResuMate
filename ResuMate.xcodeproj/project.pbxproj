@@ -24,6 +24,21 @@
 		6C6985D22A34652C008E0C7D /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6985D12A34652C008E0C7D /* Star.swift */; };
 		6C6985D42A346531008E0C7D /* Bio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6985D32A346531008E0C7D /* Bio.swift */; };
 		6C97FA7D2A339A4000BB4715 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C97FA7C2A339A4000BB4715 /* Extensions.swift */; };
+		6CB48DFF2A35FFF0001A61A6 /* Volunteering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48DFE2A35FFF0001A61A6 /* Volunteering.swift */; };
+		6CB48E012A35FFFD001A61A6 /* WorkExp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E002A35FFFD001A61A6 /* WorkExp.swift */; };
+		6CB48E032A36000D001A61A6 /* Organize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E022A36000D001A61A6 /* Organize.swift */; };
+		6CB48E052A360053001A61A6 /* ModalEducation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E042A360053001A61A6 /* ModalEducation.swift */; };
+		6CB48E122A360078001A61A6 /* AddOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E072A360078001A61A6 /* AddOrganization.swift */; };
+		6CB48E132A360078001A61A6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E082A360078001A61A6 /* Organization.swift */; };
+		6CB48E142A360078001A61A6 /* ModalOrganizationExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E092A360078001A61A6 /* ModalOrganizationExperience.swift */; };
+		6CB48E152A360078001A61A6 /* VolunteeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E0B2A360078001A61A6 /* VolunteeringView.swift */; };
+		6CB48E162A360078001A61A6 /* ModalVolunteering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E0C2A360078001A61A6 /* ModalVolunteering.swift */; };
+		6CB48E172A360078001A61A6 /* AddVolunteering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E0D2A360078001A61A6 /* AddVolunteering.swift */; };
+		6CB48E182A360078001A61A6 /* ModalAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E0F2A360078001A61A6 /* ModalAchievement.swift */; };
+		6CB48E192A360078001A61A6 /* AchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E102A360078001A61A6 /* AchievementView.swift */; };
+		6CB48E1A2A360078001A61A6 /* AddAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E112A360078001A61A6 /* AddAchievement.swift */; };
+		6CB48E1C2A360131001A61A6 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E1B2A360131001A61A6 /* Achievement.swift */; };
+		6CB48E1E2A360212001A61A6 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB48E1D2A360212001A61A6 /* Education.swift */; };
 		6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */; };
 		6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD80BE2A3188C100D26574 /* ContentView.swift */; };
 		6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD80C02A3188C200D26574 /* Assets.xcassets */; };
@@ -93,6 +108,21 @@
 		6C6985D12A34652C008E0C7D /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		6C6985D32A346531008E0C7D /* Bio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bio.swift; sourceTree = "<group>"; };
 		6C97FA7C2A339A4000BB4715 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6CB48DFE2A35FFF0001A61A6 /* Volunteering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volunteering.swift; sourceTree = "<group>"; };
+		6CB48E002A35FFFD001A61A6 /* WorkExp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkExp.swift; sourceTree = "<group>"; };
+		6CB48E022A36000D001A61A6 /* Organize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organize.swift; sourceTree = "<group>"; };
+		6CB48E042A360053001A61A6 /* ModalEducation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalEducation.swift; path = ResuMate/Views/Education/ModalEducation.swift; sourceTree = SOURCE_ROOT; };
+		6CB48E072A360078001A61A6 /* AddOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOrganization.swift; sourceTree = "<group>"; };
+		6CB48E082A360078001A61A6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		6CB48E092A360078001A61A6 /* ModalOrganizationExperience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalOrganizationExperience.swift; sourceTree = "<group>"; };
+		6CB48E0B2A360078001A61A6 /* VolunteeringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolunteeringView.swift; sourceTree = "<group>"; };
+		6CB48E0C2A360078001A61A6 /* ModalVolunteering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalVolunteering.swift; sourceTree = "<group>"; };
+		6CB48E0D2A360078001A61A6 /* AddVolunteering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVolunteering.swift; sourceTree = "<group>"; };
+		6CB48E0F2A360078001A61A6 /* ModalAchievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalAchievement.swift; sourceTree = "<group>"; };
+		6CB48E102A360078001A61A6 /* AchievementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementView.swift; sourceTree = "<group>"; };
+		6CB48E112A360078001A61A6 /* AddAchievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAchievement.swift; sourceTree = "<group>"; };
+		6CB48E1B2A360131001A61A6 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		6CB48E1D2A360212001A61A6 /* Education.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		6CCD80B92A3188C100D26574 /* ResuMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResuMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResuMateApp.swift; sourceTree = "<group>"; };
 		6CCD80BE2A3188C100D26574 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,13 +193,18 @@
 				6C6985D12A34652C008E0C7D /* Star.swift */,
 				DE52F2C82A33349000061411 /* ScoreStatusModel.swift */,
 				23FCDF232A31963E00B62FED /* BiodataModel.swift */,
+				6CB48E1D2A360212001A61A6 /* Education.swift */,
 				23FCDF292A31AED200B62FED /* EducationModel.swift */,
+				6CB48E002A35FFFD001A61A6 /* WorkExp.swift */,
 				23FCDF2B2A31BC6800B62FED /* WorkExperienceModel.swift */,
+				6CB48E022A36000D001A61A6 /* Organize.swift */,
 				23FCDF2D2A31C01500B62FED /* OrganizationModel.swift */,
 				23FCDF332A323AD800B62FED /* RelevancyScoreModel.swift */,
 				DE52F2CA2A33349000061411 /* JobModel.swift */,
 				DE52F2C92A33349000061411 /* TagModel.swift */,
+				6CB48DFE2A35FFF0001A61A6 /* Volunteering.swift */,
 				23FCDF2F2A32238500B62FED /* VolunteerModel.swift */,
+				6CB48E1B2A360131001A61A6 /* Achievement.swift */,
 				23FCDF312A322F4900B62FED /* AchievementModel.swift */,
 				6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */,
 			);
@@ -305,6 +340,39 @@
 			path = Titles;
 			sourceTree = "<group>";
 		};
+		6CB48E062A360078001A61A6 /* organization */ = {
+			isa = PBXGroup;
+			children = (
+				6CB48E072A360078001A61A6 /* AddOrganization.swift */,
+				6CB48E082A360078001A61A6 /* Organization.swift */,
+				6CB48E092A360078001A61A6 /* ModalOrganizationExperience.swift */,
+			);
+			name = organization;
+			path = ResuMate/modules/organization;
+			sourceTree = SOURCE_ROOT;
+		};
+		6CB48E0A2A360078001A61A6 /* volunteering */ = {
+			isa = PBXGroup;
+			children = (
+				6CB48E0B2A360078001A61A6 /* VolunteeringView.swift */,
+				6CB48E0C2A360078001A61A6 /* ModalVolunteering.swift */,
+				6CB48E0D2A360078001A61A6 /* AddVolunteering.swift */,
+			);
+			name = volunteering;
+			path = ResuMate/modules/volunteering;
+			sourceTree = SOURCE_ROOT;
+		};
+		6CB48E0E2A360078001A61A6 /* achievement */ = {
+			isa = PBXGroup;
+			children = (
+				6CB48E0F2A360078001A61A6 /* ModalAchievement.swift */,
+				6CB48E102A360078001A61A6 /* AchievementView.swift */,
+				6CB48E112A360078001A61A6 /* AddAchievement.swift */,
+			);
+			name = achievement;
+			path = ResuMate/modules/achievement;
+			sourceTree = SOURCE_ROOT;
+		};
 		6CCD80B02A3188C100D26574 = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +428,9 @@
 		DE52F2702A3333C600061411 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6CB48E0E2A360078001A61A6 /* achievement */,
+				6CB48E062A360078001A61A6 /* organization */,
+				6CB48E0A2A360078001A61A6 /* volunteering */,
 				6C0AC1792A3430F4009BA336 /* Data */,
 				DE52F2802A3333C600061411 /* Education */,
 				6C0AC1782A3430E3009BA336 /* Resume */,
@@ -416,6 +487,7 @@
 			children = (
 				DE52F2812A3333C600061411 /* EducationView.swift */,
 				DE52F2822A3333C600061411 /* AddEducationView.swift */,
+				6CB48E042A360053001A61A6 /* ModalEducation.swift */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -522,6 +594,7 @@
 				6CCD80D52A31A8B200D26574 /* SuggestionModel.swift in Sources */,
 				23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */,
 				DE52F2BA2A33340400061411 /* OnboardingButton.swift in Sources */,
+				6CB48E142A360078001A61A6 /* ModalOrganizationExperience.swift in Sources */,
 				DE52F2CD2A33349000061411 /* JobModel.swift in Sources */,
 				DE52F2862A3333C600061411 /* GeneratePhrasesView.swift in Sources */,
 				DE52F2C32A33340400061411 /* SmallButton.swift in Sources */,
@@ -532,6 +605,7 @@
 				6C6985CE2A3464AE008E0C7D /* ModalWorkExperience.swift in Sources */,
 				DE52F2C02A33340400061411 /* DataCard.swift in Sources */,
 				DE52F2C62A33340400061411 /* CustomToolbar2.swift in Sources */,
+				6CB48E132A360078001A61A6 /* Organization.swift in Sources */,
 				DE52F2882A3333C600061411 /* AQuestionView.swift in Sources */,
 				DE52F28A2A3333C600061411 /* RQuestionView.swift in Sources */,
 				6C6985D02A3464BA008E0C7D /* FirstStepView.swift in Sources */,
@@ -543,14 +617,25 @@
 				23FCDF2E2A31C01500B62FED /* OrganizationModel.swift in Sources */,
 				6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */,
 				23FCDF302A32238500B62FED /* VolunteerModel.swift in Sources */,
+				6CB48E1C2A360131001A61A6 /* Achievement.swift in Sources */,
 				23FCDF322A322F4900B62FED /* AchievementModel.swift in Sources */,
+				DE52F2B32A33340400061411 /* CustomToolbarButton.swift in Sources */,
+				DE52F2882A3333C600061411 /* AQuestionView.swift in Sources */,
+				6CB48E152A360078001A61A6 /* VolunteeringView.swift in Sources */,
+				DE52F28A2A3333C600061411 /* RQuestionView.swift in Sources */,
+				DE52F28E2A3333C600061411 /* SkillView.swift in Sources */,
+				6CCD80BF2A3188C100D26574 /* ContentView.swift in Sources */,
+				6CB48E032A36000D001A61A6 /* Organize.swift in Sources */,
 				DE52F2B32A33340400061411 /* CustomToolbarButton.swift in Sources */,
 				DE52F2BD2A33340400061411 /* TitleToolbar.swift in Sources */,
 				DE52F2BC2A33340400061411 /* EmptyResumeDataView.swift in Sources */,
 				DE52F2872A3333C600061411 /* TQuestionView.swift in Sources */,
 				DE52F28C2A3333C600061411 /* ResumeView.swift in Sources */,
+				6CB48E182A360078001A61A6 /* ModalAchievement.swift in Sources */,
+				6CB48E192A360078001A61A6 /* AchievementView.swift in Sources */,
 				DE52F2CB2A33349000061411 /* ScoreStatusModel.swift in Sources */,
 				DE52F2922A3333C600061411 /* AddEducationView.swift in Sources */,
+				6CB48E162A360078001A61A6 /* ModalVolunteering.swift in Sources */,
 				DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */,
 				DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */,
 				DE52F2932A3333C600061411 /* SuggestionSheet.swift in Sources */,
@@ -560,16 +645,39 @@
 				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,
 				DE52F2C22A33340400061411 /* BigButton.swift in Sources */,
 				DE52F2B52A33340400061411 /* GeneratePhrasesToolbar.swift in Sources */,
+				6CB48E1A2A360078001A61A6 /* AddAchievement.swift in Sources */,
 				23FCDF5D2A33814300B62FED /* Config.swift in Sources */,
 				6C2B69E32A339B61006A571C /* EdgeBorder.swift in Sources */,
 				DE52F28B2A3333C600061411 /* DataView.swift in Sources */,
+				6CB48E122A360078001A61A6 /* AddOrganization.swift in Sources */,
 				DE52F2B62A33340400061411 /* CustomToolbar.swift in Sources */,
 				DE52F2BB2A33340400061411 /* Subtitle.swift in Sources */,
 				DE52F28D2A3333C600061411 /* HomeView.swift in Sources */,
 				DE52F2892A3333C600061411 /* SQuestionView.swift in Sources */,
+				6CB48DFF2A35FFF0001A61A6 /* Volunteering.swift in Sources */,
+				DE52F2CB2A33349000061411 /* ScoreStatusModel.swift in Sources */,
+				DE52F2922A3333C600061411 /* AddEducationView.swift in Sources */,
+				DE52F2B82A33340400061411 /* AdaptiveForm.swift in Sources */,
+				DE52F2BE2A33340400061411 /* ProgressBar.swift in Sources */,
+				DE52F2932A3333C600061411 /* SuggestionSheet.swift in Sources */,
+				DE52F2C42A33340400061411 /* AtomicComponent.swift in Sources */,
+				DE52F2902A3333C600061411 /* WorkExperienceView.swift in Sources */,
+				DE52F2942A3333C600061411 /* PersonalDataView.swift in Sources */,
+				6CB48E172A360078001A61A6 /* AddVolunteering.swift in Sources */,
+				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,
+				DE52F2C22A33340400061411 /* BigButton.swift in Sources */,
+				DE52F2B52A33340400061411 /* GeneratePhrasesToolbar.swift in Sources */,
+				DE52F28B2A3333C600061411 /* DataView.swift in Sources */,
+				DE52F2B62A33340400061411 /* CustomToolbar.swift in Sources */,
+				DE52F2BB2A33340400061411 /* Subtitle.swift in Sources */,
+				6CB48E012A35FFFD001A61A6 /* WorkExp.swift in Sources */,
+				DE52F28D2A3333C600061411 /* HomeView.swift in Sources */,
+				6CB48E052A360053001A61A6 /* ModalEducation.swift in Sources */,
+				DE52F2892A3333C600061411 /* SQuestionView.swift in Sources */,
 				DE52F2B12A33340400061411 /* DateForm.swift in Sources */,
 				DE52F2BF2A33340400061411 /* TagForm.swift in Sources */,
 				6CCD80BD2A3188C100D26574 /* ResuMateApp.swift in Sources */,
+				DE52F2C12A33340400061411 /* Loading.swift in Sources */,
 				DE52F2C12A33340400061411 /* Loading.swift in Sources */,
 				DE52F2B22A33340400061411 /* BigForm.swift in Sources */,
 				6C97FA7D2A339A4000BB4715 /* Extensions.swift in Sources */,
@@ -577,6 +685,7 @@
 				DE52F2CC2A33349000061411 /* TagModel.swift in Sources */,
 				DE52F2C52A33340400061411 /* GeneratePhrasesForm.swift in Sources */,
 				6CCD80C92A3188C200D26574 /* ResuMate.xcdatamodeld in Sources */,
+				6CB48E1E2A360212001A61A6 /* Education.swift in Sources */,
 				23FCDF2A2A31AED200B62FED /* EducationModel.swift in Sources */,
 				23FCDF2C2A31BC6800B62FED /* WorkExperienceModel.swift in Sources */,
 				6CCD80D32A318EF100D26574 /* ChatGptService.swift in Sources */,

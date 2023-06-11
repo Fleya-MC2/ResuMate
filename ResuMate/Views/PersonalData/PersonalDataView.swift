@@ -25,6 +25,9 @@ struct PersonalDataView: View {
     @State var isphone: Bool = false
     @State var ismotto: Bool = false
     @State var issummary: Bool = false
+    @State var isButtonActive: Bool = false
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
 
     
@@ -44,7 +47,7 @@ struct PersonalDataView: View {
                         Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                             .blacktext17()
                             .fontWeight(.regular)
-                        Spacer().frame(height: 33)
+                        Spacer().frame(height: 40)
                         createBigForm(title: "First Name", placeholder: "String", fill: $firstname, isCheck: $isfirstname)
                         createBigForm(title: "Last Name", placeholder: "String", fill: $lastname, isCheck: $islastname)
                         createBigForm(title: "Email", placeholder: "String", fill: $email, isCheck: $isemail)
@@ -92,12 +95,30 @@ struct PersonalDataView: View {
                         .padding(.bottom, 30)
                     }
                     Button{
-                        saveBioData()
-                        cardLists.isPersonalDataFilled = true
-                        isSubmit = true
+                        if isButtonActive == true {
+                            saveBioData()
+                            cardLists.isPersonalDataFilled = true
+                            isSubmit = true
+                        }
                         
                     }label: {
-                        BigButton(text: "Submit", isButtonactive: true)
+                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
+                            
+                    }
+                    .onReceive(timer) { time in
+                        
+                        if firstname != "" &&
+                            lastname != "" &&
+                            email != "" &&
+                            phone != "" &&
+                            motto != "" &&
+                            summary != "" {
+                            isButtonActive = true
+                            print("%%%\(isButtonActive)")
+                            
+                        }else{
+                            isButtonActive = false
+                        }
                     }
                     
                 }.sheet(isPresented: $isSuggestion) {
