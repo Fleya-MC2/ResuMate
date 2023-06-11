@@ -1,5 +1,5 @@
 //
-//  Organization.swift
+//  Achievement.swift
 //  ResuMate
 //
 //  Created by Luthfi Asmara on 10/06/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OrganizationView: View {
+struct AchievementView: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
@@ -19,38 +19,35 @@ struct OrganizationView: View {
         }else{
             NavigationStack{
                 VStack{
-                    CustomToolbar(titleToolbar: "Organization Experience", destinationL: HomeView(selection: 1), destinationT: AddOrganization())
+                    CustomToolbar(titleToolbar: "Achievement", destinationL: HomeView(selection: 1), destinationT: AddAchievement())
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
                         .fontWeight(.light)
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
-                    
-                    ForEach(cardLists.organization){ itm in
+                    ForEach(cardLists.achievement){ itm in
                         HStack{
-                            Text("\(itm.position) - \(itm.organization)")
+                            Text("\(itm.achieve) - \(itm.year)")
                                 .blacktext15()
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.black)
                             
                         }.padding(.horizontal, 20)
-                            .frame(width: 338, height: 55)
+                        .frame(width: 338, height: 55)
                             .cornerRadius(9)
                             .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         
                     }
-                    
-                
-                    if cardLists.organization.count == 0 {
+                    if cardLists.achievement.count == 0 {
                         NavigationLink{
-                            AddOrganization()
+                            AddAchievement()
                         }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.darkBlue)
-                                Text("Add Organization")
+                                Text("Add Achievement")
                                     .strongblue15()
                                     .fontWeight(.semibold)
                             }
@@ -60,16 +57,17 @@ struct OrganizationView: View {
 
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             if isButtonActive{
-                                cardLists.isOrganizationFilled = true
+                                cardLists.isAchievementFilled = true
                                 isSubmit = true
                             }
                         }
                     
                     
+                    
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     .onReceive(timer) { time in
                         
-                        if cardLists.organization.count != 0 {
+                        if cardLists.achievement.count != 0 {
                             isButtonActive = true
                         }
                         print(isButtonActive)
@@ -77,13 +75,8 @@ struct OrganizationView: View {
                 
                 
                 
-                
             }.navigationBarBackButtonHidden(true)
             
         }
     }
-    
-        
-        
 }
-
