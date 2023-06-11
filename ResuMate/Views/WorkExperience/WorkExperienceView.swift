@@ -12,12 +12,14 @@ struct WorkExperienceView: View {
     @State var isButtonactive: Bool = false
     @State var isSubmit: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @State var isSubmitClicked: Bool = false
 
     
     var body: some View {
         if isSubmit {
             DataView()
-        } else{
+        } else {
             NavigationStack{
                 VStack{
                     CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView())
@@ -55,14 +57,13 @@ struct WorkExperienceView: View {
                     }
                     
                     Spacer()
-                    Button{
-                        if isButtonactive{
-                            cardLists.isWorkExpFilled = true
-                            isSubmit = true
+                    
+                        BigButton(text: "Submit", isButtonactive: isButtonactive) {
+                            if isButtonactive{
+                                cardLists.isWorkExpFilled = true
+                                isSubmit = true
+                            }
                         }
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonactive)
-                    }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onReceive(timer) { time in
                     
@@ -71,10 +72,21 @@ struct WorkExperienceView: View {
                     }
                     print(isButtonactive)
                 }
-                
-                
-            }.navigationBarBackButtonHidden(true)
+                Spacer()
+                    
+                    BigButton(text: "Submit", isButtonactive: true) {
+                        isSubmitClicked = true
+                    
+                }.onAppear{
+                    cardLists.isWorkExpFilled = true
+                }
+            }
+            .navigationDestination(isPresented: $isSubmitClicked, destination: {
+                DataView()
+            })
+            .navigationBarBackButtonHidden(true)
         }
+
     }
     
 }

@@ -37,8 +37,10 @@ struct CustomToolbarButton: View {
     }
 }
 
-//struct CustomToolbarButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CustomToolbarButton()
-//    }
-//}
+struct CustomToolbarButton_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomToolbarButton(titleToolbar: "test", action: {
+            
+        })
+    }
+}

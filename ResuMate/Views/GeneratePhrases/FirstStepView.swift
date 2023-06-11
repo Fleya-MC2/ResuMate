@@ -67,8 +67,8 @@ struct FirstStepView: View{
                     .multilineTextAlignment(.center)
                     .frame(width: 323)
                 Spacer()
-                Button{
-                    
+
+                    BigButton(text: "Next", isButtonactive: isButtonActive) {
                         if progress == 1{
                             progress = 1
                             step = 5
@@ -78,11 +78,8 @@ struct FirstStepView: View{
                             step = 2
                             currentPage = .sQuestion
                         }
-                    
-                    
-                }label: {
-                    BigButton(text: "Next", isButtonactive: $isButtonActive)
-                }
+                    }
+                
                 
                 Spacer().frame(height: 50)
             }

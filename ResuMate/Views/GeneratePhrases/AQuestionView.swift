@@ -28,21 +28,18 @@ struct AQuestionView: View {
                 GeneratePhrasesForm(question: "AQuestion", fill: $aqAnswer)
                 
                 Spacer()
-                Button{
-                    gpAnswer.aquestion = aqAnswer
-                        if progress == 1{
-                            progress = 1
-                        }
-                        else{
-                            progress = progress + 0.20
-                            currentPage = .rQuestion
-                            step = 5
-                        }
-                    
-                    
-                }label: {
-                    BigButton(text: "Next", isButtonactive: $isButtonActive)
-                }
+                    BigButton(text: "Next", isButtonactive: true) {
+                        gpAnswer.aquestion = aqAnswer
+                            if progress == 1{
+                                progress = 1
+                            }
+                            else{
+                                progress = progress + 0.20
+                                currentPage = .rQuestion
+                                step = 5
+                            }
+                        
+                    }
                 
                 Spacer().frame(height: 50)
             }

@@ -50,8 +50,8 @@ struct BigForm: View {
     
 }
 
-//struct BigForm_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BigForm()
-//    }
-//}
+struct BigForm_Previews: PreviewProvider {
+    static var previews: some View {
+        BigForm(title: "TEST", placeholder: "TEST", fill: .constant("fwqrbnwq"), isCheck: .constant(false))
+    }
+}

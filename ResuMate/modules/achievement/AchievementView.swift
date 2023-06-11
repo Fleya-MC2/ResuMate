@@ -54,14 +54,14 @@ struct AchievementView: View {
                         }
                     }
                     Spacer()
-                    Button{
-                        if isButtonActive{
-                            cardLists.isAchievementFilled = true
-                            isSubmit = true
+
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                            if isButtonActive{
+                                cardLists.isAchievementFilled = true
+                                isSubmit = true
+                            }
                         }
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                    }
+                    
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)

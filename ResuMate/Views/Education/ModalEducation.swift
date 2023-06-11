@@ -42,20 +42,18 @@ struct ModalEducation: View {
                 Spacer().frame(height: 30)
                 ScrollView{
                     ForEach(0..<3){_ in
-                        RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid")
+                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
                     }
                     
                     
                 }
                 Spacer()
-                Button{
-                    isGenerate.toggle()
-                    isSuggestion.toggle()
-                    cardLists.currentPageView = "education"
-                    
-                }label: {
-                    BigButton(text: "Need something more?", isButtonactive: $isButtonActive)
-                }
+
+                    BigButton(text: "Need something more?", isButtonactive: isButtonActive) {
+                        isGenerate.toggle()
+                        isSuggestion.toggle()
+                        cardLists.currentPageView = "education"
+                    }
                 
                 
                 

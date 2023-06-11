@@ -91,16 +91,13 @@ struct AddVolunteering: View {
                             
                         }
                         Spacer()
-                        Button{
-                            if isButtonActive {
-                                saveVolunteer()
-                                isSubmit = true
+
+                            BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                                if isButtonActive {
+                                    saveVolunteer()
+                                    isSubmit = true
+                                }
                             }
-                            
-                        }label: {
-                            BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                            
-                        }
                         .onReceive(timer) { time in
                             
                             if position != "" &&

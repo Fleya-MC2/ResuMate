@@ -89,16 +89,13 @@ struct AddOrganization: View {
                             
                         }
                         Spacer()
-                        Button{
-                                                        if isButtonActive{
-                            saveOrganization()
-                            isSubmit = true
-                                                        }
-                            
-                        }label: {
-                            BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                            
-                        }
+
+                            BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                                if isButtonActive{
+    saveOrganization()
+    isSubmit = true
+                                }
+                            }
                         .onReceive(timer) { time in
                             
                             if position != "" &&

@@ -28,7 +28,7 @@ struct ModalWorkExperience: View {
                             .font(.system(size: 13))
                             .foregroundColor(.gray)
                             .background(Circle()
-                                .fill(Color.darkGray)
+                                .fill(Color.mediumDarkGray)
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                                         
@@ -41,18 +41,18 @@ struct ModalWorkExperience: View {
                 Divider()
                 Spacer().frame(height: 30)
                 ScrollView{
-                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid")
-                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd")
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd", isShowingThumbsUp:  false)
                     
                 }
                 Spacer()
-                Button{
-                    isGenerate.toggle()
-                    isSuggestion.toggle()
-                    cardLists.currentPageView = "workExp"
-                }label: {
-                    BigButton(text: "Need something more?", isButtonactive: $isButtonActive)
-                }
+
+                    BigButton(text: "Need something more?", isButtonactive: true) {
+                        isGenerate.toggle()
+                        isSuggestion.toggle()
+                        cardLists.currentPageView = "workExp"
+                    }
+                
                 
                 
                 

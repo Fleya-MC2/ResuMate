@@ -54,14 +54,13 @@ struct OrganizationView: View {
                         }
                     }
                     Spacer()
-                    Button{
-                        if isButtonActive{
-                            cardLists.isOrganizationFilled = true
-                            isSubmit = true
+
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                            if isButtonActive{
+                                cardLists.isOrganizationFilled = true
+                                isSubmit = true
+                            }
                         }
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                    }
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)

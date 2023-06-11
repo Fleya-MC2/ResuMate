@@ -92,16 +92,13 @@ struct AddWorkExperienceView: View {
                     
                 }
                 Spacer()
-                Button{
-                                                if isButtonActive == true {
-                    saveWorkExp()
-                    isSubmit = true
-                                                }
-                    
-                }label: {
-                    BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                    
-                }
+
+                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                        if isButtonActive == true {
+saveWorkExp()
+isSubmit = true
+                        }
+                    }
                 .onReceive(timer) { time in
                     
                     if position != "" &&

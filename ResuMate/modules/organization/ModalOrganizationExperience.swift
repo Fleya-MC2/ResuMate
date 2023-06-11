@@ -41,18 +41,16 @@ struct ModalOrganizationExperience: View {
                 Divider()
                 Spacer().frame(height: 30)
                 ScrollView{
-                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid")
-                    RecomendationBox(recomendText: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd")
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
                     
                 }
                 Spacer()
-                Button{
-                    isGenerate.toggle()
-                    isSuggestion.toggle()
-                    cardLists.currentPageView = "organization"
-                }label: {
-                    BigButton(text: "Need something more?", isButtonactive: $isButtonActive)
-                }
+                BigButton(text: "Need something more?", isButtonactive: isButtonActive) {
+                        isGenerate.toggle()
+                        isSuggestion.toggle()
+                        cardLists.currentPageView = "organization"
+                    }
                 
                 
                 

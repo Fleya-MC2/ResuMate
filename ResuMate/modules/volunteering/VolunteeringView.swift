@@ -54,15 +54,12 @@ struct Volunteering: View {
                         }
                     }
                     Spacer()
-                    Button{
-                        if isButtonActive{
-                            cardLists.isVolunteringFilled = true
-                            isSubmit = true
-                        }
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                    }
-                    
+                        BigButton(text: "Submit", isButtonactive: isButtonActive, onClicked: {
+                            if isButtonActive{
+                                cardLists.isVolunteringFilled = true
+                                isSubmit = true
+                            }
+                        })
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 

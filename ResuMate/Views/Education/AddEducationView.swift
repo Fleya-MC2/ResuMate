@@ -88,16 +88,14 @@ struct AddEducationView: View {
                         .padding(.bottom, 30)
                         
                         Spacer()
-                        Button{
-                            if isButtonActive == true {
-                                saveEducation()
-                                isSubmit = true
+                        
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                                if isButtonActive == true {
+                                    saveEducation()
+                                    isSubmit = true
+                                }
+                                
                             }
-                            
-                        }label: {
-                            BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                            
-                        }
                         .onReceive(timer) { time in
                             
                             if major != "" &&

@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum Page: String {
+    case personalData = "personalData"
+    case workExp = "workExp"
+    case education = "education"
+}
+
 class CardLists: ObservableObject {
     @AppStorage("isPersonalDataFilled") var isPersonalDataFilled: Bool = false
     @AppStorage("isEducationFilled") var isEducationFilled: Bool = false
@@ -26,11 +32,9 @@ class CardLists: ObservableObject {
     
 }
 
-
-
 struct HomeView: View {
     @EnvironmentObject var cardLists: CardLists
-    @State var selection = 1
+    @State var selection = 0
     
     
     var body: some View {
@@ -65,7 +69,7 @@ struct HomeView: View {
     }
 }
 
-struct HomePage_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }

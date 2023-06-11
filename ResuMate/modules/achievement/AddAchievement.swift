@@ -44,16 +44,13 @@ struct AddAchievement: View {
                         
                     }
                     Spacer()
-                    Button{
-                                                    if isButtonActive {
-                        saveAchievement()
-                        isSubmit = true
-                                                    }
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                            if isButtonActive {
+saveAchievement()
+isSubmit = true
+                            }
+                        }
                         
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                        
-                    }
                     .onReceive(timer) { time in
                         
                         if achieve != "" &&

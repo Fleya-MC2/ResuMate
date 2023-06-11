@@ -58,14 +58,9 @@ struct EducationView: View {
                         }
                     }
                     Spacer()
-                    Button{
-                        if isButtonActive{
-                            cardLists.isEducationFilled = true
-                            isSubmit = true
-                        }
-                    }label: {
-                        BigButton(text: "Submit", isButtonactive: $isButtonActive)
-                    }
+                BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                    
+                }
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)

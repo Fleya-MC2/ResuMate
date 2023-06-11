@@ -37,6 +37,10 @@ extension View {
         self.font(.system(size: 15)).foregroundColor(.white)
     }
     
+    func darkGray17() -> some View {
+        self.font(.system(size: 17)).foregroundColor(.darkGray)
+    }
+    
     func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
         overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
     }
@@ -48,7 +52,10 @@ extension Color {
     static let lightBlue = Color("LightBlue")
     static let darkBlue = Color("DarkBlue")
     static let lightGray = Color("LightGray")
+    static let mediumGray = Color("MediumGray")
+    static let mediumDarkGray = Color("MediumDarkGray")
     static let darkGray = Color("DarkGray")
     static let lightGreen = Color("LightGreen")
+    static let lightYellow = Color("LightYellow")
     static let modal = Color("Modal")
 }
