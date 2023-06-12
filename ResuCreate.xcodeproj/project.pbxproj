@@ -13,6 +13,7 @@
 		061338882A34436600658211 /* ResumeSubtitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338872A34436600658211 /* ResumeSubtitleText.swift */; };
 		0613388A2A34437C00658211 /* ResumeDetailText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061338892A34437C00658211 /* ResumeDetailText.swift */; };
 		0613388E2A347F0C00658211 /* SecondResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0613388D2A347F0C00658211 /* SecondResume.swift */; };
+		23622EFD2A3779E9001D7F28 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23622EFC2A3779E9001D7F28 /* OnboardingView.swift */; };
 		23659B752A370A5F0009B53B /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23659B742A370A5F0009B53B /* Utility.swift */; };
 		239902042A36CAA5002C6AF1 /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239902032A36CAA5002C6AF1 /* SkillModel.swift */; };
 		239902062A36CF20002C6AF1 /* SkillCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239902052A36CF20002C6AF1 /* SkillCoreDataService.swift */; };
@@ -128,6 +129,7 @@
 		061338872A34436600658211 /* ResumeSubtitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSubtitleText.swift; sourceTree = "<group>"; };
 		061338892A34437C00658211 /* ResumeDetailText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeDetailText.swift; sourceTree = "<group>"; };
 		0613388D2A347F0C00658211 /* SecondResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondResume.swift; sourceTree = "<group>"; };
+		23622EFC2A3779E9001D7F28 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		23659B742A370A5F0009B53B /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		239902032A36CAA5002C6AF1 /* SkillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
 		239902052A36CF20002C6AF1 /* SkillCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCoreDataService.swift; sourceTree = "<group>"; };
@@ -256,6 +258,14 @@
 				0613388D2A347F0C00658211 /* SecondResume.swift */,
 			);
 			path = Resumes;
+			sourceTree = "<group>";
+		};
+		23622EFB2A3779C2001D7F28 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				23622EFC2A3779E9001D7F28 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		23FCDF222A31962A00B62FED /* Models */ = {
@@ -584,6 +594,7 @@
 		DE52F2702A3333C600061411 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				23622EFB2A3779C2001D7F28 /* Onboarding */,
 				DE52F2772A3333C600061411 /* Home */,
 				6C0AC1782A3430E3009BA336 /* Resume */,
 				6C0AC1792A3430F4009BA336 /* Data */,
@@ -776,6 +787,7 @@
 				23FCDF582A33103900B62FED /* UploadResumeView.swift in Sources */,
 				6C8E6DF82A35C81A0048C263 /* PDFDocumentViewer.swift in Sources */,
 				DE52F2BA2A33340400061411 /* OnboardingButton.swift in Sources */,
+				23622EFD2A3779E9001D7F28 /* OnboardingView.swift in Sources */,
 				23FCDF6F2A34DA4A00B62FED /* VolunteerCoreDataService.swift in Sources */,
 				DE52F2CD2A33349000061411 /* JobModel.swift in Sources */,
 				DE52F2862A3333C600061411 /* GeneratePhrasesView.swift in Sources */,

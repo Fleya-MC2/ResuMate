@@ -32,7 +32,7 @@ struct ResumeView: View {
             VStack(alignment: .leading){
                 Title(title: "Resume")
                 
-                Text("Seems you haven’t created a resume before.")
+                Text("It seems you haven’t created a resume before.")
                     .blacktext20()
                     .fontWeight(.medium)
                 
