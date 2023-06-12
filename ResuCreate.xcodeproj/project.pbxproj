@@ -183,7 +183,7 @@
 		6CB48E112A360078001A61A6 /* AddAchievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAchievement.swift; sourceTree = "<group>"; };
 		6CB48E1B2A360131001A61A6 /* Achievementt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievementt.swift; sourceTree = "<group>"; };
 		6CB48E1D2A360212001A61A6 /* Educationn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Educationn.swift; sourceTree = "<group>"; };
-		6CCD80B92A3188C100D26574 /* ResuMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResuMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CCD80B92A3188C100D26574 /* ResuCreate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResuCreate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD80BC2A3188C100D26574 /* ResuMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResuMateApp.swift; sourceTree = "<group>"; };
 		6CCD80BE2A3188C100D26574 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6CCD80C02A3188C200D26574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -520,7 +520,7 @@
 		6CCD80BA2A3188C100D26574 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6CCD80B92A3188C100D26574 /* ResuMate.app */,
+				6CCD80B92A3188C100D26574 /* ResuCreate.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -681,9 +681,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6CCD80B82A3188C100D26574 /* ResuMate */ = {
+		6CCD80B82A3188C100D26574 /* ResuCreate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CCD80CC2A3188C200D26574 /* Build configuration list for PBXNativeTarget "ResuMate" */;
+			buildConfigurationList = 6CCD80CC2A3188C200D26574 /* Build configuration list for PBXNativeTarget "ResuCreate" */;
 			buildPhases = (
 				6CCD80B52A3188C100D26574 /* Sources */,
 				6CCD80B62A3188C100D26574 /* Frameworks */,
@@ -693,9 +693,9 @@
 			);
 			dependencies = (
 			);
-			name = ResuMate;
+			name = ResuCreate;
 			productName = ResuMate;
-			productReference = 6CCD80B92A3188C100D26574 /* ResuMate.app */;
+			productReference = 6CCD80B92A3188C100D26574 /* ResuCreate.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -713,7 +713,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6CCD80B42A3188C100D26574 /* Build configuration list for PBXProject "ResuMate" */;
+			buildConfigurationList = 6CCD80B42A3188C100D26574 /* Build configuration list for PBXProject "ResuCreate" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -726,7 +726,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6CCD80B82A3188C100D26574 /* ResuMate */,
+				6CCD80B82A3188C100D26574 /* ResuCreate */,
 			);
 		};
 /* End PBXProject section */
@@ -1029,7 +1029,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fleya.ResuMate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fleya.ResuCreate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1060,7 +1060,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fleya.ResuMate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fleya.ResuCreate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1071,7 +1071,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6CCD80B42A3188C100D26574 /* Build configuration list for PBXProject "ResuMate" */ = {
+		6CCD80B42A3188C100D26574 /* Build configuration list for PBXProject "ResuCreate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CCD80CA2A3188C200D26574 /* Debug */,
@@ -1080,7 +1080,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CCD80CC2A3188C200D26574 /* Build configuration list for PBXNativeTarget "ResuMate" */ = {
+		6CCD80CC2A3188C200D26574 /* Build configuration list for PBXNativeTarget "ResuCreate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CCD80CD2A3188C200D26574 /* Debug */,
