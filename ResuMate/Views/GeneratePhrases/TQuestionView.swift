@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TQuestionView: View {
-    @State var tqAnswer: String = ""
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    @Binding var tAnswer: String
     @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
     @State var isButtonActive: Bool = true
     
@@ -27,12 +27,12 @@ struct TQuestionView: View {
             
             StepBar(progress: progress, step: step)
             
-            AreaForm(title: "Whats your responsibilty in that challenge?", fill: $tqAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
+            AreaForm(title: "Whats your responsibilty in that challenge?", fill: $tAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
             
             Spacer()
             
             BigButton(text: "Next", isButtonactive: true) {
-                gpAnswer.tquestion = tqAnswer
+                gpAnswer.tquestion = tAnswer
                 if progress == 1{
                     progress = 1
                     

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SQuestionView: View {
-    @State var sqAnswer: String = ""
+
     @Binding var step: Int
     @Binding var progress: CGFloat
     @Binding var currentPage: GeneratePhrasesPage
+    @Binding var sAnswer: String
     @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
     @State var isButtonActive: Bool = true
     
@@ -27,12 +28,12 @@ struct SQuestionView: View {
             
             StepBar(progress: progress, step: step)
             
-            AreaForm(title: "Tell us some chalenging things based on those experience?", fill: $sqAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
+            AreaForm(title: "Tell us some chalenging things based on those experience?", fill: $sAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
             
             Spacer()
             
             BigButton(text: "Next", isButtonactive: true) {
-                gpAnswer.squestion = sqAnswer
+                gpAnswer.squestion = sAnswer
                 if progress == 1{
                     progress = 1
                 }

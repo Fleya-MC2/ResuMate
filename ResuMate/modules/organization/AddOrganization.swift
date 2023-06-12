@@ -30,7 +30,7 @@ struct AddOrganization: View {
     
     var body: some View {
         if isGenerate {
-            GeneratePhrases(inputType: inputType)
+//            GeneratePhrases(inputType: inputType)
         }
         else{
             VStack{

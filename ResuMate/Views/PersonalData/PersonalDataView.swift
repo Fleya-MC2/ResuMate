@@ -32,9 +32,6 @@ struct PersonalDataView: View {
     @State var isButtonActive: Bool = false
     
     var body: some View {
-        if isGenerate {
-            GeneratePhrasesView(inputType: inputType)
-        } else {
             VStack{
                 CustomToolbar2(titleToolbar: "Personal Data", destination: HomeView(selection: 1))
                 ScrollView{
@@ -83,7 +80,7 @@ struct PersonalDataView: View {
                     HomeView(selection: 1)
                 })
             }
-        }
+        
     }
     
     func updateButtonActive() {

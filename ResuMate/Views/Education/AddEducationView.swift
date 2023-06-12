@@ -30,10 +30,10 @@ struct AddEducationView: View {
     @State var isButtonActive: Bool = false
     @State var selectedEducation: EducationModel?
     
+    @State var suggestionList: [SuggestionModel] = []
+    
     var body: some View {
-        if isGenerate{
-                GeneratePhrases(inputType: inputType)
-            } else {
+
                     VStack{
                         CustomToolbar2(titleToolbar: "\(inputType.rawValue) Education", destination: EducationView())
                         createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
@@ -83,6 +83,7 @@ struct AddEducationView: View {
                 SelectItemSheet(
                        selectItemType: .suggestion,
                         position: major,
+                       suggestionList: suggestionList,
                         text: "Education Background",
                         isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
                         isGenerate = true
@@ -93,6 +94,7 @@ struct AddEducationView: View {
                         onSuggestionItemClicked: {suggestion in
                             description += suggestion
                         },
+                       
                         onBiodataItemClicked: {_ in },
                         onWorkExperienceItemClicked: {_ in },
                         onEducationItemClicked: {_ in },
@@ -102,14 +104,23 @@ struct AddEducationView: View {
                         onVolunteerItemClicked: {_ in }
                     )
                     .presentationDetents([.medium, .large])
-                }.navigationBarBackButtonHidden(true)
+                }
+            .sheet(isPresented: $isGenerate) {
+                GeneratePhrasesView(
+                    position: major) { suggestion in
+                        suggestionList = suggestion
+                        isGenerate = false
+                        isSuggestion = true
+                    }
+            }
+            .navigationBarBackButtonHidden(true)
                                 .onAppear{
                     if inputType == .edit{
                         print("on appear edit run")
                         filledEducationData()
                     }
                 }
-            }
+            
     }
     
     func updateButtonActive() {

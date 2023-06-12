@@ -27,10 +27,7 @@ struct AddAchievement: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        if isGenerate {
-            GeneratePhrases(inputType: inputType)
-        } else{
-            NavigationStack{
+  
                 VStack{
                     ScrollView{
                         VStack{
@@ -77,13 +74,13 @@ struct AddAchievement: View {
                         filledAchievementData()
                     }
                 }
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
                 .navigationDestination(isPresented: $isSubmit, destination: {
                     AchievementView()
                 })
             
         }
-    }
+    
     
     private func filledAchievementData(){
         achieve = selectedAchivementModel?.title ?? ""

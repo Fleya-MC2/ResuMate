@@ -28,10 +28,10 @@ struct AddWorkExperienceView: View {
     @State var isSubmit: Bool = false
     @State var selectedWorkExperience: WorkExperienceModel?
     
+    @State var suggestionList: [SuggestionModel] = []
+    
     var body: some View {
-        if isGenerate {
-            GeneratePhrasesView(inputType: inputType)
-        } else {
+
             VStack{
                 ScrollView{
                     VStack{
@@ -95,6 +95,7 @@ struct AddWorkExperienceView: View {
                 SelectItemSheet(
                     selectItemType: .suggestion,
                     position: position,
+                    suggestionList: suggestionList,
                     text: "Work Experience",
                     isGeneratePhraseButtonEnabled: true,
                     onGeneratePhraseButtonClicked: {
@@ -124,7 +125,15 @@ struct AddWorkExperienceView: View {
                     filledWorkExperienceData()
                 }
             }
-        }
+            .sheet(isPresented: $isGenerate) {
+                GeneratePhrasesView(
+                    position: position) { suggestion in
+                        suggestionList = suggestion
+                        isGenerate = false
+                        isSuggestion = true
+                    }
+            }
+        
     }
         
 

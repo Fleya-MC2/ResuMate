@@ -15,30 +15,6 @@ class GeneratePhrasesAnswer: ObservableObject {
     @AppStorage("rquestion") var rquestion: String = ""
     
 }
-struct GeneratePhrases: View {
-    var inputType: InputType
-    
-    @State private var currentPage: GeneratePhrasesPage = .generatePhrases
-    @State var progress: CGFloat = 0.2
-    @State var step: Int = 1
-    
-    var body: some View {
-        VStack{
-            switch currentPage {
-            case .generatePhrases:
-                FirstStepView(step: $step, progress: $progress, currentPage: $currentPage)
-            case .sQuestion:
-                SQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
-            case .tQuestion:
-                TQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
-            case .aQuestion:
-                AQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
-            case .rQuestion:
-                RQuestionView(inputType: inputType, step: $step, progress: $progress, currentPage: $currentPage)
-            }
-        }
-    }
-}
 
 struct FirstStepView: View{
     @Binding var step: Int

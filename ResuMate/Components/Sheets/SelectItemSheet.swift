@@ -30,7 +30,7 @@ struct SelectItemSheet: View {
     
     var position: String?
     
-    @State private var suggestionList: [SuggestionModel]?
+    @State var suggestionList: [SuggestionModel]?
     
     var text: String
     
@@ -202,6 +202,10 @@ struct SelectItemSheet: View {
             .onAppear(perform: {
                 switch selectItemType {
                 case .suggestion:
+                    if suggestionList?.count ?? 0 > 0 {
+                        return
+                    }
+                    
                     isLoading = true
                     
                     chatGptService.fetchSuggestionByPositionTitle(positionTitle: position ?? "", completion: { result in

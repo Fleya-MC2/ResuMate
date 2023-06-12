@@ -28,15 +28,14 @@ struct AddVolunteering: View {
     @State var isButtonActive: Bool = false
     @State var selectedVolunteer: VolunteerModel?
     
+    @State private var sAnswer: String = ""
+    @State private var tAnswer: String = ""
+    @State private var aAnswer: String = ""
+    @State private var rAnswer: String = ""
+    
+    @State private var suggestionList: [SuggestionModel] = []
+    
     var body: some View {
-        if isSubmit{
-            Volunteering()
-        }else{
-            if isGenerate {
-                GeneratePhrases(inputType: inputType)
-            }
-            else{
-                NavigationStack{
                     VStack{
                         ScrollView{
                             VStack{
@@ -131,10 +130,14 @@ struct AddVolunteering: View {
                             TitleToolbar(titleToolbar: "\(inputType.rawValue) Volunteering Experience")
                         }
                     }
-                }.sheet(isPresented: $isSuggestion) {
+                .navigationDestination(isPresented: $isSubmit, destination: {
+                    Volunteering()
+                })
+                .sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
                         selectItemType: .suggestion,
                         position: position,
+                        suggestionList: suggestionList,
                         text: "Volunteering Experience",
                         isGeneratePhraseButtonEnabled: true,
                         onGeneratePhraseButtonClicked: {
@@ -163,8 +166,15 @@ struct AddVolunteering: View {
                             filledVolunteerData()
                         }
                     }
-            }
-        }
+                    .sheet(isPresented: $isGenerate) {
+                        GeneratePhrasesView(position: position) { suggestion in
+                                suggestionList = suggestion
+                                isGenerate = false
+                                isSuggestion = true
+                            }
+                    }
+            
+        
     }
     
     func updateButtonActive() {
