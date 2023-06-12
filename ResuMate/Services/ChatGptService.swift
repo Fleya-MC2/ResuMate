@@ -282,6 +282,76 @@ class ChatGptService {
         }
     }
     
+    func fetchSkillSuggestionBySkill(skill: String, completion: @escaping (Result<[SuggestionModel], Error>) -> Void) {
+        let prompt = "Suggest associated skills or keywords or the complete word in array json format with the only field name 'suggestion' based on '\(skill)'"
+        
+        self.fetchChatGptApi(prompt: prompt) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    print("[fetchSkillSuggestionBySkill][fetchChatGptApi]")
+                    
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    print("[fetchSkillSuggestionBySkill][fetchChatGptApi][json]", json as Any)
+                    
+                    // Check if the JSON response contains an 'error' key.
+                    if let error = json?["error"] as? [String: Any] {
+                        let errorMessage = error["message"] as? String ?? "Unknown error occurred"
+                        let error = NSError(domain: "ChatGPT API", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        print(error)
+                        completion(.failure(error))
+                        return
+                    }
+                    
+                    if let choices = json?["choices"] as? [[String: Any]],
+                       var text = choices.first?["text"] as? String {
+                        print("[fetchSkillSuggestionBySkill][fetchChatGptApi][choices]", choices)
+                        print("[fetchSkillSuggestionBySkill][fetchChatGptApi][text]", text)
+                        
+                        // Check if the last character is a closing bracket
+                        if !text.hasSuffix("]") {
+                            // Find the index of the last complete suggestion
+                            if let lastIndex = text.lastIndex(of: "}") {
+                                // Trim the text to include only complete suggestions and append a closing bracket
+                                let endIndex = text.index(after: lastIndex)
+                                text = String(text[..<endIndex])
+                                text.append("]")
+                            }
+                        }
+                        
+                        // Convert the text back to Data for parsing
+                        if let jsonData = text.data(using: .utf8) {
+                            do {
+                                // Decode the data to an array of SuggestionModel
+                                let suggestions = try JSONDecoder().decode([SuggestionModel].self, from: jsonData)
+                                completion(.success(suggestions))
+                            } catch {
+                                print(error)
+                                completion(.failure(error))
+                            }
+                        } else {
+                            let error = NSError(domain: "BiodataModel Decoding", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to convert completed text to data"])
+                            print(error)
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "JSON Parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON data"])
+                        print(error)
+                        completion(.failure(error))
+                    }
+
+                } catch {
+                    completion(.failure(error))
+                }
+                break
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+                break
+            }
+        }
+    }
+
     //MARK: You can call function on this file!
     //MARK: Function to get biodata!
     func fetchBiodataFromTextOnResume(resumeText: String, completion: @escaping (Result<BiodataModel, Error>) -> Void) {
