@@ -57,20 +57,6 @@ struct ResumeView: View {
                             .fontWeight(.light)
                     }
                 }
-                
-                Button {
-                    ChatGptService().fetchRelevancyScoreByJobTitle(jobTitle: "test", content: "test") { result in
-                        switch result {
-                        case .success(let success):
-                            print("test")
-                        case .failure(let failure):
-                            print("Test")
-                        }
-                    }
-                } label: {
-                    Text("test")
-                }
-
 
                 Spacer()
             }.padding(.horizontal,35)
