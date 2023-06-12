@@ -9,12 +9,12 @@ import SwiftUI
 
 struct Volunteering: View {
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     var body: some View {
-
                 VStack{
                     CustomToolbar(titleToolbar: "Volunteering Experience", destinationL: HomeView(selection: 1), destinationT: AddVolunteering(inputType: .add))
                     Spacer().frame(height: 17)
@@ -23,12 +23,12 @@ struct Volunteering: View {
                         .fontWeight(.light)
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
-                    ForEach(cardLists.volunteer){ itm in
+                    ForEach(viewModel.volunteer){ itm in
                         NavigationLink {
-                            AddVolunteering(inputType: .edit)
+                            AddVolunteering(inputType: .edit, selectedVolunteer: itm)
                         } label: {
                             HStack{
-                                Text("\(itm.position) - \(itm.volunteer)")
+                                Text("\(itm.role ?? "") - \(itm.place ?? "")")
                                     .blacktext15()
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -39,12 +39,8 @@ struct Volunteering: View {
                                 .cornerRadius(9)
                                 .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         }
-
-                        
- 
-                        
                     }
-                    if cardLists.volunteer.count == 0 {
+                    if viewModel.volunteer.count == 0 {
                         NavigationLink{
                             AddVolunteering(inputType: .add)
                         }label:{
@@ -62,11 +58,13 @@ struct Volunteering: View {
                             if isButtonActive{
                                 cardLists.isVolunteringFilled = true
                                 isSubmit = true
+                                //call to save data
+                                saveVolunteerToCoreData(viewModel.volunteer, context: moc)
                             }
                         })
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .onReceive(cardLists.$volunteer) { newVolunteer in
+                    .onReceive(viewModel.$volunteer) { newVolunteer in
                         if newVolunteer.count != 0 {
                             isButtonActive = true
                         }
@@ -76,9 +74,12 @@ struct Volunteering: View {
                     .navigationDestination(isPresented: $isSubmit, destination: {
                         HomeView(selection: 1)
                     })
-                
-                
             .navigationBarBackButtonHidden(true)
+            .onAppear{
+                if viewModel.volunteer == []{
+                    viewModel.volunteer = fetchVolunteerFromCoreData(context: moc)
+                }
+            }
             
     }
 }

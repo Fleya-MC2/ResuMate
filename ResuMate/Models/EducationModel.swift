@@ -8,11 +8,11 @@
 import Foundation
 
 struct EducationModel: Codable, Hashable, Identifiable {
-    var id: UUID? = UUID()
-    let major: String?
-    let institution: String?
-    let startDate: String?
-    let endDate: String?
-    let gpa: String?
-    let description: String?
+    var id: UUID?
+    var major: String?
+    var institution: String?
+    var startDate: String?
+    var endDate: String?
+    var gpa: String?
+    var description: String?
 }

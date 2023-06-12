@@ -14,10 +14,13 @@ class ResumeViewModel: ObservableObject{
     @Published var organization: [OrganizationModel] = []
     @Published var volunteer: [VolunteerModel] = []
     @Published var achievement: [AchievementModel] = []
-    @Published var skills: [String] = []
+    @Published var skills: [SkillModel] = []
     @Published var isLoading: Bool = false
     @Published var error: String?
     @Published var isError: Bool = false
+    
+    //setup selected model in array
+    @Published var selectedEducationModel: EducationModel? = nil
     
     //MARK: Add counter to precise progress view bar
     
@@ -35,7 +38,6 @@ class ResumeViewModel: ObservableObject{
                             switch result {
                             case .success(let biodata):
                                 self.biodata = biodata
-                                print(biodata)
                             case .failure(let error):
                                 print("Error biodata")
                                 self.isError = true
@@ -134,6 +136,14 @@ class ResumeViewModel: ObservableObject{
             DispatchQueue.main.async {
                 self.isLoading = false
             }
+        }
+    }
+    
+    //MARK: function to update selected model
+    func updateSelectedEducationModel(with newModel: EducationModel) {
+        if let index = education.firstIndex(where: { $0.id == newModel.id }) {
+            // Update the selectedEducationModel
+            selectedEducationModel = education[index]
         }
     }
 }

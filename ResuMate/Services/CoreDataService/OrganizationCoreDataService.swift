@@ -15,17 +15,25 @@ func saveOrganizationToCoreData(_ organizations: [OrganizationModel], context: N
     dateFormatter.dateFormat = "MMM yyyy"
     
     for organization in organizations {
-        let newOrganization = Organization(context: context)
-        newOrganization.organization = organization.organization
-        newOrganization.role = organization.role
-        newOrganization.startDate = dateFormatter.date(from: organization.startDate!)
-        newOrganization.endDate = dateFormatter.date(from: organization.endDate!)
-        newOrganization.organizationDescription = organization.description
+        let fetchRequest: NSFetchRequest<Organization> = Organization.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", organization.id?.uuidString ?? "")
         
-        // Save the changes to Core Data
         do {
-            try context.save()
-            print("Successfull to save education to Core Data")
+            let results = try context.fetch(fetchRequest)
+            if results.isEmpty {
+                let newOrganization = Organization(context: context)
+                newOrganization.id = organization.id
+                newOrganization.organization = organization.organization
+                newOrganization.role = organization.role
+                newOrganization.startDate = dateFormatter.date(from: organization.startDate!)
+                newOrganization.endDate = dateFormatter.date(from: organization.endDate!)
+                newOrganization.organizationDescription = organization.description
+                // Save the changes to Core Data
+                try context.save()
+                print("Successfull to save organization to Core Data")
+            }else{
+                print("Organization already exists in Core Data")
+            }
         } catch {
             print("Failed to save education to Core Data: \(error)")
         }
@@ -45,6 +53,7 @@ func updateOrganizationInCoreData(_ organization: OrganizationModel, context: NS
         let results = try context.fetch(fetchRequest)
         if let existingOrganization = results.first {
             // Update the properties
+            existingOrganization.id = organization.id
             existingOrganization.organization = organization.organization
             existingOrganization.role = organization.role
             existingOrganization.startDate = dateFormatter.date(from: organization.startDate!)
@@ -75,7 +84,7 @@ func fetchOrganizationFromCoreData(context: NSManagedObjectContext) -> [Organiza
         // Convert Education objects to EducationModel
         let organizationModels = organizations.map { organization in
             OrganizationModel(
-                id: UUID(),
+                id: organization.id,
                 role: organization.role,
                 organization: organization.organization,
                 startDate: organization.startDate?.toString(),

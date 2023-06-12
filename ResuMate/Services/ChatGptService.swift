@@ -282,7 +282,9 @@ class ChatGptService {
                         
                         if let completedData = text.data(using: .utf8) {
                             do {
-                                let featureData = try decoder.decode(BiodataModel.self, from: completedData)
+                                var featureData = try decoder.decode(BiodataModel.self, from: completedData)
+                                // Generate and assign UUID to each Model instance
+                                featureData.id = UUID()
                                 completion(.success(featureData))
                             } catch {
                                 print(error)
@@ -354,8 +356,10 @@ class ChatGptService {
                         // Convert the text back to Data for parsing
                         if let jsonData = text.data(using: .utf8) {
                             do {
-                                let suggestions = try JSONDecoder().decode([EducationModel].self, from: jsonData)
-                                completion(.success(suggestions))
+                                var educationData = try JSONDecoder().decode([EducationModel].self, from: jsonData)
+                                // Generate and assign UUID to each Model instance
+                                educationData = educationData.map { var data = $0; data.id = UUID(); return data }
+                                completion(.success(educationData))
                             } catch {
                                 print(error)
                                 completion(.failure(error))
@@ -427,7 +431,9 @@ class ChatGptService {
                         if let jsonData = text.data(using: .utf8) {
                             do {
                                 // Decode the data to an array of SuggestionModel
-                                let workExperienceData = try JSONDecoder().decode([WorkExperienceModel].self, from: jsonData)
+                                var workExperienceData = try JSONDecoder().decode([WorkExperienceModel].self, from: jsonData)
+                                // Generate and assign UUID to each Model instance
+                                workExperienceData = workExperienceData.map { var data = $0; data.id = UUID(); return data }
                                 completion(.success(workExperienceData))
                             } catch {
                                 print(error)
@@ -461,7 +467,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me role, organization, startDate in Date, endDate in Date, description just in organization section in array JSON format
+    From the text above, provide me role, organization, startDate in Date, endDate in Date, description only in organization section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -500,7 +506,9 @@ class ChatGptService {
                         if let jsonData = text.data(using: .utf8) {
                             do {
                                 // Decode the data to an array of SuggestionModel
-                                let organizationData = try JSONDecoder().decode([OrganizationModel].self, from: jsonData)
+                                var organizationData = try JSONDecoder().decode([OrganizationModel].self, from: jsonData)
+                                // Generate and assign UUID to each Model instance
+                                organizationData = organizationData.map { var data = $0; data.id = UUID(); return data }
                                 completion(.success(organizationData))
                             } catch {
                                 print(error)
@@ -534,7 +542,7 @@ class ChatGptService {
         let prompt = """
     \(resumeText)
     
-    From the text above, provide me role, place, startDate in Date, endDate in Date, description just in volunteer section in array JSON format
+    From the text above, provide me role, place, startDate in Date, endDate in Date, description only in volunteer section in array JSON format
     """
         
         self.fetchChatGptApi(prompt: prompt) { result in
@@ -573,7 +581,9 @@ class ChatGptService {
                         if let jsonData = text.data(using: .utf8) {
                             do {
                                 // Decode the data to an array of SuggestionModel
-                                let volunteerData = try JSONDecoder().decode([VolunteerModel].self, from: jsonData)
+                                var volunteerData = try JSONDecoder().decode([VolunteerModel].self, from: jsonData)
+                                // Generate and assign UUID to each Model instance
+                                volunteerData = volunteerData.map { var data = $0; data.id = UUID(); return data }
                                 completion(.success(volunteerData))
                             } catch {
                                 print(error)
@@ -646,7 +656,9 @@ class ChatGptService {
                         if let jsonData = text.data(using: .utf8) {
                             do {
                                 // Decode the data to an array of SuggestionModel
-                                let achivementData = try JSONDecoder().decode([AchievementModel].self, from: jsonData)
+                                var achivementData = try JSONDecoder().decode([AchievementModel].self, from: jsonData)
+                                // Generate and assign UUID to each Model instance
+                                achivementData = achivementData.map { var data = $0; data.id = UUID(); return data }
                                 completion(.success(achivementData))
                             } catch {
                                 print(error)
@@ -676,7 +688,7 @@ class ChatGptService {
     }
     
     //MARK: Function to get skill!
-    func fetchSkillsFromTextOnResume(resumeText: String, completion: @escaping (Result<[String], Error>) -> Void) {
+    func fetchSkillsFromTextOnResume(resumeText: String, completion: @escaping (Result<[SkillModel], Error>) -> Void) {
         let prompt = """
     \(resumeText)
     
@@ -719,8 +731,10 @@ class ChatGptService {
                         if let jsonData = text.data(using: .utf8) {
                             do {
                                 // Decode the data to an array of SuggestionModel
-                                let achivementData = try JSONDecoder().decode([String].self, from: jsonData)
-                                completion(.success(achivementData))
+                                var skillData = try JSONDecoder().decode([SkillModel].self, from: jsonData)
+                                // Generate and assign UUID to each EducationModel instance
+                                skillData = skillData.map { var data = $0; data.id = UUID(); return data }
+                                completion(.success(skillData))
                             } catch {
                                 print(error)
                                 completion(.failure(error))

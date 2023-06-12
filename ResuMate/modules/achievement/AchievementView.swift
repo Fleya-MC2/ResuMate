@@ -9,11 +9,13 @@ import SwiftUI
 
 struct AchievementView: View {
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
 
     var body: some View {
-
                 VStack{
                     CustomToolbar(titleToolbar: "Achievement", destinationL: HomeView(selection: 1), destinationT: AddAchievement(inputType: .add))
                     Spacer().frame(height: 17)
@@ -22,12 +24,12 @@ struct AchievementView: View {
                         .fontWeight(.light)
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
-                    ForEach(cardLists.achievement){ itm in
+                    ForEach(viewModel.achievement){ itm in
                         NavigationLink {
-                            AddAchievement(inputType: .edit)
+                            AddAchievement(inputType: .edit, selectedAchivementModel: itm)
                         } label: {
                             HStack{
-                                Text("\(itm.achieve) - \(itm.year)")
+                                Text("\(itm.title ?? "") - \(itm.year ?? "")")
                                     .blacktext15()
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -38,11 +40,8 @@ struct AchievementView: View {
                                 .cornerRadius(9)
                                 .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         }
-
-
-                        
                     }
-                    if cardLists.achievement.count == 0 {
+                    if viewModel.achievement.count == 0 {
                         NavigationLink{
                             AddAchievement(inputType: .add)
                         }label:{
@@ -56,26 +55,29 @@ struct AchievementView: View {
                         }
                     }
                     Spacer()
-
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             if isButtonActive{
                                 cardLists.isAchievementFilled = true
                                 isSubmit = true
+                                //call to save data
+                                saveAchivementToCoreData(viewModel.achievement, context: moc)
                             }
                         }
-                    
-                    
-                    
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationDestination(isPresented: $isSubmit, destination: {
                     HomeView(selection: 1)
                 })
-                    .onReceive(cardLists.$achievement) { newAchievement in
+                    .onReceive(viewModel.$achievement) { newAchievement in
                         if newAchievement.count != 0 {
                             isButtonActive = true
                         }
                         print(isButtonActive)
                     }
             .navigationBarBackButtonHidden(true)
+            .onAppear{
+                if viewModel.achievement == []{
+                    viewModel.achievement = fetchAchivementFromCoreData(context: moc)
+                }
+            }
     }
 }

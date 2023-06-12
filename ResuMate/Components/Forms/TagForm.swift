@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TagForm: View {
-    @State private var tags: [String] = []
+    @State private var tags: [SkillModel] = []
     @State private var newTag: String = ""
     
     var body: some View {
@@ -28,8 +28,7 @@ struct TagForm: View {
                         .padding(.leading, 20)
                         .submitLabel(.return)
                         .onSubmit {
-                            tags.append(newTag)
-                            newTag = ""
+                            addTag()
                         }
                     
                     
@@ -52,9 +51,7 @@ struct TagForm: View {
                     alignment: .leading
                 ) { item in
                     HStack{
-                        Text(item)
-                            
-                            
+                        Text(item.title ?? "")
                         Image(systemName: "xmark")
                             .foregroundColor(.gray)
                     }
@@ -62,7 +59,7 @@ struct TagForm: View {
                     .background(
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.mediumDarkGray)
-                        )
+                    )
                 }
                 .padding(.horizontal, 10)
             }
@@ -70,12 +67,12 @@ struct TagForm: View {
         }
     }
     private func addTag() {
-            guard !newTag.isEmpty else {
-                return
-            }
-            tags.append(newTag)
-            newTag = ""
+        guard !newTag.isEmpty else {
+            return
         }
+        tags.append(SkillModel(id: UUID(), title: newTag))
+        newTag = ""
+    }
 }
 
 
@@ -86,7 +83,6 @@ struct InputTag_Previews: PreviewProvider {
 }
 
 struct FormViewBiodata: View {
-    //    @State var title: String
     @State var placeholder: String
     @Binding var fill: String
     @State var birthdate: Date = Date()
@@ -94,7 +90,7 @@ struct FormViewBiodata: View {
     
     var body: some View{
         VStack(alignment: .leading){
-           
+            
             HStack{
                 TextField(placeholder, text: $fill)
                     .padding(.horizontal, 20)

@@ -47,6 +47,10 @@
         <relationship name="volunteers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Volunteer" inverseName="resume" inverseEntity="Volunteer"/>
         <relationship name="workExperiences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkExperience" inverseName="resume" inverseEntity="WorkExperience"/>
     </entity>
+    <entity name="Skill" representedClassName="Skill" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Volunteer" representedClassName="Volunteer" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

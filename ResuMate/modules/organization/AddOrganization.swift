@@ -11,11 +11,14 @@ struct AddOrganization: View {
     var inputType: InputType
     
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var position: String = ""
     @State var organization: String = ""
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
-    @State var description: String = "test edit"
+    @State var description: String = ""
     @State var isposition: Bool = false
     @State var isorganization: Bool = false
     @State var isdescription: Bool = false
@@ -23,12 +26,9 @@ struct AddOrganization: View {
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    
+    @State var selectedOrganization: OrganizationModel?
     
     var body: some View {
-        
         if isGenerate {
             GeneratePhrases(inputType: inputType)
         }
@@ -37,7 +37,6 @@ struct AddOrganization: View {
                 ScrollView{
                     VStack{
                         Spacer().frame(height: 50)
-                        
                         createBigForm(title: "Position", placeholder: "String", fill: $position, isCheck: $isposition)
                         createBigForm(title: "Organization", placeholder: "String", fill: $organization, isCheck: $isorganization)
                         HStack{
@@ -45,47 +44,48 @@ struct AddOrganization: View {
                             DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
                         VStack(alignment: .leading){
-//                            HStack{
-//                                Text("Description")
-//                                    .blacktext17()
-//                                    .fontWeight(.regular)
-//                                    .padding(.bottom, 10)
-//                                Spacer()
-//
-//                                Button{
-//                                    isSuggestion.toggle()
-//                                }label: {
-//                                    HStack{
-//                                        Text("Suggestion")
-//                                            .strongblue15()
-//                                            .fontWeight(.semibold)
-//                                        Image(systemName: "sparkles")
-//                                            .foregroundColor(.darkBlue)
-//                                    }
-//                                    .padding(.bottom, 10)
-//                                }
-//
-//                            }
-//                            HStack{
-                                TextEditor(text: $description)
-                                .foregroundColor(Color.gray)
-                                  .font(.custom("HelveticaNeue", size: 13))
-                                  .lineSpacing(5)
-                                  .background(Rectangle().fill(.green))
-//                                TextField("String", text: $description)
-//                                .lineLimit(5...10)
-//                                    .padding(.leading, 20)
-//                                Spacer()
+                            HStack{
+                                Text("Description")
+                                    .blacktext17()
+                                    .fontWeight(.regular)
+                                    .padding(.bottom, 10)
+                                Spacer()
                                 
-//                            }
-//                            .background(Rectangle().fill(.white)
-//                                .frame(height: 48)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 10)
-//                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-//                                )
-//                            )
-//                            .foregroundColor(.black)
+                                Button{
+                                    isSuggestion.toggle()
+                                }label: {
+                                    HStack{
+                                        Text("Suggestion")
+                                            .strongblue15()
+                                            .fontWeight(.semibold)
+                                        Image(systemName: "sparkles")
+                                            .foregroundColor(.darkBlue)
+                                    }
+                                    .padding(.bottom, 10)
+                                }
+                                
+                            }
+                            HStack{
+                                //                                TextEditor(text: $description)
+                                //                                .foregroundColor(Color.gray)
+                                //                                  .font(.custom("HelveticaNeue", size: 13))
+                                //                                  .lineSpacing(5)
+                                //                                  .background(Rectangle().fill(.green))
+                                TextField("String", text: $description)
+                                    .lineLimit(5...10)
+                                    .padding(.leading, 20)
+                                Spacer()
+                                
+                                //                            }
+                            }
+                            .background(Rectangle().fill(.white)
+                                .frame(height: 48)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                )
+                            )
+                            .foregroundColor(.black)
                             
                             
                         }
@@ -102,8 +102,9 @@ struct AddOrganization: View {
                         case .add:
                             saveOrganization()
                             isSubmit = true
-                        case .edit: break
-                            // edit here
+                        case .edit:
+                            updateOrganization()
+                            isSubmit = true
                         }
                         
                         
@@ -141,6 +142,12 @@ struct AddOrganization: View {
                     .presentationDetents([.medium])
                 
             }.navigationBarBackButtonHidden(true)
+                .onAppear{
+                    if inputType == .edit{
+                        print("on appear edit run")
+                        filledOrganizationData()
+                    }
+                }
         }
         
     }
@@ -157,11 +164,12 @@ struct AddOrganization: View {
         }
     }
     
-    func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
-        BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
-            .onChange(of: fill.wrappedValue, perform: { _ in
-                updateFilledStatus()
-            })
+    private func filledOrganizationData(){
+        position = selectedOrganization?.role ?? ""
+        organization = selectedOrganization?.organization ?? ""
+        startDate = stringToDate(selectedOrganization?.startDate ?? "2023") ?? Date()
+        endDate = stringToDate(selectedOrganization?.endDate ?? "2023") ?? Date()
+        description = selectedOrganization?.description ?? ""
     }
     private func updateFilledStatus() {
         isposition = !position.isEmpty
@@ -169,10 +177,30 @@ struct AddOrganization: View {
         isdescription = !description.isEmpty
         
     }
+    func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
+        BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
+            .onChange(of: fill.wrappedValue, perform: { _ in
+                updateFilledStatus()
+            })
+    }
     func saveOrganization() {
-        let newOrganization = Organize(id: UUID(), position: position, organization: organization, startDate: startDate, endDate: endDate, description: description)
-        cardLists.organization.append(newOrganization)
-        print(newOrganization)
+        let newOrganization = OrganizationModel(role: position, organization: organization, startDate: dateToString(startDate, format: .yearMonthDay), endDate: dateToString(endDate, format: .yearMonthDay), description: description)
+        viewModel.organization.append(newOrganization)
+    }
+    
+    func updateOrganization(){
+        selectedOrganization?.role = position
+        selectedOrganization?.organization = organization
+        selectedOrganization?.startDate = dateToString(startDate, format: .yearMonthDay)
+        selectedOrganization?.endDate = dateToString(endDate, format: .yearMonthDay)
+        selectedOrganization?.description = description
+        
+        if let selectedOrganization = selectedOrganization, let index = viewModel.organization.firstIndex(where: { $0.id!.uuidString == selectedOrganization.id!.uuidString }) {
+            viewModel.organization[index] = selectedOrganization
+            // Perform any other necessary actions
+        }
+        
+        updateOrganizationInCoreData(selectedOrganization!, context: moc)
         
     }
     

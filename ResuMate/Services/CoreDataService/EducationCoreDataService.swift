@@ -15,18 +15,27 @@ func saveEducationToCoreData(_ educations: [EducationModel], context: NSManagedO
     dateFormatter.dateFormat = "yyyy"
     
     for education in educations {
-        let newEducation = Education(context: context)
-        newEducation.major = education.major
-        newEducation.institution = education.institution
-        newEducation.startDate = dateFormatter.date(from: education.startDate!)
-        newEducation.endDate = dateFormatter.date(from: education.endDate!)
-        newEducation.gpa = Double(education.gpa ?? "0") ?? 0
-        newEducation.educationDescription = education.description
+        let fetchRequest: NSFetchRequest<Education> = Education.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", education.id?.uuidString ?? "")
         
-        // Save the changes to Core Data
         do {
-            try context.save()
-            print("Successfull to save education to Core Data")
+            let results = try context.fetch(fetchRequest)
+            if results.isEmpty {
+                let newEducation = Education(context: context)
+                newEducation.id = education.id
+                newEducation.major = education.major
+                newEducation.institution = education.institution
+                newEducation.startDate = dateFormatter.date(from: education.startDate!)
+                newEducation.endDate = dateFormatter.date(from: education.endDate!)
+                newEducation.gpa = Double(education.gpa ?? "0") ?? 0
+                newEducation.educationDescription = education.description
+                
+                // Save the changes to Core Data
+                try context.save()
+                print("Successfull to save education to Core Data")
+            }else{
+                print("Education already exists in Core Data")
+            }
         } catch {
             print("Failed to save education to Core Data: \(error)")
         }
@@ -37,22 +46,19 @@ func saveEducationToCoreData(_ educations: [EducationModel], context: NSManagedO
 func updateEducationInCoreData(_ education: EducationModel, context: NSManagedObjectContext) {
     let fetchRequest: NSFetchRequest<Education> = Education.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "id == %@", education.id!.uuidString) // Assuming id is the unique identifier
-    
-    //setup date
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy"
-    
+    print("this is update education id \(education.id!.uuidString)")
     do {
         let results = try context.fetch(fetchRequest)
         if let existingEducation = results.first {
             // Update the properties
+            existingEducation.id = education.id
             existingEducation.major = education.major
             existingEducation.institution = education.institution
-            existingEducation.startDate = dateFormatter.date(from: education.startDate!)
-            existingEducation.endDate = dateFormatter.date(from: education.endDate!)
+            existingEducation.startDate = stringToDate(education.startDate!)
+            existingEducation.endDate = stringToDate(education.endDate!)
             existingEducation.gpa = Double(education.gpa ?? "0") ?? 0
             existingEducation.educationDescription = education.description
-            
+
             // Save the changes to Core Data
             do {
                 try context.save()
@@ -77,11 +83,11 @@ func fetchEducationFromCoreData(context: NSManagedObjectContext) -> [EducationMo
         // Convert Education objects to EducationModel
         let educationModels = educations.map { education in
             EducationModel(
-                id: UUID(),
+                id: education.id,
                 major: education.major,
                 institution: education.institution,
                 startDate: education.startDate?.toString(),
-                endDate: education.startDate?.toString(),
+                endDate: education.endDate?.toString(),
                 gpa: String(education.gpa),
                 description: education.educationDescription
             )

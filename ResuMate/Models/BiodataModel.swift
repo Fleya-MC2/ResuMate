@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct BiodataModel: Codable {
+struct BiodataModel: Codable, Identifiable {
+    var id: UUID? = UUID()
     let firstName: String?
     let lastName: String?
     let phoneNumber: String?

@@ -10,9 +10,6 @@ import CoreData
 
 //MARK: Func to save model to core data
 func saveBiodataToCoreData(_ biodata: BiodataModel, context: NSManagedObjectContext) {
-    //setup date
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy"
     
     let newBiodata = Person(context: context)
     newBiodata.firstName = biodata.firstName
@@ -24,16 +21,16 @@ func saveBiodataToCoreData(_ biodata: BiodataModel, context: NSManagedObjectCont
     // Save the changes to Core Data
     do {
         try context.save()
-        print("Successfull to save education to Core Data")
+        print("Successfull to save biodata to Core Data")
     } catch {
-        print("Failed to save education to Core Data: \(error)")
+        print("Failed to save biodata to Core Data: \(error)")
     }
 }
 
 //MARK: Func to update model in Core Data by ID
 func updateBiodataInCoreData(_ biodata: BiodataModel, context: NSManagedObjectContext) {
     let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "firstName == %@", biodata.firstName ?? "") // Assuming "firstname" is the unique identifier
+//    fetchRequest.predicate = NSPredicate(format: "id == %@", biodata.id?.uuidString ?? "") // Assuming "firstname" is the unique identifier
     
     do {
         let results = try context.fetch(fetchRequest)
@@ -55,6 +52,8 @@ func updateBiodataInCoreData(_ biodata: BiodataModel, context: NSManagedObjectCo
             }
         } else {
             print("Biodata not found in Core Data")
+            // If biodata does not exist, create a new entry
+            saveBiodataToCoreData(biodata, context: context)
         }
     } catch {
         print("Error fetching biodata from Core Data: \(error)")
@@ -68,6 +67,7 @@ func fetchBiodataFromCoreData(context: NSManagedObjectContext) -> BiodataModel {
         let persons = try context.fetch(fetchRequest)
         let person = persons.first
         
+        print(person?.firstName ?? "no firstname data")
         // Convert Education objects to EducationModel
         let biodataModel = BiodataModel(
             firstName: person?.firstName, lastName: person?.lastName, phoneNumber: person?.phoneNumber, email: person?.email, professionalMotto: person?.professionalMotto, professionalSummary: person?.professionalSummary

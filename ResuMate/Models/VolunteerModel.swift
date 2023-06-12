@@ -8,7 +8,7 @@
 import Foundation
 
 struct VolunteerModel: Codable, Hashable, Identifiable {
-    var id: UUID? = UUID()
+    var id: UUID?
     var role: String?
     var place: String?
     var startDate: String?

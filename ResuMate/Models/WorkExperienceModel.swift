@@ -8,10 +8,10 @@
 import Foundation
 
 struct WorkExperienceModel: Codable, Hashable, Identifiable {
-    var id: UUID? = UUID()
-    let position: String?
-    let company: String?
-    let startDate: String?
-    let endDate: String?
-    let description: String?
+    var id: UUID?
+    var position: String?
+    var company: String?
+    var startDate: String?
+    var endDate: String?
+    var description: String?
 }

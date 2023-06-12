@@ -10,8 +10,10 @@ import SwiftUI
 struct PersonalDataView: View {
     var inputType: InputType
     
-    //    @Binding var navigationItemPath: [NavigationItem]
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var firstname: String = ""
     @State var lastname: String = ""
     @State var email: String = ""
@@ -29,10 +31,6 @@ struct PersonalDataView: View {
     @State var issummary: Bool = false
     @State var isButtonActive: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-    
-
-    
     
     var body: some View {
         if isSubmit{
@@ -96,7 +94,7 @@ struct PersonalDataView: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 30)
                     }
- 
+                    
                     BigButton(text: "Submit", isButtonactive: isButtonActive) {
                         if isButtonActive {
                             switch inputType {
@@ -105,31 +103,35 @@ struct PersonalDataView: View {
                                 cardLists.isPersonalDataFilled = true
                                 isSubmit = true
                             case .edit: break
-//                                 edit here
+                                //                                 edit here
                             }
                             
                             
                         }
-                        }
-                                            .onChange(of: firstname) { _ in
-                                                updateButtonActive()
-                                            }
-                                            .onChange(of: lastname) { _ in
-                                                updateButtonActive()
-                                            }
-                                            .onChange(of: email) { _ in
-                                                updateButtonActive()
-                                            }
-                                            .onChange(of: phone) { _ in
-                                                updateButtonActive()
-                                            }
-                                            .onChange(of: motto) { _ in
-                                                updateButtonActive()
-                                            }
-                                            .onChange(of: summary) { _ in
-                                                updateButtonActive()
-                                            }
-                }.sheet(isPresented: $isSuggestion) {
+                    }
+                    .onChange(of: firstname) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: lastname) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: email) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: phone) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: motto) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: summary) { _ in
+                        updateButtonActive()
+                    }
+                }
+                .onAppear{
+                    filledTextFieldFromViewModel()
+                }
+                .sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
                         text: "Personal Data",
                         isGeneratePhraseButtonEnabled: true,
@@ -144,8 +146,7 @@ struct PersonalDataView: View {
                         onItemClicked: {
                             
                         })
-                        .presentationDetents([.medium])
-                    
+                    .presentationDetents([.medium])
                 }.navigationBarBackButtonHidden(true)
             }
         }
@@ -160,9 +161,31 @@ struct PersonalDataView: View {
             summary != "" {
             isButtonActive = true
             print("%%%\(isButtonActive)")
-            
         }else{
             isButtonActive = false
+        }
+    }
+    
+    private func filledTextFieldFromViewModel(){
+        if let biodata = viewModel.biodata {
+            print("run first")
+            firstname = biodata.firstName ?? ""
+            lastname = biodata.lastName ?? ""
+            email = biodata.email ?? ""
+            phone = biodata.phoneNumber ?? ""
+            motto = biodata.professionalMotto ?? ""
+            summary = biodata.professionalSummary ?? ""
+        }else{
+            print("run second")
+            viewModel.biodata = fetchBiodataFromCoreData(context: moc)
+            let biodata = viewModel.biodata
+            print(biodata?.firstName ?? "")
+            firstname = biodata?.firstName ?? ""
+            lastname = biodata?.lastName ?? ""
+            email = biodata?.email ?? ""
+            phone = biodata?.phoneNumber ?? ""
+            motto = biodata?.professionalMotto ?? ""
+            summary = biodata?.professionalSummary ?? ""
         }
     }
     
@@ -180,18 +203,14 @@ struct PersonalDataView: View {
                 updateFilledStatus()
             })
     }
-     func saveBioData() {
-            let newBio = Bio(firstname: firstname, lastname: lastname, email: email, phone: phone, motto: motto, summary: summary)
-        cardLists.bioData = newBio
-         print(newBio)
-            // Reset form fields
-//            firstname = ""
-//            lastname = ""
-//            email = ""
-//            phone = ""
-//            motto = ""
-//            summary = ""
-        }
+    func saveBioData() {
+        let newBiodata = BiodataModel(id: UUID(),firstName: firstname, lastName: lastname, phoneNumber: phone, email: email, professionalMotto: motto, professionalSummary: summary)
+        
+        viewModel.biodata = newBiodata
+        
+        //save to core data with update
+        updateBiodataInCoreData(newBiodata, context: moc)
+    }
 }
 
 struct PersonalData_Previews: PreviewProvider {

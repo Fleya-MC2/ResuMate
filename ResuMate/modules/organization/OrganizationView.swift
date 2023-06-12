@@ -9,11 +9,13 @@ import SwiftUI
 
 struct OrganizationView: View {
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
 
     var body: some View {
-
                 VStack{
                     CustomToolbar(titleToolbar: "Organization Experience", destinationL: HomeView(selection: 1), destinationT: AddOrganization(inputType: .add))
                     Spacer().frame(height: 17)
@@ -23,12 +25,12 @@ struct OrganizationView: View {
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
                     
-                    ForEach(cardLists.organization){ itm in
+                    ForEach(viewModel.organization){ itm in
                         NavigationLink {
-                            AddOrganization(inputType: .edit)
+                            AddOrganization(inputType: .edit, selectedOrganization: itm)
                         } label: {
                             HStack{
-                                Text("\(itm.position) - \(itm.organization)")
+                                Text("\(itm.role ?? "") - \(itm.organization ?? "")")
                                     .blacktext15()
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -39,13 +41,8 @@ struct OrganizationView: View {
                                 .cornerRadius(9)
                                 .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                         }
-
-
-                        
                     }
-                    
-                
-                    if cardLists.organization.count == 0 {
+                    if viewModel.organization.count == 0 {
                         NavigationLink{
                             AddOrganization(inputType: .add)
                         }label:{
@@ -59,17 +56,18 @@ struct OrganizationView: View {
                         }
                     }
                     Spacer()
-
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             if isButtonActive{
                                 cardLists.isOrganizationFilled = true
                                 isSubmit = true
+                                //call to save in core data
+                                saveOrganizationToCoreData(viewModel.organization, context: moc)
                             }
                         }
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .onReceive(cardLists.$organization) { newOrganization in
+                    .onReceive(viewModel.$organization) { newOrganization in
                         if newOrganization.count != 0 {
                             isButtonActive = true
                         }
@@ -78,12 +76,12 @@ struct OrganizationView: View {
                     .navigationDestination(isPresented: $isSubmit, destination: {
                         HomeView(selection: 1)
                     })
-                
-                
-                
-                
             .navigationBarBackButtonHidden(true)
-            
+            .onAppear{
+                if viewModel.organization == []{
+                    viewModel.organization = fetchOrganizationFromCoreData(context: moc)
+                }
+            }
         
     }
     

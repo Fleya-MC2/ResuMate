@@ -15,17 +15,26 @@ func saveVolunteerToCoreData(_ volunteers: [VolunteerModel], context: NSManagedO
     dateFormatter.dateFormat = "yyyy"
     
     for volunteer in volunteers {
-        let newVolunteer = Volunteer(context: context)
-        newVolunteer.role = volunteer.role
-        newVolunteer.place = volunteer.place
-        newVolunteer.startDate = dateFormatter.date(from: volunteer.startDate!)
-        newVolunteer.endDate = dateFormatter.date(from: volunteer.endDate!)
-        newVolunteer.volunteerDescription = volunteer.description
+        let fetchRequest: NSFetchRequest<Volunteer> = Volunteer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", volunteer.id?.uuidString ?? "")
         
-        // Save the changes to Core Data
         do {
-            try context.save()
-            print("Successfull to save education to Core Data")
+            let results = try context.fetch(fetchRequest)
+            if results.isEmpty {
+                let newVolunteer = Volunteer(context: context)
+                newVolunteer.id = volunteer.id
+                newVolunteer.role = volunteer.role
+                newVolunteer.place = volunteer.place
+                newVolunteer.startDate = dateFormatter.date(from: volunteer.startDate!)
+                newVolunteer.endDate = dateFormatter.date(from: volunteer.endDate!)
+                newVolunteer.volunteerDescription = volunteer.description
+                
+                // Save the changes to Core Data
+                try context.save()
+                print("Successfull to save volunteer to Core Data")
+            }else{
+                print("Volunteer already exists in Core Data")
+            }
         } catch {
             print("Failed to save education to Core Data: \(error)")
         }
@@ -45,6 +54,7 @@ func updateVolunteerInCoreData(_ volunteer: VolunteerModel, context: NSManagedOb
         let results = try context.fetch(fetchRequest)
         if let existingVolunteer = results.first {
             // Update the properties
+            existingVolunteer.id = volunteer.id
             existingVolunteer.role = volunteer.role
             existingVolunteer.place = volunteer.place
             existingVolunteer.startDate = dateFormatter.date(from: volunteer.startDate!)
@@ -75,7 +85,7 @@ func fetchVolunteerFromCoreData(context: NSManagedObjectContext) -> [VolunteerMo
         // Convert Education objects to EducationModel
         let volunteerModels = volunteers.map { volunteer in
             VolunteerModel(
-                id: UUID(),
+                id: volunteer.id,
                 role: volunteer.role,
                 place: volunteer.place,
                 startDate: volunteer.startDate?.toString(),

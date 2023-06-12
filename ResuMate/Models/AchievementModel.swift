@@ -8,8 +8,8 @@
 import Foundation
 
 struct AchievementModel: Codable, Hashable, Identifiable {
-    var id: UUID? = UUID()
-    let title: String?
-    let year: String?
+    var id: UUID?
+    var title: String?
+    var year: String?
     var description: String?
 }

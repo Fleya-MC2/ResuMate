@@ -11,6 +11,8 @@ struct AddAchievement: View {
     var inputType: InputType
     
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
     
     @State var achieve: String = ""
     @State var year: String = ""
@@ -20,10 +22,9 @@ struct AddAchievement: View {
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
+    @State var selectedAchivementModel: AchievementModel?
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    
-    
     
     var body: some View {
         if isSubmit{
@@ -38,12 +39,9 @@ struct AddAchievement: View {
                         ScrollView{
                             VStack{
                                 Spacer().frame(height: 50)
-                                
                                 createBigForm(title: "Achievement", placeholder: "String", fill: $achieve, isCheck: $isachieve)
                                 createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
-                                
                             }
-                            
                         }
                         Spacer()
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
@@ -52,8 +50,9 @@ struct AddAchievement: View {
                                 case .add:
                                     saveAchievement()
                                     isSubmit = true
-                                case .edit: break
-                                    // edit her
+                                case .edit:
+                                    updateAchievement()
+                                    isSubmit = true
                                 }
                                 
                             }
@@ -77,6 +76,11 @@ struct AddAchievement: View {
                             TitleToolbar(titleToolbar: "\(inputType.rawValue) Achievement")
                         }
                     }
+                    .onAppear{
+                        if inputType == .edit{
+                            filledAchievementData()
+                        }
+                    }
                 }.sheet(isPresented: $isSuggestion) {
                     ModalAchievement(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
                         .presentationDetents([.medium])
@@ -86,6 +90,10 @@ struct AddAchievement: View {
         }
     }
     
+    private func filledAchievementData(){
+        achieve = selectedAchivementModel?.title ?? ""
+        year = selectedAchivementModel?.year ?? ""
+    }
     func updateButtonActive() {
         if achieve != "" && year != "" {
             isButtonActive = true
@@ -107,10 +115,21 @@ struct AddAchievement: View {
         
     }
     func saveAchievement() {
-        let newAchievement = Achievementt(id: UUID(), achieve: achieve, year: year)
-        cardLists.achievement.append(newAchievement)
+        let newAchievement = AchievementModel(id: UUID(),title: achieve, year: year)
+        viewModel.achievement.append(newAchievement)
         print(newAchievement)
+    }
+    
+    func updateAchievement() {
+        selectedAchivementModel?.title = achieve
+        selectedAchivementModel?.year = year
         
+        if let selectedAchivementModel = selectedAchivementModel, let index = viewModel.achievement.firstIndex(where: { $0.id!.uuidString == selectedAchivementModel.id!.uuidString }) {
+            viewModel.achievement[index] = selectedAchivementModel
+            // Perform any other necessary actions
+        }
+        
+        updateAchievementInCoreData(selectedAchivementModel!, context: moc)
     }
     
 }

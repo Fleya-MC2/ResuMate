@@ -9,10 +9,11 @@ import SwiftUI
 
 struct WorkExperienceView: View {
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var isButtonactive: Bool = false
     @State var isSubmit: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     
     var body: some View {
         VStack{
@@ -22,19 +23,12 @@ struct WorkExperienceView: View {
                 .blacktext17()
                 .fontWeight(.regular)
             Spacer().frame(height: 40)
-            ForEach(cardLists.workExp){ item in
+            ForEach(viewModel.workExperience){ item in
                 NavigationLink {
-                    AddWorkExperienceView(
-                        inputType: .edit,
-                        position: item.position,
-                        company: item.company,
-                        startDate: item.startDate,
-                        endDate: item.endDate,
-                        description: item.description
-                    )
+                    AddWorkExperienceView(inputType: .edit, selectedWorkExperience: item)
                 } label: {
                     HStack{
-                        Text("\(item.position) - \(item.company)")
+                        Text("\(item.position ?? "") - \(item.company ?? "")")
                             .blacktext15()
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -46,7 +40,7 @@ struct WorkExperienceView: View {
                 }
                 
             }
-            if cardLists.workExp.count == 0 {
+            if viewModel.workExperience.count == 0 {
                 NavigationLink{
                     AddWorkExperienceView(inputType: .add)
                 }label: {
@@ -66,10 +60,12 @@ struct WorkExperienceView: View {
                 if isButtonactive{
                     cardLists.isWorkExpFilled = true
                     isSubmit = true
+                    //call to save data
+                    saveWorkExperienceToCoreData(viewModel.workExperience, context: moc)
                 }
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onReceive(cardLists.$workExp) { newWorkExp in
+            .onReceive(viewModel.$workExperience) { newWorkExp in
                 if newWorkExp.count != 0 {
                     isButtonactive = true
                 }
@@ -79,6 +75,11 @@ struct WorkExperienceView: View {
                 HomeView(selection: 1)
             })
             .navigationBarBackButtonHidden(true)
+            .onAppear{
+                if viewModel.workExperience == []{
+                    viewModel.workExperience = fetchWorkExperienceFromCoreData(context: moc)
+                }
+            }
     }
 }
 

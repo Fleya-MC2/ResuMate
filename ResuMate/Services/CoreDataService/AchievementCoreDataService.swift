@@ -15,15 +15,23 @@ func saveAchivementToCoreData(_ achievements: [AchievementModel], context: NSMan
     dateFormatter.dateFormat = "yyyy"
     
     for achievement in achievements {
-        let newAchievement = Achievement(context: context)
-        newAchievement.title = achievement.title
-        newAchievement.year = dateFormatter.date(from: achievement.year!)
-        newAchievement.achivementDescription = achievement.description
+        let fetchRequest: NSFetchRequest<Achievement> = Achievement.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", achievement.id?.uuidString ?? "")
         
-        // Save the changes to Core Data
         do {
-            try context.save()
-            print("Successfull to save education to Core Data")
+            let results = try context.fetch(fetchRequest)
+            if results.isEmpty {
+                let newAchievement = Achievement(context: context)
+                newAchievement.id = achievement.id
+                newAchievement.title = achievement.title
+                newAchievement.year = dateFormatter.date(from: achievement.year ?? "")
+                newAchievement.achivementDescription = achievement.description
+                // Save the changes to Core Data
+                try context.save()
+                print("Successfull to save achievement to Core Data")
+            }else{
+                print("Achievement to save education to Core Data")
+            }
         } catch {
             print("Failed to save education to Core Data: \(error)")
         }
@@ -43,6 +51,8 @@ func updateAchievementInCoreData(_ achievement: AchievementModel, context: NSMan
         let results = try context.fetch(fetchRequest)
         if let existingAchievement = results.first {
             // Update the properties
+            existingAchievement.id = achievement.id
+            existingAchievement.title = achievement.title
             existingAchievement.year = dateFormatter.date(from: achievement.year!)
             existingAchievement.achivementDescription = achievement.description
             
@@ -70,7 +80,7 @@ func fetchAchivementFromCoreData(context: NSManagedObjectContext) -> [Achievemen
         // Convert Education objects to EducationModel
         let achievementModels = achievements.map { achievement in
             AchievementModel(
-                id: UUID(),
+                id: achievement.id,
                 title: achievement.title,
                 year: achievement.year?.toString(),
                 description: achievement.achivementDescription

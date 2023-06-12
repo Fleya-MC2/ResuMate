@@ -11,7 +11,6 @@ struct SkillView: View {
 
     var body: some View {
         VStack{
-           
             CustomToolbar2(titleToolbar: "Skill", destination: DataView())
             Spacer().frame(height: 27)
             TagForm()

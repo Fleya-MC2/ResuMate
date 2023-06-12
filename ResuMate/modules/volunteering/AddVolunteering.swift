@@ -11,6 +11,9 @@ struct AddVolunteering: View {
     var inputType: InputType
     
     @EnvironmentObject var cardLists: CardLists
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+    
     @State var position: String = ""
     @State var volunteer: String = ""
     @State var startDate: Date = Date()
@@ -23,10 +26,7 @@ struct AddVolunteering: View {
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-
-
+    @State var selectedVolunteer: VolunteerModel?
     
     var body: some View {
         if isSubmit{
@@ -93,20 +93,20 @@ struct AddVolunteering: View {
                             
                         }
                         Spacer()
-
-                            BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                                if isButtonActive {
-                                    switch inputType {
-                                    case .add:
-                                        saveVolunteer()
-                                        isSubmit = true
-                                    case .edit: break
-                                        // edit here
-                                    }
-                                    
-                                    
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                            if isButtonActive {
+                                switch inputType {
+                                case .add:
+                                    saveVolunteer()
+                                    isSubmit = true
+                                case .edit:
+                                    updateVolunteer()
+                                    isSubmit = true
                                 }
+                                
+                                
                             }
+                        }
                         .onChange(of: position) { _ in
                             updateButtonActive()
                         }
@@ -136,6 +136,12 @@ struct AddVolunteering: View {
                         .presentationDetents([.medium])
                     
                 }.navigationBarBackButtonHidden(true)
+                    .onAppear{
+                        if inputType == .edit{
+                            print("on appear edit run")
+                            filledVolunteerData()
+                        }
+                    }
             }
         }
     }
@@ -164,11 +170,27 @@ struct AddVolunteering: View {
         isdescription = !description.isEmpty
         
     }
-    func saveVolunteer() {
-        let newVolunteer = Volunteerr(id: UUID(), position: position, volunteer: volunteer, startDate: startDate, endDate: endDate, description: description)
-        cardLists.volunteer.append(newVolunteer)
-        print(newVolunteer)
-        
+    private func filledVolunteerData(){
+        position = selectedVolunteer?.role ?? ""
+        volunteer = selectedVolunteer?.place ?? ""
+        description = selectedVolunteer?.description ?? ""
     }
-
+    func saveVolunteer() {
+        let newVolunteer = VolunteerModel(id: UUID(), role: position, place: volunteer, description: description)
+        
+        viewModel.volunteer.append(newVolunteer)
+    }
+    func updateVolunteer(){
+        selectedVolunteer?.role = position
+        selectedVolunteer?.place = volunteer
+        selectedVolunteer?.description = description
+        
+        if let selectedVolunteer = selectedVolunteer, let index = viewModel.volunteer.firstIndex(where: { $0.id!.uuidString == selectedVolunteer.id!.uuidString }) {
+            viewModel.volunteer[index] = selectedVolunteer
+            // Perform any other necessary actions
+        }
+        
+        updateVolunteerInCoreData(selectedVolunteer!, context: moc)
+    }
+    
 }
