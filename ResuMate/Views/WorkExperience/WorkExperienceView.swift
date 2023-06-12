@@ -12,73 +12,74 @@ struct WorkExperienceView: View {
     @State var isButtonactive: Bool = false
     @State var isSubmit: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    
     
     var body: some View {
-
-                VStack{
-                    CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView())
-                    Spacer().frame(height: 17)
-                    Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
-                        .blacktext17()
-                        .fontWeight(.regular)
-                    Spacer().frame(height: 40)
-                    ForEach(cardLists.workExp){ itm in
-                        HStack{
-                            Text("\(itm.position) - \(itm.company)")
-                                .blacktext15()
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.black)
-                            
-                        }.padding(.horizontal, 20)
+        VStack{
+            CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView(inputType: .add))
+            Spacer().frame(height: 17)
+            Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
+                .blacktext17()
+                .fontWeight(.regular)
+            Spacer().frame(height: 40)
+            ForEach(cardLists.workExp){ item in
+                NavigationLink {
+                    AddWorkExperienceView(
+                        inputType: .edit,
+                        position: item.position,
+                        company: item.company,
+                        startDate: item.startDate,
+                        endDate: item.endDate,
+                        description: item.description
+                    )
+                } label: {
+                    HStack{
+                        Text("\(item.position) - \(item.company)")
+                            .blacktext15()
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.black)
+                    }.padding(.horizontal, 20)
                         .frame(width: 338, height: 55)
-                            .cornerRadius(9)
-                            .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
-                        
-                    }
-                    if cardLists.workExp.count == 0 {
-                        NavigationLink{
-                            AddWorkExperienceView()
-                        }label: {
-                            HStack{
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(.darkBlue)
-                                Text("Add Work Experience")
-                                    .strongblue15()
-                                    .fontWeight(.semibold)
-                            }
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                        BigButton(text: "Submit", isButtonactive: isButtonactive) {
-                            if isButtonactive{
-                                cardLists.isWorkExpFilled = true
-                                isSubmit = true
-                            }
-                        }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                .onReceive(cardLists.$workExp) { newWorkExp in
-                    if newWorkExp.count != 0 {
-                        isButtonactive = true
-                    }
-                    print(isButtonactive)
+                        .cornerRadius(9)
+                        .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
                 }
-                Spacer()
-                    
-
+                
+            }
+            if cardLists.workExp.count == 0 {
+                NavigationLink{
+                    AddWorkExperienceView(inputType: .add)
+                }label: {
+                    HStack{
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.darkBlue)
+                        Text("Add Work Experience")
+                            .strongblue15()
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
             
+            Spacer()
+            
+            BigButton(text: "Submit", isButtonactive: isButtonactive) {
+                if isButtonactive{
+                    cardLists.isWorkExpFilled = true
+                    isSubmit = true
+                }
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onReceive(cardLists.$workExp) { newWorkExp in
+                if newWorkExp.count != 0 {
+                    isButtonactive = true
+                }
+                print(isButtonactive)
+            }
             .navigationDestination(isPresented: $isSubmit, destination: {
                 HomeView(selection: 1)
             })
             .navigationBarBackButtonHidden(true)
-        }
-
-    
-    
+    }
 }
 
 //struct WorkExperience_Previews: PreviewProvider {

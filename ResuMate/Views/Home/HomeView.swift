@@ -14,6 +14,8 @@ enum Page: String {
 }
 
 class CardLists: ObservableObject, Equatable {
+    
+    init() {}
     static func == (lhs: CardLists, rhs: CardLists) -> Bool {
         lhs.isPersonalDataFilled == rhs.isPersonalDataFilled &&
         lhs.isEducationFilled == rhs.isEducationFilled &&
@@ -40,7 +42,7 @@ class CardLists: ObservableObject, Equatable {
     @AppStorage("isAchievementFilled") var isAchievementFilled: Bool = false
     @AppStorage("isVolunteringFilled") var isVolunteringFilled: Bool = false
     @AppStorage("currentPageView") var currentPageView: String = ""
-    @Published var bioData: [Bio] = []
+    @Published var bioData: Bio = Bio()
     @Published var education: [Educationn] = []
     @Published var achievement: [Achievementt] = []
     @Published var workExp: [WorkExp] = []

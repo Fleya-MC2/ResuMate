@@ -15,7 +15,7 @@ struct OrganizationView: View {
     var body: some View {
 
                 VStack{
-                    CustomToolbar(titleToolbar: "Organization Experience", destinationL: HomeView(selection: 1), destinationT: AddOrganization())
+                    CustomToolbar(titleToolbar: "Organization Experience", destinationL: HomeView(selection: 1), destinationT: AddOrganization(inputType: .add))
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
@@ -24,24 +24,30 @@ struct OrganizationView: View {
                     Spacer().frame(height: 40)
                     
                     ForEach(cardLists.organization){ itm in
-                        HStack{
-                            Text("\(itm.position) - \(itm.organization)")
-                                .blacktext15()
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.black)
-                            
-                        }.padding(.horizontal, 20)
-                            .frame(width: 338, height: 55)
-                            .cornerRadius(9)
-                            .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        NavigationLink {
+                            AddOrganization(inputType: .edit)
+                        } label: {
+                            HStack{
+                                Text("\(itm.position) - \(itm.organization)")
+                                    .blacktext15()
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.black)
+                                
+                            }.padding(.horizontal, 20)
+                                .frame(width: 338, height: 55)
+                                .cornerRadius(9)
+                                .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        }
+
+
                         
                     }
                     
                 
                     if cardLists.organization.count == 0 {
                         NavigationLink{
-                            AddOrganization()
+                            AddOrganization(inputType: .add)
                         }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")

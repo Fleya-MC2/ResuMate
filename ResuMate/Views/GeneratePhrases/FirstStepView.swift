@@ -16,6 +16,8 @@ class GeneratePhrasesAnswer: ObservableObject {
     
 }
 struct GeneratePhrases: View {
+    var inputType: InputType
+    
     @State private var currentPage: GeneratePhrasesPage = .generatePhrases
     @State var progress: CGFloat = 0.2
     @State var step: Int = 1
@@ -32,7 +34,7 @@ struct GeneratePhrases: View {
             case .aQuestion:
                 AQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
             case .rQuestion:
-                RQuestionView(step: $step, progress: $progress, currentPage: $currentPage)
+                RQuestionView(inputType: inputType, step: $step, progress: $progress, currentPage: $currentPage)
             }
         }
     }

@@ -67,3 +67,8 @@ extension Color {
     static let lightYellow = Color("LightYellow")
     static let modal = Color("Modal")
 }
+
+enum InputType: String {
+    case add = "Add"
+    case edit = "Edit"
+}

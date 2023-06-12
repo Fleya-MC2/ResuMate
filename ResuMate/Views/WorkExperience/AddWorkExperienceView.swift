@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddWorkExperienceView: View {
+    var inputType: InputType
+    
     @EnvironmentObject var cardLists: CardLists
     @State var position: String = ""
     @State var company: String = ""
@@ -21,16 +23,10 @@ struct AddWorkExperienceView: View {
     @State var isGenerate: Bool = false
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-
-
-
-
     
     var body: some View {
         if isGenerate {
-            GeneratePhrasesView()
+            GeneratePhrasesView(inputType: inputType)
         }
         else{
                 VStack{
@@ -91,8 +87,15 @@ struct AddWorkExperienceView: View {
 
                     BigButton(text: "Submit", isButtonactive: isButtonActive) {
                         if isButtonActive == true {
-saveWorkExp()
-isSubmit = true
+                            print("inputType", inputType)
+                            switch inputType {
+                            case .add:
+                                print("goes here")
+                                saveWorkExp()
+                                isSubmit = true
+                            case .edit: break
+                                //update
+                            }
                         }
                     }
                     .onChange(of: position) { _ in
@@ -119,13 +122,10 @@ isSubmit = true
                         }
                     }
                     ToolbarItem(placement: .principal){
-                        TitleToolbar(titleToolbar: "Add Work Experience")
+                        TitleToolbar(titleToolbar: "\(inputType.rawValue) Work Experience")
                     }
                 }
             .sheet(isPresented: $isSuggestion) {
-//                ModalWorkExperience(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-//                    .presentationDetents([.medium])
-                
                 SelectItemSheet(text: "Work Experience", isClosedButtonClicked: {
                     isSuggestion = false
                 }, isGeneratePhraseButtonEnabled: true) {

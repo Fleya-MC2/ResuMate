@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddVolunteering: View {
+    var inputType: InputType
+    
     @EnvironmentObject var cardLists: CardLists
     @State var position: String = ""
     @State var volunteer: String = ""
@@ -31,7 +33,7 @@ struct AddVolunteering: View {
             Volunteering()
         }else{
             if isGenerate {
-                GeneratePhrases()
+                GeneratePhrases(inputType: inputType)
             }
             else{
                 NavigationStack{
@@ -94,8 +96,15 @@ struct AddVolunteering: View {
 
                             BigButton(text: "Submit", isButtonactive: isButtonActive) {
                                 if isButtonActive {
-                                    saveVolunteer()
-                                    isSubmit = true
+                                    switch inputType {
+                                    case .add:
+                                        saveVolunteer()
+                                        isSubmit = true
+                                    case .edit: break
+                                        // edit here
+                                    }
+                                    
+                                    
                                 }
                             }
                         .onChange(of: position) { _ in
@@ -119,7 +128,7 @@ struct AddVolunteering: View {
                             }
                         }
                         ToolbarItem(placement: .principal){
-                            TitleToolbar(titleToolbar: "Add Volunteering Experience")
+                            TitleToolbar(titleToolbar: "\(inputType.rawValue) Volunteering Experience")
                         }
                     }
                 }.sheet(isPresented: $isSuggestion) {

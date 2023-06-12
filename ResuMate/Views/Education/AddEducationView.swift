@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddEducationView: View {
+    var inputType: InputType
+    
 //    @Binding var navigationItemPath: [NavigationItem]
     @EnvironmentObject var cardLists: CardLists
     @State var major: String = ""
@@ -31,10 +33,10 @@ struct AddEducationView: View {
     
     var body: some View {
             if isGenerate{
-                GeneratePhrases()
+                GeneratePhrases(inputType: inputType)
             } else {
                     VStack{
-                        CustomToolbar2(titleToolbar: "Add Education", destination: EducationView())
+                        CustomToolbar2(titleToolbar: "\(inputType.rawValue) Education", destination: EducationView())
                         createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
                         createBigForm(title: "Institution", placeholder: "String", fill: $institution, isCheck: $isinstitution)
                         HStack{
@@ -87,8 +89,15 @@ struct AddEducationView: View {
                         
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                                 if isButtonActive == true {
-                                    saveEducation()
-                                    isSubmit = true
+                                    switch inputType {
+                                    case .add:
+                                        saveEducation()
+                                        isSubmit = true
+                                    case .edit: break
+                                        // edit here
+                                    }
+                                    
+
                                 }
                                 
                             }
