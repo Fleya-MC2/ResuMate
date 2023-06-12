@@ -14,10 +14,7 @@ struct Volunteering: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
+
                 VStack{
                     CustomToolbar(titleToolbar: "Volunteering Experience", destinationL: HomeView(selection: 1), destinationT: AddVolunteering())
                     Spacer().frame(height: 17)
@@ -62,18 +59,19 @@ struct Volunteering: View {
                         })
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.volunteer.count != 0 {
+                    .onReceive(cardLists.$volunteer) { newVolunteer in
+                        if newVolunteer.count != 0 {
                             isButtonActive = true
                         }
+                        
                         print(isButtonActive)
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        HomeView(selection: 1)
+                    })
                 
                 
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
             
-        }
     }
 }

@@ -44,7 +44,7 @@ struct SelectItemSheet: View {
                 Spacer().frame(height: 30)
                 ScrollView{
                     ForEach(0..<3){_ in
-                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true)
+                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingDraggable: false, isShowingClose: false) {}
                             .padding(.horizontal)
                     }
                 }

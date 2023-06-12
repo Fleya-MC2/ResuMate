@@ -17,10 +17,6 @@ struct EducationView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
                 VStack{
                     CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationView())
                     Spacer().frame(height: 17)
@@ -64,19 +60,20 @@ struct EducationView: View {
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.education.count != 0 {
+                    .onReceive(cardLists.$education) { newEducation in
+                        if newEducation.count != 0 {
                             isButtonActive = true
                         }
+                        
                         print(isButtonActive)
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        HomeView(selection: 1)
+                    })
                 
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
             
-        }
+        
     }
     
 }

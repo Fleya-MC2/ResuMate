@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Bio: Identifiable {
+struct Bio: Identifiable, Equatable {
     let id: UUID
     var firstname: String
     var lastname: String

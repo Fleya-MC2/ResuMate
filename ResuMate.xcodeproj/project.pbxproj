@@ -394,8 +394,6 @@
 				6C8E6DFC2A35CA090048C263 /* SaveResumeView.swift */,
 				6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */,
 				DE52F2792A3333C600061411 /* ResumeView.swift */,
-				6C3AEFD02A360EFC003EB1F3 /* Generate */,
-				6C3AEFCF2A360EF4003EB1F3 /* Upload */,
 			);
 			path = Resume;
 			sourceTree = "<group>";
@@ -419,20 +417,6 @@
 				DE52F2A92A33340400061411 /* TagForm.swift */,
 			);
 			path = Forms;
-			sourceTree = "<group>";
-		};
-		6C3AEFCF2A360EF4003EB1F3 /* Upload */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Upload;
-			sourceTree = "<group>";
-		};
-		6C3AEFD02A360EFC003EB1F3 /* Generate */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Generate;
 			sourceTree = "<group>";
 		};
 		6C47D8BB2A3484ED002F1689 /* Routes */ = {

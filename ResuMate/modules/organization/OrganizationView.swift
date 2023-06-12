@@ -11,13 +11,9 @@ struct OrganizationView: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
+
                 VStack{
                     CustomToolbar(titleToolbar: "Organization Experience", destinationL: HomeView(selection: 1), destinationT: AddOrganization())
                     Spacer().frame(height: 17)
@@ -67,20 +63,22 @@ struct OrganizationView: View {
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.organization.count != 0 {
+                    .onReceive(cardLists.$organization) { newOrganization in
+                        if newOrganization.count != 0 {
                             isButtonActive = true
                         }
                         print(isButtonActive)
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        HomeView(selection: 1)
+                    })
                 
                 
                 
                 
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
             
-        }
+        
     }
     
         

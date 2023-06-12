@@ -13,7 +13,25 @@ enum Page: String {
     case education = "education"
 }
 
-class CardLists: ObservableObject {
+class CardLists: ObservableObject, Equatable {
+    static func == (lhs: CardLists, rhs: CardLists) -> Bool {
+        lhs.isPersonalDataFilled == rhs.isPersonalDataFilled &&
+        lhs.isEducationFilled == rhs.isEducationFilled &&
+        lhs.isWorkExpFilled == rhs.isWorkExpFilled &&
+        lhs.isOrganizationFilled == rhs.isOrganizationFilled &&
+        lhs.isSkillFilled == rhs.isSkillFilled &&
+        lhs.isAchievementFilled == rhs.isAchievementFilled &&
+        lhs.isVolunteringFilled == rhs.isVolunteringFilled &&
+        lhs.currentPageView == rhs.currentPageView &&
+        lhs.bioData == rhs.bioData &&
+        lhs.education == rhs.education &&
+        lhs.achievement == rhs.achievement &&
+        lhs.workExp == rhs.workExp &&
+        lhs.organization == rhs.organization &&
+        lhs.volunteer == rhs.volunteer &&
+        lhs.starData == rhs.starData
+    }
+    
     @AppStorage("isPersonalDataFilled") var isPersonalDataFilled: Bool = false
     @AppStorage("isEducationFilled") var isEducationFilled: Bool = false
     @AppStorage("isWorkExpFilled") var isWorkExpFilled: Bool = false

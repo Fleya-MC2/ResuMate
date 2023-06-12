@@ -29,14 +29,10 @@ struct AddWorkExperienceView: View {
 
     
     var body: some View {
-        if isSubmit{
-            WorkExperienceView()
-        } else{
         if isGenerate {
             GeneratePhrasesView()
         }
         else{
-            NavigationStack{
                 VStack{
                 ScrollView{
                     VStack{
@@ -99,19 +95,19 @@ saveWorkExp()
 isSubmit = true
                         }
                     }
-                .onReceive(timer) { time in
-                    
-                    if position != "" &&
-                        company != "" &&
-                        description != "" {
-                        isButtonActive = true
-                        print("%%%\(isButtonActive)")
-                        
-                    }else{
-                        isButtonActive = false
+                    .onChange(of: position) { _ in
+                        updateButtonActive()
                     }
-                }
+                    .onChange(of: company) { _ in
+                        updateButtonActive()
+                    }
+                    .onChange(of: description) { _ in
+                        updateButtonActive()
+                    }
             }
+                .navigationDestination(isPresented: $isSubmit, destination: {
+                    WorkExperienceView()
+                })
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
                         NavigationLink{
@@ -126,14 +122,33 @@ isSubmit = true
                         TitleToolbar(titleToolbar: "Add Work Experience")
                     }
                 }
-            }.sheet(isPresented: $isSuggestion) {
-                ModalWorkExperience(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                    .presentationDetents([.medium])
+            .sheet(isPresented: $isSuggestion) {
+//                ModalWorkExperience(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
+//                    .presentationDetents([.medium])
+                
+                SelectItemSheet(text: "Work Experience", isClosedButtonClicked: {
+                    isSuggestion = false
+                }, isGeneratePhraseButtonEnabled: true) {
+                    isGenerate = true
+                }
                 
             }.navigationBarBackButtonHidden(true)
         }
+    
     }
+    
+    func updateButtonActive() {
+        if position != "" &&
+            company != "" &&
+            description != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
+        }
     }
+    
     func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
         BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
             .onChange(of: fill.wrappedValue, perform: { _ in

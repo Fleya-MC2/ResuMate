@@ -10,443 +10,187 @@ import SwiftUI
 struct FirstResume: View {
     @Binding var bioTextHeight: CGFloat
     
-    @State private var bioTextHeightFixed: CGFloat = 0
-    @State private var isBioTextHeightUpdated: Bool = false
+    var biodata: BiodataModel
+    var workExperiences: [WorkExperienceModel]
+    var educations: [EducationModel]
+    var organizations: [OrganizationModel]
+    var achievements: [AchievementModel]
+    var skills: [String]
     
+    let layout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())] // Grid layout
+
     var body: some View {
-        VStack{
-            
-            // BIODATA
-            
-            VStack {
-                Text("Caca Merica")
-                    .fontWeight(.bold)
-                    .font(.system(size: 13))
-                Text("cacamerica@gmail.com | +62123456789 | Jakarta, Indonesia")
-                
+//        GeometryReader { geometry in
+            VStack{
+                VStack {
+                    Text("\(biodata.firstName ?? "") \(biodata.lastName ?? "")")
+                        .fontWeight(.bold)
+                        .font(.system(size: 13))
+                    Text("\(biodata.email ?? "") | \(biodata.phoneNumber ?? "")")
+                        .font(.system(size: 10))
+                }
+               
+                JustifiedText(
+                    height: $bioTextHeight,
+                    text: biodata.professionalSummary ?? "", fontSize: 10)
+                    .frame(height: bioTextHeight)
                     .font(.system(size: 10))
-            }
-            
-            JustifiedText(
-                height: $bioTextHeight,
-                text: "Lorem ipsum dolor Lorem ipsum dolorLorem ipsum kkokoknlokok hgjk jhkkhkh h  dolorLorem ipdssum dolorLorem ipsum dsf dolorLorem icxpsumj ijidsj jijdsij doldsorLorem nkk ipssdum dolorLorem nknknkipsum dcdsdadasdsadasdsoem ipsum dolorLorem ipsum dolfd fd sdf,lmllucvvm fds ffd sd sfds sfd  sdf sdf sd fl df  f dsf df sd df sdf d ksdsfds f dsf ds lfds  nj jnjsdffkhulub sdbksj d sdsda fksd fkjdsbfj jsjddkjksjf odsrLorem ipsum dolorLdsoresdm ipsum dolorLorem ipsum dolordsLorem ipsum dolordwdw dwad d kdqwhdelqw.",
-                fontSize: 10)
-            .frame(height: bioTextHeight)
-            .font(.system(size: 10))
-            .onChange(of: bioTextHeight) { bioTextHeight in
-                print("[bioTextHeight]", bioTextHeight)
-                print("[isBioTextHeightUpdated]", isBioTextHeightUpdated)
-                if isBioTextHeightUpdated {
-                    return
-                }
+
                 
-                
-                
-                if bioTextHeight > 0 {
-                    isBioTextHeightUpdated = true
-                    bioTextHeightFixed = bioTextHeight
-                }
-                
-                print("[bioTextHeightFixed]", bioTextHeightFixed)
-            }
-            
-            VStack {
-                HStack {
-                    ResumeTitleText(text:"PENGALAMAN KERJA")
-                }
-                Divider()
-                    .frame(height: 1)
+                VStack {
+                    HStack {
+                        ResumeTitleText(text:"WORK EXPERIENCE")
+                    }
+                    Divider()
+                        .frame(height: 1)
                     .background(.black)
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan ABC")
-                        Spacer()
-                        ResumeSubtitleText(text: "September 2020 - Sekarang")
-                    }
-                    HStack(alignment: .top) {
-                        VStack {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 4))
-                                .padding(.top, 11)
-                        }
-                        JustifiedText(height: $bioTextHeight, text: "﻿MEngelola dafar gajisdaas kalsdjnasd",fontSize: 8
-                        )
-                        .frame(height: bioTextHeight)
-                    }
-                    HStack(alignment: .top) {
-                        VStack {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 4))
-                                .padding(.top, 11)
-                        }
-                        JustifiedText(height: $bioTextHeight, text: "﻿Berkomunikasi bersama ketua",fontSize: 8
-                        )
-                        .frame(height: bioTextHeight)
-                    }
-                }
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan 123")
-                        Spacer()
-                        ResumeSubtitleText(text: "September 2015 - September 2020")
-                    }
-                    HStack(alignment: .top) {
-                        VStack {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 4))
-                                .padding(.top, 11)
-                        }
-                        JustifiedText(height: $bioTextHeight, text: "﻿MEngelola dafar gajisdaas kalsdjnasd",fontSize: 8
-                        )
-                        .frame(height: bioTextHeight)
-                    }
-                    HStack(alignment: .top) {
-                        VStack {
-                            Image(systemName: "circle.fill")
-                                .font(.system(size: 4))
-                                .padding(.top, 11)
-                        }
-                        JustifiedText(height: $bioTextHeight, text: "﻿Berkomunikasi bersama ketua",fontSize: 8
-                        )
-                        .frame(height: bioTextHeight)
-                    }
-                }
-                
-            }
-            .padding(.top)
-            VStack {
-                HStack {
-                    ResumeTitleText(text:"PENDIDIKAN")
-                }
-                Divider()
-                    .frame(height: 1)
-                    .background(.black)
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "S1 Manajemen, Universitas ABC")
-                        Spacer()
-                        ResumeSubtitleText(text: "Agustus 2014 - Maret 2018")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "- IPK 3,65 ")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "SMA IPS, SMA ABC")
-                        Spacer()
-                        ResumeSubtitleText(text: "September 2015 - September 2020")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "- Nilai Akhir = 84,78")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        ResumeDetailText(text: "- Sekretaris OSIS 2013/2014")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                
-            }
-            .padding(.top)
-            VStack {
-                ResumeTitleText(text:"PENGALAMAN ORGANISASI")
-                
-                Divider()
-                    .frame(height: 1)
-                    .background(.black)
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "Sekretaris Jendral, Organisasi ABC")
-                        Spacer()
-                        ResumeSubtitleText(text: "September 2020 - Desember 2021")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "- Mengelola daftar gaji ")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan 123")
-                        Spacer()
-                        ResumeSubtitleText(text: "September 2015 - September 2020")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "- Mengelola daftar gaji")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                
-            }
-            .padding(.top)
-            VStack {
-                ResumeTitleText(text:"PENGHARGAAN")
-                
-                Divider()
-                    .frame(height: 1)
-                    .background(.black)
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "- Penerima Beasiswa ABC")
-                        Spacer()
-                        ResumeSubtitleText(text: "2021")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "  Terpilih sebagai salah satu penerima dari 500 orang")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                VStack {
-                    HStack{
-                        ResumeSubtitleText(text: "- Juara Pertama Lomba Bussiness Plan")
-                        Spacer()
-                        ResumeSubtitleText(text: "2020")
-                    }
-                    VStack{
-                        ResumeDetailText(text: "   Pemenang utama Lomba Statistika")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                
-            }
-            .padding(.top)
-            VStack {
-                ResumeTitleText(text:"KETERAMPILAN")
-                
-                Divider()
-                    .frame(height: 1)
-                    .background(.black)
-                VStack{
-                    HStack{
-                        ResumeSubtitleText(text: "Soft Skill :")
-                        Spacer()
-                    }
-                    HStack{
-                        VStack{
-                            ResumeDetailText(text: "- Kemampuan manajemen waktu")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            ResumeDetailText(text: "- Kemampuan berorganisasi")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            ResumeDetailText(text: "- Komunikasi")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        
-                        
-                        VStack{
+                    
+                    ForEach(workExperiences) { workExperience in
+                        VStack(alignment: .leading) {
+                            HStack{
+                                ResumeSubtitleText(text: "\(workExperience.position ?? ""), \(workExperience.company ?? "")")
+                                Spacer()
+                                ResumeSubtitleText(text: "\(workExperience.startDate ?? "") - \(workExperience.endDate ?? "")")
+                            }
                             
-                            ResumeDetailText(text: "- Kemampuan menjalin relasi")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            ResumeDetailText(text: "- Kemampuan analisis")
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            ResumeDetailText(text: "\(workExperience.description ?? "")")
                         }
                     }
                 }
-                VStack{
-                    HStack{
-                        ResumeSubtitleText(text: "Hard Skill :")
-                        Spacer()
+                .padding(.top)
+                
+                VStack {
+                    HStack {
+                        ResumeTitleText(text:"EDUCATION")
                     }
-                    HStack{
-                        VStack{
-                            ResumeDetailText(text: "- MS Excel")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            ResumeDetailText(text: "- MS Powerpoint")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            ResumeDetailText(text: "- MS Word")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        
-                        
-                    }
+                    Divider()
+                        .frame(height: 1)
+                    .background(.black)
                     
-                    VStack {
-                        HStack {
-                            ResumeTitleText(text:"PENGALAMAN KERJA")
-                        }
-                        Divider()
-                            .frame(height: 1)
-                            .background(.black)
-                        VStack {
+                    ForEach(educations) { education in
+                        VStack(alignment: .leading) {
                             HStack{
-                                ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan ABC")
-                                Spacer()
-                                ResumeSubtitleText(text: "September 2020 - Sekarang")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- Mengelola daftar gaji ")
-                                ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            }
-                        }
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan 123")
-                                Spacer()
-                                ResumeSubtitleText(text: "September 2015 - September 2020")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- Mengelola daftar gaji")
-                                ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            }
-                        }
-                        
-                    }
-                    .padding(.top)
-                    VStack {
-                        HStack {
-                            ResumeTitleText(text:"PENDIDIKAN")
-                        }
-                        Divider()
-                            .frame(height: 1)
-                            .background(.black)
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "S1 Manajemen, Universitas ABC")
-                                Spacer()
-                                ResumeSubtitleText(text: "Agustus 2014 - Maret 2018")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- IPK 3,65 ")
-                            }
-                        }
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "SMA IPS, SMA ABC")
-                                Spacer()
-                                ResumeSubtitleText(text: "September 2015 - September 2020")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- Nilai Akhir = 84,78")
-                                ResumeDetailText(text: "- Sekretaris OSIS 2013/2014")
-                            }
-                        }
-                        
-                    }
-                    .padding(.top)
-                    VStack {
-                        ResumeTitleText(text:"PENGALAMAN ORGANISASI")
-                        
-                        Divider()
-                            .frame(height: 1)
-                            .background(.black)
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "Sekretaris Jendral, Organisasi ABC")
-                                Spacer()
-                                ResumeSubtitleText(text: "September 2020 - Desember 2021")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- Mengelola daftar gaji ")
-                                ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            }
-                        }
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "Admin Perkantoran, Perusahaan 123")
-                                Spacer()
-                                ResumeSubtitleText(text: "September 2015 - September 2020")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "- Mengelola daftar gaji")
-                                ResumeDetailText(text: "- Berkomunikasi bersama manager")
-                            }
-                        }
-                        
-                    }
-                    .padding(.top)
-                    VStack {
-                        ResumeTitleText(text:"PENGHARGAAN")
-                        
-                        Divider()
-                            .frame(height: 1)
-                            .background(.black)
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "- Penerima Beasiswa ABC")
-                                Spacer()
-                                ResumeSubtitleText(text: "2021")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "  Terpilih sebagai salah satu penerima dari 500 orang")
-                            }
-                        }
-                        VStack {
-                            HStack{
-                                ResumeSubtitleText(text: "- Juara Pertama Lomba Bussiness Plan")
-                                Spacer()
-                                ResumeSubtitleText(text: "2020")
-                            }
-                            VStack{
-                                ResumeDetailText(text: "   Pemenang utama Lomba Statistika")
-                            }
-                        }
-                        
-                    }
-                    .padding(.top)
-                    VStack {
-                        ResumeTitleText(text:"KETERAMPILAN")
-                        
-                        Divider()
-                            .frame(height: 1)
-                            .background(.black)
-                        VStack{
-                            HStack{
-                                ResumeSubtitleText(text: "Soft Skill :")
-                                Spacer()
-                            }
-                            HStack{
-                                VStack{
-                                    ResumeDetailText(text: "- Kemampuan manajemen waktu")
-                                    ResumeDetailText(text: "- Kemampuan berorganisasi")
-                                    ResumeDetailText(text: "- Komunikasi")
-                                }
-                                VStack{
-                                    
-                                    ResumeDetailText(text: "- Kemampuan menjalin relasi")
-                                    ResumeDetailText(text: "- Kemampuan analisis")
-                                }
-                            }
-                        }
-                        VStack{
-                            HStack{
-                                ResumeSubtitleText(text: "Hard Skill :")
-                                Spacer()
-                            }
-                            HStack{
-                                VStack{
-                                    ResumeDetailText(text: "- MS Excel")
-                                    ResumeDetailText(text: "- MS Powerpoint")
-                                    ResumeDetailText(text: "- MS Word")
-                                }
+                                ResumeSubtitleText(text: "\(education.major ?? ""), \(education.institution ?? "")")
                                 
+                                Spacer()
+                                
+                                ResumeSubtitleText(text: "\(education.startDate ?? "") - \(education.endDate ?? "" )")
+                            }
+                            VStack{
+                                ResumeDetailText(text: education.description ?? "")
                             }
                         }
-                        
                     }
-                    .padding(.top)
-                    
-                    Spacer()
+
                 }
+                .padding(.top)
+                VStack {
+                    ResumeTitleText(text:"ORGANIZATIONS")
+                    
+                    Divider()
+                    .frame(height: 1)
+                    .background(.black)
+                    
+                    ForEach(organizations) { organization in
+                        VStack(alignment: .leading) {
+                            HStack{
+                                ResumeSubtitleText(text: "\(organization.role ?? ""), \(organization.organization ?? "")")
+                                Spacer()
+                                ResumeSubtitleText(text: "\(organization.startDate ?? "") - \(organization.endDate ?? "")")
+                            }
+                            VStack{
+                                ResumeDetailText(text: organization.description ?? "")
+                            }
+                        }
+                    }
+                }
+                .padding(.top)
+                VStack {
+                    ResumeTitleText(text:"ACHIEVEMENT")
+                    
+                    Divider()
+                    .frame(height: 1)
+                    .background(.black)
+                    
+                    ForEach(achievements) { achievement in
+                        VStack {
+                            HStack{
+                                ResumeSubtitleText(text: "- \(achievement.title ?? "")")
+                                Spacer()
+                                ResumeSubtitleText(text: achievement.year ?? "")
+                            }
+                            VStack{
+                                ResumeDetailText(text: achievement.description ?? "")
+                            }
+                        }
+                    }
+                }
+                .padding(.top)
+                VStack {
+                    ResumeTitleText(text:"SKILL")
+                    
+                    Divider()
+                    .frame(height: 1)
+                    .background(.black)
+                    
+                    LazyVGrid(columns: layout, spacing: 20) {
+                        ForEach(skills, id: \.self) { skill in
+                            ResumeDetailText(text: "- \(skill)")
+                        }
+                    }
+//                    VStack{
+//                        HStack{
+//                        ResumeSubtitleText(text: "Soft Skill :")
+//                        Spacer()
+//                        }
+//                        HStack{
+//                            VStack{
+//                                ResumeDetailText(text: "- Kemampuan manajemen waktu")
+//                                ResumeDetailText(text: "- Kemampuan berorganisasi")
+//                                ResumeDetailText(text: "- Komunikasi")
+//                            }
+//                            VStack{
+//
+//                                ResumeDetailText(text: "- Kemampuan menjalin relasi")
+//                                ResumeDetailText(text: "- Kemampuan analisis")
+//                            }
+//                        }
+//                    }
+//                    VStack{
+//                        HStack{
+//                        ResumeSubtitleText(text: "Hard Skill :")
+//                        Spacer()
+//                        }
+//                        HStack{
+//                            VStack{
+//                                ResumeDetailText(text: "- MS Excel")
+//                                ResumeDetailText(text: "- MS Powerpoint")
+//                                ResumeDetailText(text: "- MS Word")
+//                            }
+//
+//                        }
+//                    }
+
+                }
+                .padding(.top)
                 
-                
-                .aspectRatio(1/1.4142, contentMode: .fill) // A4 aspect ratio
-                .scaleEffect(0.7)
-                //                .frame(width: geometry.size.width * 0.5, height: (geometry.size.width * 0.5) / (210.0 / 297.0))
-                //                .aspectRatio(210.0 / 297.0, contentMode: .fit)
-                //        }
-                
-                
+                Spacer()
             }
-        }
+
+
+            .aspectRatio(1/1.4142, contentMode: .fill) // A4 aspect ratio
+            .scaleEffect(0.7)
+//                .frame(width: geometry.size.width * 0.5, height: (geometry.size.width * 0.5) / (210.0 / 297.0))
+//                .aspectRatio(210.0 / 297.0, contentMode: .fit)
+//        }
+
+
     }
 }
 
-//struct FirstResume_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        FirstResume(bioTextHeight: .constant(0))
-//    }
-//}
+struct FirstResume_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        FirstResume(bioTextHeight: .constant(0), biodata: BiodataModel(firstName: "Muhammad Adha Fajri", lastName: "Jonison", phoneNumber: "+6289676164742", email: "madhafajrij@gmail.com", professionalMotto: "learn by doing gitu lah pokoknyaa", professionalSummary: "learn by teaching gitu lah pokoknya"), workExperiences: [WorkExperienceModel(position: "Mobile Developer", company: "MHC Asia Group", startDate: "1 Dec 2020", endDate: "5 June 2023", description: "Work")], educations: [EducationModel(major: "Teknik Informatika", institution: "Politeknik Caltex Riau", startDate: "1 Dec 2020", endDate: "1 Dec 2023", gpa: "3.59", description: "Learn by teaching doing teaching")], organizations: [OrganizationModel(role: "Documentation leader", organization: "ITSA", startDate: "1 Dec 202", endDate: "2 Dec 2021", description: "Worked on a project")], achievements: [AchievementModel(title: "2nd place Animation KMIPN", year: "2018")], skills: ["React JS", "Node JS", "Swift", "Swift UI", "UIKIT"])
+    }
+}

@@ -31,29 +31,50 @@ struct CreateResumeView: View {
                             Image("FirstResume")
                         }
                         
-                        Button {
-                            isShowingActionDialog = true
-                        } label: {
-                            Image("SecondResume")
+                        Button {} label: {
+                            ZStack {
+                                Image("FirstResume")
+                                    .overlay(Color.black.opacity(0.5)) // Add overlay with black color and 50% opacity
+                                    .background(Color.lightGray)
+                                    .cornerRadius(4)
+                                Text("Coming Soon...")
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
                     
                     GridRow {
-                        Button {
-                            isShowingActionDialog = true
-                        } label: {
-                            Image("ThirdResume")
+                        Button {} label: {
+                            ZStack {
+                                Image("FirstResume")
+                                    .overlay(Color.black.opacity(0.5)) // Add overlay with black color and 50% opacity
+                                    .background(Color.lightGray)
+                                    .cornerRadius(4)
+                                Text("Coming Soon...")
+                                    .foregroundColor(.white)
+                            }
                         }
                         
-                        Spacer()
+                        Button {} label: {
+                            ZStack {
+                                Image("FirstResume")
+                                    .overlay(Color.black.opacity(0.5)) // Add overlay with black color and 50% opacity
+                                    .background(Color.lightGray)
+                                    .cornerRadius(4)
+                                Text("Coming Soon...")
+                                    .foregroundColor(.white)
+                            }
+                        }
                     }
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationDestination(isPresented: $isPreviewClicked, destination: {
-            HomeView()
-        })
+        .sheet(isPresented: $isPreviewClicked) {
+            PreviewResumeView(buttonType: .select, isButtonClicked: $isSelectTemplateClicked, onCloseClicked: {
+                isPreviewClicked = false
+            })
+        }
         .navigationDestination(isPresented: $isSelectTemplateClicked, destination: {
             SelectResumeDataView()
         })

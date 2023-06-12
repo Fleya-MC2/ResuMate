@@ -26,14 +26,11 @@ struct AddOrganization: View {
 
     
     var body: some View {
-        if isSubmit{
-            OrganizationView()
-        }else{
+
             if isGenerate {
                 GeneratePhrases()
             }
             else{
-                NavigationStack{
                     VStack{
                         ScrollView{
                             VStack{
@@ -96,19 +93,19 @@ struct AddOrganization: View {
     isSubmit = true
                                 }
                             }
-                        .onReceive(timer) { time in
-                            
-                            if position != "" &&
-                                organization != "" &&
-                                description != "" {
-                                isButtonActive = true
-                                print("%%%\(isButtonActive)")
-                                
-                            }else{
-                                isButtonActive = false
+                            .onChange(of: position) { _ in
+                                updateButtonActive()
                             }
-                        }
+                            .onChange(of: organization) { _ in
+                                updateButtonActive()
+                            }
+                            .onChange(of: description) { _ in
+                                updateButtonActive()
+                            }
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        OrganizationView()
+                    })
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink{
@@ -123,14 +120,27 @@ struct AddOrganization: View {
                             TitleToolbar(titleToolbar: "Add Organization Experience")
                         }
                     }
-                }.sheet(isPresented: $isSuggestion) {
+                .sheet(isPresented: $isSuggestion) {
                     ModalOrganizationExperience(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
                         .presentationDetents([.medium])
                     
                 }.navigationBarBackButtonHidden(true)
             }
+        
+    }
+    
+    func updateButtonActive() {
+        if position != "" &&
+            organization != "" &&
+            description != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
         }
     }
+    
     func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
         BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
             .onChange(of: fill.wrappedValue, perform: { _ in

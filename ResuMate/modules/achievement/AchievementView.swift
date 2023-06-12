@@ -11,13 +11,9 @@ struct AchievementView: View {
     @EnvironmentObject var cardLists: CardLists
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
+
                 VStack{
                     CustomToolbar(titleToolbar: "Achievement", destinationL: HomeView(selection: 1), destinationT: AddAchievement())
                     Spacer().frame(height: 17)
@@ -65,18 +61,15 @@ struct AchievementView: View {
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.achievement.count != 0 {
+                .navigationDestination(isPresented: $isSubmit, destination: {
+                    HomeView(selection: 1)
+                })
+                    .onReceive(cardLists.$achievement) { newAchievement in
+                        if newAchievement.count != 0 {
                             isButtonActive = true
                         }
                         print(isButtonActive)
                     }
-                
-                
-                
-            }.navigationBarBackButtonHidden(true)
-            
-        }
+            .navigationBarBackButtonHidden(true)
     }
 }

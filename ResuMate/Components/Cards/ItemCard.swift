@@ -11,6 +11,10 @@ struct ItemCard: View {
     var text: String
     
     var isShowingThumbsUp: Bool
+    var isShowingDraggable: Bool
+    var isShowingClose: Bool
+    
+    var onClosed: () -> Void
     
     var body: some View {
         VStack {
@@ -21,6 +25,8 @@ struct ItemCard: View {
                     .padding(16)
                     .background(.white)
                     .cornerRadius(8)
+                
+                
                 
                 if isShowingThumbsUp {
                         HStack {
@@ -34,7 +40,21 @@ struct ItemCard: View {
                                 .clipShape(Circle())
                         }
                         .padding(.bottom, 64)
-
+                }
+                
+                if isShowingClose {
+                    Button {
+                        onClosed()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            
+                            Image(systemName: "xmark.circle")
+                                .foregroundColor(.darkGray)
+                                .font(.system(size: 18))
+                                .frame(width: 30, height: 30)
+                        }
+                    }
                 }
             }
         }
@@ -43,6 +63,8 @@ struct ItemCard: View {
 
 struct ResumeCard_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCard(text: "Management - UPN ‘Veteran’ Yogyakarta dqwdeqw", isShowingThumbsUp: true)
+        ItemCard(text: "Management - UPN ‘Veteran’ Yogyakarta dqwdeqw", isShowingThumbsUp: false, isShowingDraggable: true, isShowingClose: true) {
+            
+        }
     }
 }

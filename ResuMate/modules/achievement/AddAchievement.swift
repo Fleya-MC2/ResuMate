@@ -50,18 +50,10 @@ saveAchievement()
 isSubmit = true
                             }
                         }
-                        
-                    .onReceive(timer) { time in
-                        
-                        if achieve != "" &&
-                            year != ""  {
-                            isButtonActive = true
-                            print("%%%\(isButtonActive)")
-                            
-                        }else{
-                            isButtonActive = false
-                        }
-                    }
+                        .onChange(of: achieve, perform: { _ in updateButtonActive() })
+                        .onChange(of: year, perform: { _ in updateButtonActive() })
+                        .onChange(of: isButtonActive, perform: { _ in updateButtonActive() })
+
                 }
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){
@@ -83,6 +75,15 @@ isSubmit = true
                     
                 }.navigationBarBackButtonHidden(true)
             }
+        }
+    }
+    
+    func updateButtonActive() {
+        if achieve != "" && year != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+        } else {
+            isButtonActive = false
         }
     }
     

@@ -95,26 +95,29 @@ struct PersonalDataView: View {
                         .padding(.bottom, 30)
                     }
  
-                        BigButton(text: "Submit", isButtonactive: true) {
+                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             saveBioData()
                             cardLists.isPersonalDataFilled = true
                             isSubmit = true
                         }
-                                            .onReceive(timer) { time in
-                        
-                        if firstname != "" &&
-                            lastname != "" &&
-                            email != "" &&
-                            phone != "" &&
-                            motto != "" &&
-                            summary != "" {
-                            isButtonActive = true
-                            print("%%%\(isButtonActive)")
-                            
-                        }else{
-                            isButtonActive = false
-                        }
-                    }
+                                            .onChange(of: firstname) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: lastname) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: email) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: phone) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: motto) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: summary) { _ in
+                                                updateButtonActive()
+                                            }
                 }.sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
                         text: "Personal Data",
@@ -133,6 +136,22 @@ struct PersonalDataView: View {
             }
         }
     }
+    
+    func updateButtonActive() {
+        if firstname != "" &&
+            lastname != "" &&
+            email != "" &&
+            phone != "" &&
+            motto != "" &&
+            summary != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
+        }
+    }
+    
     private func updateFilledStatus() {
         isfirstname = !firstname.isEmpty
         islastname = !lastname.isEmpty

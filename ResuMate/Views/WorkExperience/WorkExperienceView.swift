@@ -12,15 +12,10 @@ struct WorkExperienceView: View {
     @State var isButtonactive: Bool = false
     @State var isSubmit: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    @State var isSubmitClicked: Bool = false
 
     
     var body: some View {
-        if isSubmit {
-            DataView()
-        } else {
-            NavigationStack{
+
                 VStack{
                     CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView())
                     Spacer().frame(height: 17)
@@ -65,29 +60,24 @@ struct WorkExperienceView: View {
                             }
                         }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onReceive(timer) { time in
-                    
-                    if cardLists.workExp.count != 0 {
+
+                .onReceive(cardLists.$workExp) { newWorkExp in
+                    if newWorkExp.count != 0 {
                         isButtonactive = true
                     }
                     print(isButtonactive)
                 }
                 Spacer()
                     
-                    BigButton(text: "Submit", isButtonactive: true) {
-                        isSubmitClicked = true
-                    
-                }.onAppear{
-                    cardLists.isWorkExpFilled = true
-                }
-            }
-            .navigationDestination(isPresented: $isSubmitClicked, destination: {
-                DataView()
+
+            
+            .navigationDestination(isPresented: $isSubmit, destination: {
+                HomeView(selection: 1)
             })
             .navigationBarBackButtonHidden(true)
         }
 
-    }
+    
     
 }
 

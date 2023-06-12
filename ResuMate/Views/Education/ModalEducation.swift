@@ -42,7 +42,7 @@ struct ModalEducation: View {
                 Spacer().frame(height: 30)
                 ScrollView{
                     ForEach(0..<3){_ in
-                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
+                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false, isShowingDraggable: false, isShowingClose: false) {}
                     }
                     
                     
