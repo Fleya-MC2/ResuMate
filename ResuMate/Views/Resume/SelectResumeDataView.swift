@@ -22,151 +22,159 @@ struct SelectResumeDataView: View {
     
     @State private var items: [String] = ["test", "fdqwrt etst"]
     
+    @State private var isDataEmpty: Bool = false
+    
     var body: some View {
-        VStack {
-            CustomToolbar2(titleToolbar: "Select your data", destination: CreateResumeView())
-            
-            ScrollView {
-                VStack{
-                    Text("Job Position").blacktext17()
+        ZStack {
+            if isDataEmpty {
+                EmptyResumeDataView()
+            } else {
+                VStack {
+                    CustomToolbar2(titleToolbar: "Select your data", destination: CreateResumeView())
                     
-                    ZStack {
-                        BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
-                        
-                        HStack {
-                            Spacer()
-                            Image(systemName: "suitcase.fill")
-                                .foregroundColor(.darkGray)
-                        }
-                        .padding(.trailing, 24)
-                    }
-                    .padding(.bottom)
-                    
-                    
-                    VStack {
-                        Spacer()
-                        
-                        AddAndDisplayItemsView(
-                            title: "Profile Data",
-                            isButtonEnabled: false,
-                            onClicked: {},
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
+                    ScrollView {
+                        VStack{
+                            Text("Job Position").blacktext17()
+                            
+                            ZStack {
+                                BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
                                 
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "suitcase.fill")
+                                        .foregroundColor(.darkGray)
                                 }
+                                .padding(.trailing, 24)
                             }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Work Experience",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddWorkExperienceClicked = true
-                            },
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Education Background",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddEducationClicked = true
-                            },
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Organization Experience",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddOrganizationClicked = true
-                            },
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Volunteering",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddVolunteeringClicked = true
-                            },
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Achievement",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddAchievementClicked = true
-                            },
-                            items: $items,
-                            itemType: .item,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        AddAndDisplayItemsView(
-                            title: "Skill",
-                            isButtonEnabled: true,
-                            onClicked: {
-                                isAddSkillClicked = true
-                            },
-                            items: $items,
-                            itemType: .tag,
-                            onItemRemoved: { item in
-                                if let index = items.firstIndex(of: item) {
-                                    items.remove(at: index)
-                                }
-                            }
-                        )
-                        .padding(.vertical)
-                        
-                        
+                            .padding(.bottom)
+                            
+                            
+                            VStack {
+                                Spacer()
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Profile Data",
+                                    isButtonEnabled: false,
+                                    onClicked: {},
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Work Experience",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddWorkExperienceClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Education Background",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddEducationClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Organization Experience",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddOrganizationClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Volunteering",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddVolunteeringClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Achievement",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddAchievementClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .item,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                AddAndDisplayItemsView(
+                                    title: "Skill",
+                                    isButtonEnabled: true,
+                                    onClicked: {
+                                        isAddSkillClicked = true
+                                    },
+                                    items: $items,
+                                    itemType: .tag,
+                                    onItemRemoved: { item in
+                                        if let index = items.firstIndex(of: item) {
+                                            items.remove(at: index)
+                                        }
+                                    }
+                                )
+                                .padding(.vertical)
+                                
+                                
 
+                            }
+                            .padding()
+                            .background(Color.mediumGray)
+                        }
                     }
-                    .padding()
-                    .background(Color.mediumGray)
+                    
+                    BigButton(text: "Preview Resume", isButtonactive: true) {
+                        isPreviewClicked = true
+                    }
                 }
-            }
-            
-            BigButton(text: "Preview Resume", isButtonactive: true) {
-                isPreviewClicked = true
             }
         }
         .sheet(isPresented: $isAddWorkExperienceClicked) {
@@ -306,6 +314,8 @@ struct SelectResumeDataView: View {
             SaveResumeView()
         })
         .navigationBarBackButtonHidden(true)
+
+
     }
 }
 

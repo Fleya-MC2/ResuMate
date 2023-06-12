@@ -20,6 +20,7 @@ struct AddAndDisplayItemsView: View {
     
     @Binding var items: [String]
     var itemType: ItemType
+    
     var onItemRemoved: (String) -> Void
     
     @State private var draggedAt: Int = 0

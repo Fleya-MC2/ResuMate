@@ -15,6 +15,10 @@ struct UploadResume: View {
     @State private var isUploadResumeClicked: Bool = false
     
     @State private var uploadStatus: UploadStatus = .loading
+    @State private var isUploadFinished: Bool = false
+    @State private var isBackToHomeButtonClicked: Bool = false
+    
+    @State private var isActiveButton: Bool = true
     
     @EnvironmentObject var viewModel: ResumeViewModel
     @Environment(\.managedObjectContext) private var moc
@@ -30,24 +34,51 @@ struct UploadResume: View {
             Spacer().frame(height: 60)
             
             ImageButton(text: "Upload resume", isButtonactive: !viewModel.isLoading) {
+                if !isActiveButton {
+                    return
+                }
+                
                 isUploadResumeClicked = true
             }
             .padding(.horizontal, 36)
             
             if viewModel.isLoading {
-                UploadBar(progress: loadingProgress, uploadStatus: uploadStatus)
+                UploadBar(progress: viewModel.loadingProgress / 7.0, uploadStatus: uploadStatus)
             }
             
             Spacer()
         }
+        .alert(isPresented: $isUploadFinished, content: {
+            Alert(
+                title: Text("Congratulations!"),
+                message: Text("We able to read your resume. Please back to My Data to see your data. Back to My Home"),
+                dismissButton: .default(Text("Back to Home"), action: {
+                    isBackToHomeButtonClicked = true
+                })
+            )
+        })
+        .navigationDestination(isPresented: $isBackToHomeButtonClicked, destination: {
+            HomeView(selection: 1)
+        })
         .sheet(isPresented: $isUploadResumeClicked) {
             DocumentImporter { url in
                 // get pdf data
                 resumeText = pdfToText(fromPdf: url)
                 // call gpt api
                 viewModel.fetchDataFromResume(resumeText: resumeText)
+                
+                viewModel.isLoading = true
+                
+                isActiveButton = false
             }
         }
+        .onChange(of: viewModel.loadingProgress, perform: { loadingProgress in
+            print("vioewmodel", loadingProgress)
+            if viewModel.loadingProgress / 7 == 1.0 {
+                uploadStatus = .finished
+                isUploadFinished = true
+            }
+        })
         .navigationBarBackButtonHidden(true)
     }
     
