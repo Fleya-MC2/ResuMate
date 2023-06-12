@@ -9,23 +9,15 @@ import SwiftUI
 
 struct EmptyResumeDataView: View {
     var body: some View {
-        VStack{
+        VStack {
             Image("EmptyResumeData")
-                .resizable()
                 .scaledToFit()
                 .frame(width: 154)
-            Text("Upss we can’t find your data, please full fill")
-                .blacktext17()
-                .fontWeight(.medium)
             
-            HStack{
-                Text("your data first to make resume easier")
+                Text("Oops, we couldn't find your data. Please provide Your Data first to simplify the resume creation process.")
                     .blacktext17()
                     .fontWeight(.medium)
-                Text("here")
-                    .strongblue17()
-                    .fontWeight(.bold)
-            }
+                    .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.mediumDarkGray.opacity(0.4))

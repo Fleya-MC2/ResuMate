@@ -9,7 +9,7 @@ import Foundation
 
 class ChatGptService {
     private let baseURL = URL(string: "https://api.openai.com/v1/completions")
-    private let maxTokens = 500
+    private let maxTokens = 200
     private let temperature = 0.3
     
     private func fetchAuthorizationKey(completion: @escaping (String) -> Void) {

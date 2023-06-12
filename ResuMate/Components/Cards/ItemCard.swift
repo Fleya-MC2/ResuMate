@@ -25,8 +25,6 @@ struct ItemCard: View {
                     .background(.white)
                     .cornerRadius(8)
                 
-                
-                
                 if isShowingThumbsUp {
                         HStack {
                             Spacer()

@@ -56,10 +56,7 @@ struct AddEducationView: View {
                                     case .edit: break
                                         // edit here
                                     }
-                                    
-
                                 }
-                                
                             }
                         .onChange(of: major) { _ in
                             updateButtonActive()

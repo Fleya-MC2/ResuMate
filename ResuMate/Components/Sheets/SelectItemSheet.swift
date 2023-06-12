@@ -213,11 +213,56 @@ struct SelectItemSheet: View {
                         case .failure(_): break
                         }
                     })
-                case .resumeItem: break
+                case .resumeItem:
+                    isLoading = true
+                    let content = getContent()
+                    
+                    chatGptService.fetchRelevancyScoreByJobTitle(
+                        jobTitle: position ?? "",
+                        content: content,
+                        completion: { result in
+                        isLoading = false
+                            
+//                            switch result {
+//                            case .success(let suggestionList):
+//                                self.suggestionList = suggestionList
+//                            case .failure(_): break
+//                            }
+                    })
+                    
+
+                    
                 }
             })
             .background(Color.lightGray)
         
+    }
+    
+    func getContent() -> String {
+//                            if resumeItemType != nil {
+//                                switch resumeItemType {
+//                                case .biodata:
+////                                    return String(describing: Bio(firstname: "test")
+//
+//                                case .workExperience:
+////                                    return String(describing: <#T##Subject#>)
+//                                case .education:
+//
+//                                case .organization:
+//
+//                                case .skill:
+//
+//                                case .achievement:
+//
+//                                case .volunteer:
+//
+//
+//                                case .none:
+//                                    Text("Empty Data!")
+//                                }
+//                            }
+        
+        return "Test"
     }
 }
 

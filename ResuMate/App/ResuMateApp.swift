@@ -22,6 +22,7 @@ struct ResuMateApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(cardLists)
                 .environmentObject(gpAnswer)
+                .preferredColorScheme(.light)
         }
     }
 }
