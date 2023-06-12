@@ -138,12 +138,4 @@ class ResumeViewModel: ObservableObject{
             }
         }
     }
-    
-    //MARK: function to update selected model
-    func updateSelectedEducationModel(with newModel: EducationModel) {
-        if let index = education.firstIndex(where: { $0.id == newModel.id }) {
-            // Update the selectedEducationModel
-            selectedEducationModel = education[index]
-        }
-    }
 }

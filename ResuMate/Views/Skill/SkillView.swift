@@ -8,40 +8,45 @@
 import SwiftUI
 
 struct SkillView: View {
+    @EnvironmentObject var cardLists: CardLists
     @EnvironmentObject var viewModel: ResumeViewModel
     @Environment(\.managedObjectContext) private var moc
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
     
-    @State private var skillList: [SkillModel] = []
-
     var body: some View {
         VStack{
             CustomToolbar2(titleToolbar: "Skill", destination: HomeView(selection: 1))
             Spacer().frame(height: 27)
-            TagForm(tags: $skillList)
+            TagForm()
             
             BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                    if isButtonActive == true {
-                            saveSkill()
-                            isSubmit = true
-                    }
+                if isButtonActive == true {
+                    saveSkill()
+                    isSubmit = true
+                    cardLists.isSkillFilled = true
                 }
+            }
         }
-        .onChange(of: skillList, perform: { skill in
-            if skillList.count > 0 {
+        .onChange(of: viewModel.skills, perform: { skill in
+            if viewModel.skills.count > 0 {
                 isButtonActive = true
             }
         })
-            .navigationDestination(isPresented: $isSubmit, destination: {
-                HomeView(selection: 1)
-            })
-            .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $isSubmit, destination: {
+            HomeView(selection: 1)
+        })
+        .navigationBarBackButtonHidden(true)
+        .onAppear{
+            if viewModel.skills == []{
+                viewModel.skills = fetchSkillFromCoreData(context: moc)
+            }
+        }
     }
     
     func saveSkill() {
-        if skillList != []{
-            saveSkillToCoreData(skillList, context: moc)
+        if viewModel.skills != []{
+            saveSkillToCoreData(viewModel.skills, context: moc)
         }
     }
 }

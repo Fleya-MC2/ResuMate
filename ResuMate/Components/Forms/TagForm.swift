@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TagForm: View {
-    @Binding var tags: [SkillModel]
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
+//    @State private var tags: [SkillModel] = []
     @State private var newTag: String = ""
     
     @State private var timer: Timer? = nil
@@ -112,7 +114,7 @@ struct TagForm: View {
                 } else {
                     GeometryReader { geometryProxy in
                         FlexibleView(
-                            availableWidth: geometryProxy.size.width, data: tags,
+                            availableWidth: geometryProxy.size.width, data: viewModel.skills,
                             spacing: 15,
                             alignment: .leading
                         ) { item in
@@ -120,7 +122,7 @@ struct TagForm: View {
                                 Text(item.title ?? "")
                                 
                                 Button {
-//                                    remove func here
+                                    removeTag(tag: item.title!)
                                 } label: {
                                     Image(systemName: "xmark")
                                         .foregroundColor(.gray)
@@ -167,20 +169,20 @@ struct TagForm: View {
 
     
     func handleSubmit(text: String) {
-        addTag()
+        addTag(text: text)
         newTag = ""
     }
     
-    private func addTag() {
+    private func addTag(text: String) {
           guard !newTag.isEmpty else {
             return
         }
-        tags.append(SkillModel(id: UUID(), title: newTag))
+        viewModel.skills.append(SkillModel(id: UUID(), title: text))
         newTag = ""
     }
     
-    func removeTag(tag: String) {
-        // remove function
+    private func removeTag(tag: String) {
+        viewModel.skills.removeAll { $0.title == tag }
     }
 }
 
