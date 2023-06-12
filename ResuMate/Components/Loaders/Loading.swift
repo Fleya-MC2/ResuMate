@@ -22,7 +22,7 @@ struct LoadingScreen: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black.opacity(0.1))
+        .background(Color.lightGray)
         .navigationBarBackButtonHidden(true)
         
     }

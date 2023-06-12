@@ -15,7 +15,7 @@ struct AddOrganization: View {
     @State var organization: String = ""
     @State var startDate: Date = Date()
     @State var endDate: Date = Date()
-    @State var description: String = "test edit"
+    @State var description: String = ""
     @State var isposition: Bool = false
     @State var isorganization: Bool = false
     @State var isdescription: Bool = false
@@ -98,6 +98,8 @@ struct AddOrganization: View {
             }
             .sheet(isPresented: $isSuggestion) {
                 SelectItemSheet(
+                    selectItemType: .suggestion,
+                    position: position,
                     text: "Organization Experience",
                     isGeneratePhraseButtonEnabled: true,
                     onGeneratePhraseButtonClicked: {
@@ -106,9 +108,19 @@ struct AddOrganization: View {
                     onClosedClicked: {
                     isSuggestion = false
                 },
-                     onItemClicked: {
-                    
-                })
+
+                    onSuggestionItemClicked: {suggestion in
+                        description += suggestion
+                    },
+                    onBiodataItemClicked: {_ in },
+                    onWorkExperienceItemClicked: {_ in },
+                    onEducationItemClicked: {_ in },
+                    onOrganizationItemClicked: {_ in },
+                    onSkillItemClicked: {_ in },
+                    onAchievementItemClicked: {_ in },
+                    onVolunteerItemClicked: {_ in }
+                )
+                .presentationDetents([.medium, .large])
                 
             }.navigationBarBackButtonHidden(true)
         }

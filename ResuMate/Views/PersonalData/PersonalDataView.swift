@@ -50,9 +50,8 @@ struct PersonalDataView: View {
                         title: "Professional Summary",
                         fill: $summary,
                         isCheck: $issummary,
-                        isSuggestionEnabled: true
+                        isSuggestionEnabled: false
                     ) {
-                        isSuggestion = true
                     }
                     
                     TextEditor(text: $summary)
@@ -77,23 +76,6 @@ struct PersonalDataView: View {
                 .onChange(of: phone) { _ in updateButtonActive() }
                 .onChange(of: motto) { _ in updateButtonActive() }
                 .onChange(of: summary) { _ in updateButtonActive() }
-            }.sheet(isPresented: $isSuggestion) {
-                SelectItemSheet(
-                    text: "Personal Data",
-                    isGeneratePhraseButtonEnabled: true,
-                    onGeneratePhraseButtonClicked: {
-                        cardLists.currentPageView = Page.personalData.rawValue
-                        isSuggestion = false
-                        isGenerate = true
-                    },
-                    onClosedClicked: {
-                        isSuggestion = false
-                    },
-                    onItemClicked: {
-                        
-                    })
-                .presentationDetents([.medium])
-                
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $isSubmit, destination: {

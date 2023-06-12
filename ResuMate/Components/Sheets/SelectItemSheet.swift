@@ -7,8 +7,30 @@
 
 import SwiftUI
 
+enum SelectItemType {
+    case suggestion
+    case resumeItem
+}
+
+enum ResumeItemType {
+    case biodata
+    case workExperience
+    case education
+    case organization
+    case skill
+    case achievement
+    case volunteer
+}
+
 struct SelectItemSheet: View {
     @EnvironmentObject var cardLists: CardLists
+    
+    var selectItemType: SelectItemType
+    var resumeItemType: ResumeItemType?
+    
+    var position: String?
+    
+    @State private var suggestionList: [SuggestionModel]?
     
     var text: String
     
@@ -16,10 +38,21 @@ struct SelectItemSheet: View {
     let onGeneratePhraseButtonClicked: () -> Void
     
     let onClosedClicked: () -> Void
-    let onItemClicked: () -> Void
+    
+    let onSuggestionItemClicked: ((String) -> Void)
+    let onBiodataItemClicked: ((BiodataModel) -> Void)
+    let onWorkExperienceItemClicked: ((WorkExperienceModel) -> Void)
+    let onEducationItemClicked: ((EducationModel) -> Void)
+    let onOrganizationItemClicked: ((OrganizationModel) -> Void)
+    let onSkillItemClicked: ((String) -> Void)
+    let onAchievementItemClicked: ((AchievementModel) -> Void)
+    let onVolunteerItemClicked: ((VolunteerModel) -> Void)
+    
+    let chatGptService: ChatGptService = ChatGptService()
+    
+    @State private var isLoading: Bool = false
     
     var body: some View {
-        NavigationStack{
             VStack{
                 HStack{
                     Text(text)
@@ -43,16 +76,117 @@ struct SelectItemSheet: View {
                     .padding(.horizontal, 20)
                 Divider()
                 Spacer().frame(height: 30)
-                ScrollView{
-                    ForEach(0..<3){_ in
-                        Button {
-                            onItemClicked()
-                            onClosedClicked()
-                        } label: {
-                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingDraggable: false, isShowingClose: false) {}
-                                .padding(.horizontal)
+                
+                if isLoading {
+                    LoadingScreen()
+                } else {
+                    ScrollView{
+                        switch selectItemType {
+                        case .suggestion:
+                            if suggestionList?.count ?? 0 > 0 {
+                                ForEach(suggestionList!) { suggestion in
+                                    Button {
+                                        onSuggestionItemClicked(suggestion.suggestion)
+                                        onClosedClicked()
+                                    } label: {
+                                        ItemCard(text: suggestion.suggestion, isShowingThumbsUp: false, isShowingClose: false) {
+                                            
+                                        }
+                                            .padding(.horizontal)
+                                    }
+                                }
+                            }
+                        case .resumeItem:
+                            if resumeItemType != nil {
+                                switch resumeItemType {
+                                case .biodata:
+                                    //get biodata list
+                                    
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onBiodataItemClicked(
+                                                BiodataModel(firstName: "test", lastName: "test", phoneNumber: "test", email: "test", professionalMotto: "test", professionalSummary: "test")
+                                            )
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .workExperience:
+                                    //get work experience list
+                                    
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onWorkExperienceItemClicked(
+                                                WorkExperienceModel(position: "", company: "", startDate: "", endDate: "", description: "")
+                                            )
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .education:
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onEducationItemClicked(
+                                                EducationModel(major: "", institution: "", startDate: "", endDate: "", gpa: "", description: "")
+                                            )
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .organization:
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onOrganizationItemClicked(OrganizationModel(role: "", organization: "", startDate: "", endDate: "", description: ""))
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .skill:
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onSkillItemClicked("")
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .achievement:
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onAchievementItemClicked(AchievementModel(title: "", year: ""))
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                case .volunteer:
+                                    ForEach(0..<3){_ in
+                                        Button {
+                                            onVolunteerItemClicked(VolunteerModel())
+                                            onClosedClicked()
+                                        } label: {
+                                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingClose: false) {}
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                    
+                                case .none:
+                                    Text("Empty Data!")
+                                }
+                            }
                         }
-                    
+                        
+                        
                     }
                 }
                 
@@ -65,9 +199,25 @@ struct SelectItemSheet: View {
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: 500)
+            .onAppear(perform: {
+                switch selectItemType {
+                case .suggestion:
+                    isLoading = true
+                    
+                    chatGptService.fetchSuggestionByPositionTitle(positionTitle: position ?? "", completion: { result in
+                        isLoading = false
+                        
+                        switch result {
+                        case .success(let suggestionList):
+                            self.suggestionList = suggestionList
+                        case .failure(_): break
+                        }
+                    })
+                case .resumeItem: break
+                }
+            })
             .background(Color.lightGray)
-        }
+        
     }
 }
 
@@ -76,11 +226,20 @@ struct SuggestionSheetData_Previews: PreviewProvider {
     static var previews: some View {
         
         SelectItemSheet(
+            selectItemType: .suggestion,
+            resumeItemType: .workExperience,
             text: "Personal Data",
             isGeneratePhraseButtonEnabled: true,
             onGeneratePhraseButtonClicked: {},
             onClosedClicked: {},
-            onItemClicked: {}
+            onSuggestionItemClicked: {_ in },
+            onBiodataItemClicked: {_ in },
+            onWorkExperienceItemClicked: {_ in },
+            onEducationItemClicked: {_ in },
+            onOrganizationItemClicked: {_ in },
+            onSkillItemClicked: {_ in },
+            onAchievementItemClicked: {_ in },
+            onVolunteerItemClicked: {_ in }
         )
     }
 }

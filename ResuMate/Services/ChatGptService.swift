@@ -62,8 +62,8 @@ class ChatGptService {
         
     }
     
-    func fetchSuggestionByJobTitle(jobTitle: String, completion: @escaping (Result<[SuggestionModel], Error>) -> Void) {
-        let prompt = "Generate a list of job accomplishments for a \(jobTitle) on a CV in array json format with field name 'suggestion'"
+    func fetchSuggestionByPositionTitle(positionTitle: String, completion: @escaping (Result<[SuggestionModel], Error>) -> Void) {
+        let prompt = "Generate a list of position accomplishments for a \(positionTitle) on a CV in array json format with field name 'suggestion'"
         
         self.fetchChatGptApi(prompt: prompt) { result in
             switch result {

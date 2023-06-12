@@ -70,20 +70,7 @@ struct AddAchievement: View {
                     TitleToolbar(titleToolbar: "\(inputType.rawValue) Achievement")
                 }
             }
-            .sheet(isPresented: $isSuggestion) {
-                SelectItemSheet(
-                    text: "Achievement",
-                    isGeneratePhraseButtonEnabled: true,
-                    onGeneratePhraseButtonClicked: {
-                        isGenerate = true
-                    },
-                    onClosedClicked: {
-                        isSuggestion = false
-                    },
-                    onItemClicked: {
-                        
-                    })
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
                 .navigationDestination(isPresented: $isSubmit, destination: {
                     AchievementView()
                 })

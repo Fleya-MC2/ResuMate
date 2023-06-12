@@ -23,12 +23,13 @@ struct AddWorkExperienceView: View {
     @State var isGenerate: Bool = false
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
+
     
     var body: some View {
         if isGenerate {
             GeneratePhrasesView(inputType: inputType)
         } else {
-                VStack{
+            VStack{
                 ScrollView{
                     VStack{
                         Spacer().frame(height: 50)
@@ -47,64 +48,75 @@ struct AddWorkExperienceView: View {
                     
                 }
                 Spacer()
-
-                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                        if isButtonActive == true {
-                            print("inputType", inputType)
-                            switch inputType {
-                            case .add:
-                                print("goes here")
-                                saveWorkExp()
-                                isSubmit = true
-                            case .edit: break
-                                //update
-                            }
+                
+                BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                    if isButtonActive == true {
+                        print("inputType", inputType)
+                        switch inputType {
+                        case .add:
+                            print("goes here")
+                            saveWorkExp()
+                            isSubmit = true
+                        case .edit: break
+                            //update
                         }
-                    }
-                    .onChange(of: position) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: company) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: description) { _ in
-                        updateButtonActive()
-                    }
-            }
-                .navigationDestination(isPresented: $isSubmit, destination: {
-                    WorkExperienceView()
-                })
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading){
-                        NavigationLink{
-                            WorkExperienceView()
-                        } label:{
-                            Image(systemName: "chevron.backward")
-                                .frame(height: 17)
-                                .foregroundColor(.black)
-                        }
-                    }
-                    ToolbarItem(placement: .principal){
-                        TitleToolbar(titleToolbar: "\(inputType.rawValue) Work Experience")
                     }
                 }
+                .onChange(of: position) { _ in
+                    updateButtonActive()
+                }
+                .onChange(of: company) { _ in
+                    updateButtonActive()
+                }
+                .onChange(of: description) { _ in
+                    updateButtonActive()
+                }
+            }
+            .navigationDestination(isPresented: $isSubmit, destination: {
+                WorkExperienceView()
+            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading){
+                    NavigationLink{
+                        WorkExperienceView()
+                    } label:{
+                        Image(systemName: "chevron.backward")
+                            .frame(height: 17)
+                            .foregroundColor(.black)
+                    }
+                }
+                ToolbarItem(placement: .principal){
+                    TitleToolbar(titleToolbar: "\(inputType.rawValue) Work Experience")
+                }
+            }
             .sheet(isPresented: $isSuggestion) {
                 SelectItemSheet(
+                    selectItemType: .suggestion,
+                    position: position,
                     text: "Work Experience",
                     isGeneratePhraseButtonEnabled: true,
                     onGeneratePhraseButtonClicked: {
-                    isGenerate = true
-                },
+                        isGenerate = true
+                    },
                     onClosedClicked: {
-                    isSuggestion = false
-                },
-                     onItemClicked: {
-                    
-                })
-                
-            }.navigationBarBackButtonHidden(true)
+                        isSuggestion = false
+                    },
+                    onSuggestionItemClicked: {suggestion in
+                        description += suggestion
+                    },
+                    onBiodataItemClicked: {_ in },
+                    onWorkExperienceItemClicked: {_ in },
+                    onEducationItemClicked: {_ in },
+                    onOrganizationItemClicked: {_ in },
+                    onSkillItemClicked: {_ in },
+                    onAchievementItemClicked: {_ in },
+                    onVolunteerItemClicked: {_ in }
+                )
+                .presentationDetents([.medium, .large])
+            }
+            .navigationBarBackButtonHidden(true)
         }
-    
+        
     }
     
     func updateButtonActive() {
@@ -137,7 +149,7 @@ struct AddWorkExperienceView: View {
         print(newWorkExp)
         
     }
-
+    
 }
 
 //struct AddWorkExp_Previews: PreviewProvider {

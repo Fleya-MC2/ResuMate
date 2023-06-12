@@ -26,10 +26,6 @@ struct AddEducationView: View {
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-
-    
     
     var body: some View {
             if isGenerate{
@@ -44,50 +40,10 @@ struct AddEducationView: View {
                             DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
                         createBigForm(title: "GPA/Score", placeholder: "String", fill: $score, isCheck: $isscore)
+                        
                         AreaForm(title: "Description", fill: $description, isCheck: $isdescription, isSuggestionEnabled: true) {
                             isSuggestion = true
                         }
-                        
-                        VStack(alignment: .leading){
-                            HStack{
-                                Text("Description")
-                                    .blacktext17()
-                                    .fontWeight(.regular)
-                                    .padding(.bottom, 10)
-                                Spacer()
-                                
-                                Button{
-                                    isSuggestion.toggle()
-                                }label: {
-                                    HStack{
-                                        Text("Suggestion")
-                                            .strongblue15()
-                                            .fontWeight(.semibold)
-                                        Image(systemName: "sparkles")
-                                            .foregroundColor(.darkBlue)
-                                    }
-                                    .padding(.bottom, 10)
-                                }
-                                
-                            }
-                            HStack{
-                                TextField("String", text: $description)
-                                    .padding(.leading, 20)
-                                Spacer()
-                                
-                            }.background(Rectangle().fill(.white)
-                                .frame(height: 48)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                )
-                            )
-                            .foregroundColor(.black)
-                            
-                            
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 30)
                         
                         Spacer()
                         
@@ -122,7 +78,11 @@ struct AddEducationView: View {
                         EducationView()
                     })
                 .sheet(isPresented: $isSuggestion) {
+                    let education = EducationModel(major: major, institution: institution, startDate: Helper().dateToString(startDate), endDate: Helper().dateToString(endDate), gpa: "0", description: description)
+                    
                     SelectItemSheet(
+                        selectItemType: .suggestion,
+                        position: major,
                         text: "Education Background",
                         isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
                         isGenerate = true
@@ -130,9 +90,18 @@ struct AddEducationView: View {
                         onClosedClicked: {
                         isSuggestion = false
                     },
-                onItemClicked: {
-                        
-                    })
+                        onSuggestionItemClicked: {suggestion in
+                            description += suggestion
+                        },
+                        onBiodataItemClicked: {_ in },
+                        onWorkExperienceItemClicked: {_ in },
+                        onEducationItemClicked: {_ in },
+                        onOrganizationItemClicked: {_ in },
+                        onSkillItemClicked: {_ in },
+                        onAchievementItemClicked: {_ in },
+                        onVolunteerItemClicked: {_ in }
+                    )
+                    .presentationDetents([.medium, .large])
                     
                 }.navigationBarBackButtonHidden(true)
             }

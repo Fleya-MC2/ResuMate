@@ -88,20 +88,20 @@ struct AddVolunteering: View {
                             
                         }
                         Spacer()
-
-                            BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                                if isButtonActive {
-                                    switch inputType {
-                                    case .add:
-                                        saveVolunteer()
-                                        isSubmit = true
-                                    case .edit: break
-                                        // edit here
-                                    }
-                                    
-                                    
+                        
+                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                            if isButtonActive {
+                                switch inputType {
+                                case .add:
+                                    saveVolunteer()
+                                    isSubmit = true
+                                case .edit: break
+                                    // edit here
                                 }
+                                
+                                
                             }
+                        }
                         .onChange(of: position) { _ in
                             updateButtonActive()
                         }
@@ -128,17 +128,28 @@ struct AddVolunteering: View {
                     }
                 }.sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
+                        selectItemType: .suggestion,
+                        position: position,
                         text: "Volunteering Experience",
                         isGeneratePhraseButtonEnabled: true,
                         onGeneratePhraseButtonClicked: {
-                        isGenerate = true
-                    },
+                            isGenerate = true
+                        },
                         onClosedClicked: {
-                        isSuggestion = false
-                    },
-                         onItemClicked: {
-                        
-                    })
+                            isSuggestion = false
+                        },
+                        onSuggestionItemClicked: {suggestion in
+                            description += suggestion
+                        },
+                        onBiodataItemClicked: {_ in },
+                        onWorkExperienceItemClicked: {_ in },
+                        onEducationItemClicked: {_ in },
+                        onOrganizationItemClicked: {_ in },
+                        onSkillItemClicked: {_ in },
+                        onAchievementItemClicked: {_ in },
+                        onVolunteerItemClicked: {_ in }
+                    )
+                    .presentationDetents([.medium, .large])
                     
                 }.navigationBarBackButtonHidden(true)
             }
@@ -175,5 +186,5 @@ struct AddVolunteering: View {
         print(newVolunteer)
         
     }
-
+    
 }
