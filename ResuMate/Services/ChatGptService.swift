@@ -9,37 +9,57 @@ import Foundation
 
 class ChatGptService {
     private let baseURL = URL(string: "https://api.openai.com/v1/completions")
-    private let maxTokens = 200
+    private let maxTokens = 500
     private let temperature = 0.3
     
-    private func fetchChatGptApi(prompt: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL?.absoluteString ?? "")") else {
-            completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(Config.openAIAuthorizationKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let json: [String: Any] = ["model": "text-davinci-003",
-                                   "prompt": prompt,
-                                   "max_tokens": maxTokens,
-                                   "temperature": temperature]
-        
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        request.httpBody = jsonData
-        
-        APIManager.shared.fetchData(request: request) { result in
+    private func fetchAuthorizationKey(completion: @escaping (String) -> Void) {
+        let manager = CloudKitService()
+        manager.fetchAuthorizationKey(recordName: "AuthorizationKey") { result in
             switch result {
-            case .success(let data):
-                completion(.success(data))
+            case .success(let key):
+                print("successkey", key)
+                completion(key)
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                completion("")
+                print("Failed to fetch key: \(error)")
             }
         }
+    }
+    
+    private func fetchChatGptApi(prompt: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        fetchAuthorizationKey { authorizationKey in
+            guard let url = URL(string: "\(self.baseURL?.absoluteString ?? "")") else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
+                return
+            }
+            
+            print("seautho", authorizationKey)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("Bearer \(authorizationKey)", forHTTPHeaderField: "Authorization")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let json: [String: Any] = ["model": "text-davinci-003",
+                                       "prompt": prompt,
+                                       "max_tokens": self.maxTokens,
+                                       "temperature": self.temperature]
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: json)
+            request.httpBody = jsonData
+            
+            APIManager.shared.fetchData(request: request) { result in
+                switch result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }
+        
+        
     }
     
     func fetchSuggestionByJobTitle(jobTitle: String, completion: @escaping (Result<[SuggestionModel], Error>) -> Void) {

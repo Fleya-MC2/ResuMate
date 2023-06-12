@@ -34,8 +34,6 @@
 		23FCDF762A34F7EC00B62FED /* ResumeCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FCDF752A34F7EC00B62FED /* ResumeCoreDataService.swift */; };
 		6C09FB172A343E4B003E11D5 /* CreateResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C09FB162A343E4B003E11D5 /* CreateResumeView.swift */; };
 		6C2B69E32A339B61006A571C /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B69E22A339B61006A571C /* EdgeBorder.swift */; };
-		6C3AEFCC2A360D11003EB1F3 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3AEFCB2A360D11003EB1F3 /* Config.plist */; };
-		6C3AEFCE2A360EC0003EB1F3 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3AEFCD2A360EC0003EB1F3 /* Config.plist */; };
 		6C3AEFD22A360F2C003EB1F3 /* UploadResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */; };
 		6C3AEFD42A361006003EB1F3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD32A361006003EB1F3 /* ImageButton.swift */; };
 		6C3AEFD62A3616D9003EB1F3 /* UploadBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AEFD52A3616D9003EB1F3 /* UploadBar.swift */; };
@@ -46,6 +44,8 @@
 		6C6985D22A34652C008E0C7D /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6985D12A34652C008E0C7D /* Star.swift */; };
 		6C6985D42A346531008E0C7D /* Bio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6985D32A346531008E0C7D /* Bio.swift */; };
 		6C8847862A34BC5B008FB2BC /* TagCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8847852A34BC5B008FB2BC /* TagCard.swift */; };
+		6C8D04392A36D8F50059D619 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8D04382A36D8F50059D619 /* CloudKitService.swift */; };
+		6C8D043B2A36D9190059D619 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8D043A2A36D9190059D619 /* ApiKey.swift */; };
 		6C8E6DF52A35C79A0048C263 /* DocumentExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8E6DF42A35C79A0048C263 /* DocumentExporter.swift */; };
 		6C8E6DF82A35C81A0048C263 /* PDFDocumentViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8E6DF72A35C81A0048C263 /* PDFDocumentViewer.swift */; };
 		6C8E6DFB2A35C93A0048C263 /* DocumentImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8E6DFA2A35C93A0048C263 /* DocumentImporter.swift */; };
@@ -150,8 +150,6 @@
 		23FCDF752A34F7EC00B62FED /* ResumeCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeCoreDataService.swift; sourceTree = "<group>"; };
 		6C09FB162A343E4B003E11D5 /* CreateResumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateResumeView.swift; sourceTree = "<group>"; };
 		6C2B69E22A339B61006A571C /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
-		6C3AEFCB2A360D11003EB1F3 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
-		6C3AEFCD2A360EC0003EB1F3 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		6C3AEFD12A360F2C003EB1F3 /* UploadResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResume.swift; sourceTree = "<group>"; };
 		6C3AEFD32A361006003EB1F3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		6C3AEFD52A3616D9003EB1F3 /* UploadBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBar.swift; sourceTree = "<group>"; };
@@ -162,6 +160,9 @@
 		6C6985D12A34652C008E0C7D /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		6C6985D32A346531008E0C7D /* Bio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bio.swift; sourceTree = "<group>"; };
 		6C8847852A34BC5B008FB2BC /* TagCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCard.swift; sourceTree = "<group>"; };
+		6C8D04372A36D5D90059D619 /* ResuCreate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ResuCreate.entitlements; sourceTree = "<group>"; };
+		6C8D04382A36D8F50059D619 /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
+		6C8D043A2A36D9190059D619 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		6C8E6DF42A35C79A0048C263 /* DocumentExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExporter.swift; sourceTree = "<group>"; };
 		6C8E6DF72A35C81A0048C263 /* PDFDocumentViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentViewer.swift; sourceTree = "<group>"; };
 		6C8E6DFA2A35C93A0048C263 /* DocumentImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentImporter.swift; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 				6CB48E1B2A360131001A61A6 /* Achievementt.swift */,
 				23FCDF312A322F4900B62FED /* AchievementModel.swift */,
 				6CCD80D42A31A8B200D26574 /* SuggestionModel.swift */,
+				6C8D043A2A36D9190059D619 /* ApiKey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +514,7 @@
 		6CCD80B02A3188C100D26574 = {
 			isa = PBXGroup;
 			children = (
+				6C8D04372A36D5D90059D619 /* ResuCreate.entitlements */,
 				6CCD80BB2A3188C100D26574 /* ResuMate */,
 				6CCD80BA2A3188C100D26574 /* Products */,
 			);
@@ -528,7 +531,6 @@
 		6CCD80BB2A3188C100D26574 /* ResuMate */ = {
 			isa = PBXGroup;
 			children = (
-				6C3AEFCB2A360D11003EB1F3 /* Config.plist */,
 				6C47D8BB2A3484ED002F1689 /* Routes */,
 				6C0AC1732A33A41A009BA336 /* App */,
 				DE52F29A2A33340400061411 /* Components */,
@@ -541,7 +543,6 @@
 				6CCD80C52A3188C200D26574 /* Persistence.swift */,
 				6CCD80C72A3188C200D26574 /* ResuMate.xcdatamodeld */,
 				6CCD80C22A3188C200D26574 /* Preview Content */,
-				6C3AEFCD2A360EC0003EB1F3 /* Config.plist */,
 			);
 			path = ResuMate;
 			sourceTree = "<group>";
@@ -560,6 +561,7 @@
 				23FCDF612A34628C00B62FED /* CoreDataService */,
 				6CCD80D02A318BC900D26574 /* APIManager.swift */,
 				6CCD80D22A318EF100D26574 /* ChatGptService.swift */,
+				6C8D04382A36D8F50059D619 /* CloudKitService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -688,6 +690,7 @@
 				6CCD80B52A3188C100D26574 /* Sources */,
 				6CCD80B62A3188C100D26574 /* Frameworks */,
 				6CCD80B72A3188C100D26574 /* Resources */,
+				6C8D04362A36D1EB0059D619 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -736,14 +739,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C3AEFCE2A360EC0003EB1F3 /* Config.plist in Resources */,
 				6CCD80C42A3188C200D26574 /* Preview Assets.xcassets in Resources */,
-				6C3AEFCC2A360D11003EB1F3 /* Config.plist in Resources */,
 				6CCD80C12A3188C200D26574 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C8D04362A36D1EB0059D619 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Volumes/workspace/repository/ResuMate/Config.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CCD80B52A3188C100D26574 /* Sources */ = {
@@ -849,6 +871,7 @@
 				DE52F2942A3333C600061411 /* PersonalDataView.swift in Sources */,
 				6CB48E172A360078001A61A6 /* AddVolunteering.swift in Sources */,
 				DE52F2912A3333C600061411 /* EducationView.swift in Sources */,
+				6C8D04392A36D8F50059D619 /* CloudKitService.swift in Sources */,
 				DE52F2C22A33340400061411 /* BigButton.swift in Sources */,
 				6C3AEFD62A3616D9003EB1F3 /* UploadBar.swift in Sources */,
 				DE52F2B52A33340400061411 /* GeneratePhrasesToolbar.swift in Sources */,
@@ -879,6 +902,7 @@
 				DE52F2B72A33340400061411 /* InfoCard.swift in Sources */,
 				DE52F2CC2A33349000061411 /* TagModel.swift in Sources */,
 				061338842A34431600658211 /* JustifiedText.swift in Sources */,
+				6C8D043B2A36D9190059D619 /* ApiKey.swift in Sources */,
 				DE52F2C52A33340400061411 /* GeneratePhrasesForm.swift in Sources */,
 				6CCD80C92A3188C200D26574 /* ResuMate.xcdatamodeld in Sources */,
 				6CB48E1E2A360212001A61A6 /* Educationn.swift in Sources */,
@@ -1011,6 +1035,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ResuCreate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ResuMate/Preview Content\"";
@@ -1042,6 +1067,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ResuCreate.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ResuMate/Preview Content\"";
