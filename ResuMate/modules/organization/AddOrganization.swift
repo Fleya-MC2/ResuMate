@@ -43,54 +43,15 @@ struct AddOrganization: View {
                             DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
                             DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
-                        VStack(alignment: .leading){
-                            HStack{
-                                Text("Description")
-                                    .blacktext17()
-                                    .fontWeight(.regular)
-                                    .padding(.bottom, 10)
-                                Spacer()
-                                
-                                Button{
-                                    isSuggestion.toggle()
-                                }label: {
-                                    HStack{
-                                        Text("Suggestion")
-                                            .strongblue15()
-                                            .fontWeight(.semibold)
-                                        Image(systemName: "sparkles")
-                                            .foregroundColor(.darkBlue)
-                                    }
-                                    .padding(.bottom, 10)
-                                }
-                                
-                            }
-                            HStack{
-                                //                                TextEditor(text: $description)
-                                //                                .foregroundColor(Color.gray)
-                                //                                  .font(.custom("HelveticaNeue", size: 13))
-                                //                                  .lineSpacing(5)
-                                //                                  .background(Rectangle().fill(.green))
-                                TextField("String", text: $description)
-                                    .lineLimit(5...10)
-                                    .padding(.leading, 20)
-                                Spacer()
-                                
-                                //                            }
-                            }
-                            .background(Rectangle().fill(.white)
-                                .frame(height: 48)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                )
-                            )
-                            .foregroundColor(.black)
-                            
-                            
+                        
+                        AreaForm(
+                            title: "Description",
+                            fill: $description,
+                            isCheck: $isdescription,
+                            isSuggestionEnabled: true
+                        ) {
+                            isSuggestion = true
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 30)
                     }
                     
                 }
@@ -138,8 +99,30 @@ struct AddOrganization: View {
                 }
             }
             .sheet(isPresented: $isSuggestion) {
-                ModalOrganizationExperience(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                    .presentationDetents([.medium])
+                SelectItemSheet(
+                    selectItemType: .suggestion,
+                    position: position,
+                    text: "Organization Experience",
+                    isGeneratePhraseButtonEnabled: true,
+                    onGeneratePhraseButtonClicked: {
+                    isGenerate = true
+                },
+                    onClosedClicked: {
+                    isSuggestion = false
+                },
+
+                    onSuggestionItemClicked: {suggestion in
+                        description += suggestion
+                    },
+                    onBiodataItemClicked: {_ in },
+                    onWorkExperienceItemClicked: {_ in },
+                    onEducationItemClicked: {_ in },
+                    onOrganizationItemClicked: {_ in },
+                    onSkillItemClicked: {_ in },
+                    onAchievementItemClicked: {_ in },
+                    onVolunteerItemClicked: {_ in }
+                )
+                .presentationDetents([.medium, .large])
                 
             }.navigationBarBackButtonHidden(true)
                 .onAppear{

@@ -35,13 +35,11 @@ struct RQuestionView: View {
                 AddVolunteering(inputType: inputType)
             case "achievement":
                 AddAchievement(inputType: inputType)
-            
             default:
                 LoadingScreen()
             }
             
         }else{
-            
             if isLoading{
                 LoadingScreen()
             }else{
@@ -52,23 +50,26 @@ struct RQuestionView: View {
                         step = 4
                         currentPage = .aQuestion
                     }
-                    InfoCard(info: "RQuestion")
+                    
+                    InfoCard(info: "Share the outcome or results of your actions. Emphasize the impact you made and quantify your achievements whenever possible.")
+                    
+                    
                     StepBar(progress: progress, step: step)
                     
-                    GeneratePhrasesForm(question: "RQuestion", fill: $rqAnswer)
+                    AreaForm(title: "What was the result of your actions?", fill: $rqAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
                     Spacer()
-
-                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                            gpAnswer.rquestion = rqAnswer
-                            isLoading = true
-                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                                withAnimation {
-                                    saveStarData()
-                                    isLoading = false
-                                    isNextPage = true
-                                }
+                    
+                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                        gpAnswer.rquestion = rqAnswer
+                        isLoading = true
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                            withAnimation {
+                                saveStarData()
+                                isLoading = false
+                                isNextPage = true
                             }
                         }
+                    }
                     
                     Spacer().frame(height: 50)
                     
@@ -82,17 +83,11 @@ struct RQuestionView: View {
         let newStar = Star(id: UUID(), squestion: gpAnswer.squestion, tquestion: gpAnswer.tquestion, aquestion: gpAnswer.aquestion, rquestion: gpAnswer.rquestion)
         cardLists.starData.append(newStar)
         print(newStar)
-        
-        // Reset form fields
-        //            squestion = ""
-        //            tquestion = ""
-        //            aquestion = ""
-        //            rquestion = ""
     }
 }
 
-//struct RQuestion_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RQuestion()
-//    }
-//}
+struct RQuestion_Previews: PreviewProvider {
+    static var previews: some View {
+        RQuestionView(inputType: .add, step: .constant(0), progress: .constant(0), currentPage: .constant(.aQuestion))
+    }
+}

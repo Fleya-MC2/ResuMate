@@ -32,56 +32,25 @@ struct AddEducationView: View {
     
     var body: some View {
         if isGenerate{
-            GeneratePhrases(inputType: inputType)
-        } else {
-            VStack{
-                CustomToolbar2(titleToolbar: "\(inputType.rawValue) Education", destination: EducationView())
-                createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
-                createBigForm(title: "Institution", placeholder: "String", fill: $institution, isCheck: $isinstitution)
-                HStack{
-                    DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
-                    DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
-                }
-                createBigForm(title: "GPA/Score", placeholder: "String", fill: $score, isCheck: $isscore)
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("Description")
-                            .blacktext17()
-                            .fontWeight(.regular)
-                            .padding(.bottom, 10)
-                        Spacer()
-                        
-                        Button{
-                            isSuggestion.toggle()
-                        }label: {
-                            HStack{
-                                Text("Suggestion")
-                                    .strongblue15()
-                                    .fontWeight(.semibold)
-                                Image(systemName: "sparkles")
-                                    .foregroundColor(.darkBlue)
-                            }
-                            .padding(.bottom, 10)
+                GeneratePhrases(inputType: inputType)
+            } else {
+                    VStack{
+                        CustomToolbar2(titleToolbar: "\(inputType.rawValue) Education", destination: EducationView())
+                        createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
+                        createBigForm(title: "Institution", placeholder: "String", fill: $institution, isCheck: $isinstitution)
+                        HStack{
+                            DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
+                            DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
-                    }
-                    HStack{
-                        TextField("String", text: $description)
-                            .padding(.leading, 20)
+                        createBigForm(title: "GPA/Score", placeholder: "String", fill: $score, isCheck: $isscore)
+                        
+                        AreaForm(title: "Description", fill: $description, isCheck: $isdescription, isSuggestionEnabled: true) {
+                            isSuggestion = true
+                        }
+                        
                         Spacer()
-                    }.background(Rectangle().fill(.white)
-                        .frame(height: 48)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                        )
-                    )
-                    .foregroundColor(.black)
-                }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 30)
-                
-                Spacer()
-                
+                    
+                        
                 BigButton(text: "Submit", isButtonactive: isButtonActive) {
                     if isButtonActive == true {
                         switch inputType {
@@ -112,25 +81,35 @@ struct AddEducationView: View {
             })
             .sheet(isPresented: $isSuggestion) {
                 SelectItemSheet(
-                    text: "Education Background",
-                    isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
+                       selectItemType: .suggestion,
+                        position: major,
+                        text: "Education Background",
+                        isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
                         isGenerate = true
                     },
                     onClosedClicked: {
                         isSuggestion = false
                     },
-                    onItemClicked: {
-                        
-                    })
-                
-            }.navigationBarBackButtonHidden(true)
-                .onAppear{
+                        onSuggestionItemClicked: {suggestion in
+                            description += suggestion
+                        },
+                        onBiodataItemClicked: {_ in },
+                        onWorkExperienceItemClicked: {_ in },
+                        onEducationItemClicked: {_ in },
+                        onOrganizationItemClicked: {_ in },
+                        onSkillItemClicked: {_ in },
+                        onAchievementItemClicked: {_ in },
+                        onVolunteerItemClicked: {_ in }
+                    )
+                    .presentationDetents([.medium, .large])
+                }.navigationBarBackButtonHidden(true)
+                                .onAppear{
                     if inputType == .edit{
                         print("on appear edit run")
                         filledEducationData()
                     }
                 }
-        }
+            }
     }
     
     func updateButtonActive() {

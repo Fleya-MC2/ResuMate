@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct SuggestionModel: Codable, Hashable {
+struct SuggestionModel: Codable, Hashable, Identifiable {
+    let id = UUID() // Each instance will now have a unique id
     let suggestion: String
 }
 

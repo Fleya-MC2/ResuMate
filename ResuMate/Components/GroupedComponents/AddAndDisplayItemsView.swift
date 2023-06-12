@@ -34,7 +34,7 @@ struct AddAndDisplayItemsView: View {
             switch itemType {
             case .item:
                 ForEach(items.indices, id: \.self) { index in
-                    ItemCard(text: items[index], isShowingThumbsUp: false, isShowingDraggable: true, isShowingClose: true) {
+                    ItemCard(text: items[index], isShowingThumbsUp: false, isShowingClose: true) {
                         print("deleteetetete")
                         onItemRemoved(items[index])
                     }
@@ -101,7 +101,7 @@ struct AddAndDisplayItemsView_Previews: PreviewProvider {
                 isButtonEnabled: true,
                 onClicked: {},
                 items: .constant(["Test", "Test", "frwqklnrqw", "kdwqnklenwq", "fmqwkl"]),
-                itemType: .item,
+                itemType: .tag,
                 onItemRemoved: {_ in }
             )
         }

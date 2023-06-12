@@ -58,14 +58,14 @@ struct PreviewResumeView: View {
                     .padding()
             }
             
-
+            
             BigButton(text: buttonType == .generate ? "Generate Resume" : "Select Template", isButtonactive: true) {
                 isButtonClicked = true
-                    print("[isButtonClicked]", isButtonClicked)
-                    
-                    onCloseClicked()
-                }
-
+                print("[isButtonClicked]", isButtonClicked)
+                
+                onCloseClicked()
+            }
+            
         }
         .onAppear{
             generatePDF()

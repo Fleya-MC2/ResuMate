@@ -30,124 +30,58 @@ struct PersonalDataView: View {
     @State var ismotto: Bool = false
     @State var issummary: Bool = false
     @State var isButtonActive: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            if isGenerate {
-                GeneratePhrasesView(inputType: inputType)
-            }
-            else{
-                VStack{
-                    CustomToolbar2(titleToolbar: "Personal Data", destination: HomeView(selection: 1))
-                    ScrollView{
-                        Spacer().frame(height: 17)
-                        Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
-                            .blacktext17()
-                            .fontWeight(.regular)
-                        Spacer().frame(height: 40)
-                        createBigForm(title: "First Name", placeholder: "String", fill: $firstname, isCheck: $isfirstname)
-                        createBigForm(title: "Last Name", placeholder: "String", fill: $lastname, isCheck: $islastname)
-                        createBigForm(title: "Email", placeholder: "String", fill: $email, isCheck: $isemail)
-                        createBigForm(title: "Phone Number", placeholder: "String", fill: $phone, isCheck: $isphone)
-                        createBigForm(title: "Professional Motto", placeholder: "String", fill: $motto, isCheck: $ismotto)
-                        VStack(alignment: .leading){
-                            HStack{
-                                Text("Professional Summary")
-                                    .blacktext17()
-                                    .fontWeight(.regular)
-                                    .padding(.bottom, 10)
-                                Spacer()
-                                
-                                Button{
-                                    isSuggestion.toggle()
-                                }label: {
-                                    HStack{
-                                        Text("Suggestion")
-                                            .strongblue15()
-                                            .fontWeight(.semibold)
-                                        Image(systemName: "sparkles")
-                                            .foregroundColor(.darkBlue)
-                                    }
-                                    .padding(.bottom, 10)
-                                }
-                                
-                            }
-                            HStack{
-                                TextField("String", text: $summary)
-                                    .padding(.leading, 20)
-                                Spacer()
-                                
-                            }.background(Rectangle().fill(.white)
-                                .frame(height: 48)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                )
-                            )
-                            .foregroundColor(.black)
-                            
-                            
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 30)
-                    }
+        if isGenerate {
+            GeneratePhrasesView(inputType: inputType)
+        } else {
+            VStack{
+                CustomToolbar2(titleToolbar: "Personal Data", destination: HomeView(selection: 1))
+                ScrollView{
+                    Spacer().frame(height: 17)
+                    Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
+                        .blacktext17()
+                        .fontWeight(.regular)
+                    Spacer().frame(height: 40)
+                    createBigForm(title: "First Name", placeholder: "String", fill: $firstname, isCheck: $isfirstname)
+                    createBigForm(title: "Last Name", placeholder: "String", fill: $lastname, isCheck: $islastname)
+                    createBigForm(title: "Email", placeholder: "String", fill: $email, isCheck: $isemail)
+                    createBigForm(title: "Phone Number", placeholder: "String", fill: $phone, isCheck: $isphone)
+                    createBigForm(title: "Professional Motto", placeholder: "String", fill: $motto, isCheck: $ismotto)
                     
-                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                        if isButtonActive {
-                            switch inputType {
-                            case .add:
-                                saveBioData()
-                                cardLists.isPersonalDataFilled = true
-                                isSubmit = true
-                            case .edit: break
-                                //                                 edit here
-                            }
-                            
-                            
+                    AreaForm(
+                        title: "Professional Summary",
+                        fill: $summary,
+                        isCheck: $issummary,
+                        isSuggestionEnabled: false
+                    ) { }
+                }
+                
+                BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                    if isButtonActive {
+                        switch inputType {
+                        case .add:
+                            saveBioData()
+                            cardLists.isPersonalDataFilled = true
+                            isSubmit = true
+                        case .edit: break
+                            // edit here
                         }
-                    }
-                    .onChange(of: firstname) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: lastname) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: email) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: phone) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: motto) { _ in
-                        updateButtonActive()
-                    }
-                    .onChange(of: summary) { _ in
-                        updateButtonActive()
                     }
                 }
+                .onChange(of: firstname) { _ in updateButtonActive() }
+                .onChange(of: lastname) { _ in updateButtonActive() }
+                .onChange(of: email) { _ in updateButtonActive() }
+                .onChange(of: phone) { _ in updateButtonActive() }
+                .onChange(of: motto) { _ in updateButtonActive() }
+                .onChange(of: summary) { _ in updateButtonActive() }
                 .onAppear{
                     filledTextFieldFromViewModel()
                 }
-                .sheet(isPresented: $isSuggestion) {
-                    SelectItemSheet(
-                        text: "Personal Data",
-                        isGeneratePhraseButtonEnabled: true,
-                        onGeneratePhraseButtonClicked: {
-                            cardLists.currentPageView = Page.personalData.rawValue
-                            isSuggestion = false
-                            isGenerate = true
-                        },
-                        onClosedClicked: {
-                            isSuggestion = false
-                        },
-                        onItemClicked: {
-                            
-                        })
-                    .presentationDetents([.medium])
-                }.navigationBarBackButtonHidden(true)
+                .navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $isSubmit, destination: {
+                    HomeView(selection: 1)
+                })
             }
         }
     }

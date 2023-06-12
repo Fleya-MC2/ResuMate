@@ -62,7 +62,7 @@ struct DocumentConverterView: View {
         
         pdfText = docContent.string
         
-//        let words = pdfText.components(separatedBy: .whitespacesAndNewlines)
+        //        let words = pdfText.components(separatedBy: .whitespacesAndNewlines)
         
         
         showContentView = true // Activate the navigation link to show ContentView

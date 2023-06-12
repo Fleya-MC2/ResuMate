@@ -48,6 +48,16 @@ struct AddVolunteering: View {
                                     DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
                                     DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                                 }
+                                
+                                AreaForm(
+                                    title: "Description",
+                                    fill: $description,
+                                    isCheck: $isdescription,
+                                    isSuggestionEnabled: true
+                                ) {
+                                    isSuggestion = true
+                                }
+                                
                                 VStack(alignment: .leading){
                                     HStack{
                                         Text("Description")
@@ -56,18 +66,7 @@ struct AddVolunteering: View {
                                             .padding(.bottom, 10)
                                         Spacer()
                                         
-                                        Button{
-                                            isSuggestion.toggle()
-                                        }label: {
-                                            HStack{
-                                                Text("Suggestion")
-                                                    .strongblue15()
-                                                    .fontWeight(.semibold)
-                                                Image(systemName: "sparkles")
-                                                    .foregroundColor(.darkBlue)
-                                            }
-                                            .padding(.bottom, 10)
-                                        }
+                                        
                                         
                                     }
                                     HStack{
@@ -93,6 +92,7 @@ struct AddVolunteering: View {
                             
                         }
                         Spacer()
+                        
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             if isButtonActive {
                                 switch inputType {
@@ -132,8 +132,29 @@ struct AddVolunteering: View {
                         }
                     }
                 }.sheet(isPresented: $isSuggestion) {
-                    ModalVolunteering(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                        .presentationDetents([.medium])
+                    SelectItemSheet(
+                        selectItemType: .suggestion,
+                        position: position,
+                        text: "Volunteering Experience",
+                        isGeneratePhraseButtonEnabled: true,
+                        onGeneratePhraseButtonClicked: {
+                            isGenerate = true
+                        },
+                        onClosedClicked: {
+                            isSuggestion = false
+                        },
+                        onSuggestionItemClicked: {suggestion in
+                            description += suggestion
+                        },
+                        onBiodataItemClicked: {_ in },
+                        onWorkExperienceItemClicked: {_ in },
+                        onEducationItemClicked: {_ in },
+                        onOrganizationItemClicked: {_ in },
+                        onSkillItemClicked: {_ in },
+                        onAchievementItemClicked: {_ in },
+                        onVolunteerItemClicked: {_ in }
+                    )
+                    .presentationDetents([.medium, .large])
                     
                 }.navigationBarBackButtonHidden(true)
                     .onAppear{

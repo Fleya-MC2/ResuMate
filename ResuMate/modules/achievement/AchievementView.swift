@@ -14,7 +14,7 @@ struct AchievementView: View {
     
     @State var isButtonActive: Bool = false
     @State var isSubmit: Bool = false
-
+    
     var body: some View {
                 VStack{
                     CustomToolbar(titleToolbar: "Achievement", destinationL: HomeView(selection: 1), destinationT: AddAchievement(inputType: .add))

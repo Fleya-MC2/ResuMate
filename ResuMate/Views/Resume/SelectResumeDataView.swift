@@ -27,22 +27,22 @@ struct SelectResumeDataView: View {
             CustomToolbar2(titleToolbar: "Select your data", destination: CreateResumeView())
             
             ScrollView {
-            VStack{
-                Text("Job Position").blacktext17()
-                
-                ZStack {
-                    BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
+                VStack{
+                    Text("Job Position").blacktext17()
                     
-                    HStack {
-                        Spacer()
-                        Image(systemName: "suitcase.fill")
-                            .foregroundColor(.darkGray)
+                    ZStack {
+                        BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
+                        
+                        HStack {
+                            Spacer()
+                            Image(systemName: "suitcase.fill")
+                                .foregroundColor(.darkGray)
+                        }
+                        .padding(.trailing, 24)
                     }
-                    .padding(.trailing, 24)
-                }
-                .padding(.bottom)
-                
-
+                    .padding(.bottom)
+                    
+                    
                     VStack {
                         Spacer()
                         
@@ -156,121 +156,156 @@ struct SelectResumeDataView: View {
                             }
                         )
                         .padding(.vertical)
-
                         
-                        BigButton(text: "Preview Resume", isButtonactive: true) {
-                            isPreviewClicked = true
-                        }
+                        
+
                     }
                     .padding()
                     .background(Color.mediumGray)
                 }
             }
+            
+            BigButton(text: "Preview Resume", isButtonactive: true) {
+                isPreviewClicked = true
+            }
         }
         .sheet(isPresented: $isAddWorkExperienceClicked) {
             SelectItemSheet(
+                selectItemType: .resumeItem,
+                resumeItemType: .workExperience,
                 text: "Work Experience",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddWorkExperienceClicked = false
                 },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isAddEducationClicked) {
             SelectItemSheet(
+                selectItemType: .resumeItem,
+                resumeItemType: .education,
                 text: "Work Experience",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddEducationClicked = false
                 },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isAddOrganizationClicked) {
             SelectItemSheet(
+                selectItemType: .resumeItem,
+                resumeItemType: .organization,
                 text: "Organization Experience",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddOrganizationClicked = false
                 },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isAddVolunteeringClicked) {
             SelectItemSheet(
+                selectItemType: .resumeItem,
+                resumeItemType: .volunteer,
                 text: "Volunteering",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddVolunteeringClicked = false
                 },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isAddAchievementClicked) {
             SelectItemSheet(
+                selectItemType: .resumeItem,
+                resumeItemType: .achievement,
                 text: "Achievement",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddAchievementClicked = false
                 },
-                onItemClicked: {
-                    
-                }
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
             )
-                .presentationDetents([.medium])
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isAddSkillClicked) {
             SelectItemSheet(
-                text: "Achievement",
+                selectItemType: .resumeItem,
+                resumeItemType: .skill,
+                text: "Skill",
                 isGeneratePhraseButtonEnabled: false,
                 onGeneratePhraseButtonClicked: {},
                 onClosedClicked: {
                     isAddSkillClicked = false
                 },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
-        }
-        .sheet(isPresented: $isAddAchievementClicked) {
-            SelectItemSheet(
-                text: "Achievement",
-                isGeneratePhraseButtonEnabled: false,
-                onGeneratePhraseButtonClicked: {},
-                onClosedClicked: {
-                    isAddSkillClicked = false
-                },
-                onItemClicked: {
-                    
-                })
-                .presentationDetents([.medium])
+                onSuggestionItemClicked: {_ in },
+                onBiodataItemClicked: {_ in },
+                onWorkExperienceItemClicked: {_ in },
+                onEducationItemClicked: {_ in },
+                onOrganizationItemClicked: {_ in },
+                onSkillItemClicked: {_ in },
+                onAchievementItemClicked: {_ in },
+                onVolunteerItemClicked: {_ in }
+            )
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isPreviewClicked) {
             PreviewResumeView(buttonType: .generate, isButtonClicked: $isGenerateResumeButtonClicked, onCloseClicked: {
                 isPreviewClicked = false
             })
-                .presentationDragIndicator(Visibility.visible)
-                
+            .presentationDragIndicator(Visibility.visible)
+            
         }
         .navigationDestination(isPresented: $isGenerateResumeButtonClicked, destination: {
             SaveResumeView()
         })
         .navigationBarBackButtonHidden(true)
-
     }
 }
 

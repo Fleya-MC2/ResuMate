@@ -21,6 +21,7 @@ struct ResuMateApp: App {
                 .environmentObject(cardLists)
                 .environmentObject(gpAnswer)
                 .environmentObject(viewModel)
+                .preferredColorScheme(.light)
         }
     }
 }

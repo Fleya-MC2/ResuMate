@@ -11,7 +11,6 @@ struct ItemCard: View {
     var text: String
     
     var isShowingThumbsUp: Bool
-    var isShowingDraggable: Bool
     var isShowingClose: Bool
     
     var onClosed: () -> Void
@@ -25,8 +24,6 @@ struct ItemCard: View {
                     .padding(16)
                     .background(.white)
                     .cornerRadius(8)
-                
-                
                 
                 if isShowingThumbsUp {
                         HStack {
@@ -63,7 +60,7 @@ struct ItemCard: View {
 
 struct ResumeCard_Previews: PreviewProvider {
     static var previews: some View {
-        ItemCard(text: "Management - UPN ‘Veteran’ Yogyakarta dqwdeqw", isShowingThumbsUp: false, isShowingDraggable: true, isShowingClose: true) {
+        ItemCard(text: "Management - UPN ‘Veteran’ Yogyakarta dqwdeqw", isShowingThumbsUp: false, isShowingClose: true) {
             
         }
     }
