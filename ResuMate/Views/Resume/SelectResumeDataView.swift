@@ -25,7 +25,7 @@ struct SelectResumeDataView: View {
     @State private var itemsWorkExperience: [String] = []
     @State private var items: [String] = []
     
-    @State private var isDataEmpty: Bool = true
+    @State private var isDataEmpty: Bool = false
     
     var body: some View {
         ZStack {
