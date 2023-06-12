@@ -132,15 +132,16 @@ struct PersonalDataView: View {
                 }.sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
                         text: "Personal Data",
-                        isClosedButtonClicked: {
-                            isSuggestion = false
-                        },
                         isGeneratePhraseButtonEnabled: true,
-                        isGeneratePhraseButtonClicked: {
+                        onGeneratePhraseButtonClicked: {
                             cardLists.currentPageView = Page.personalData.rawValue
                             isSuggestion = false
                             isGenerate = true
-                        }, onItemClicked: {
+                        },
+                        onClosedClicked: {
+                            isSuggestion = false
+                        },
+                        onItemClicked: {
                             
                         })
                         .presentationDetents([.medium])

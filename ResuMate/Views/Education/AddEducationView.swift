@@ -118,13 +118,17 @@ struct AddEducationView: View {
                         EducationView()
                     })
                 .sheet(isPresented: $isSuggestion) {
-                    SelectItemSheet(text: "Education Background", isClosedButtonClicked: {
-                        isSuggestion = false
-                    }, isGeneratePhraseButtonEnabled: true) {
+                    SelectItemSheet(
+                        text: "Education Background",
+                        isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
                         isGenerate = true
-                    } onItemClicked: {
+                    },
+                        onClosedClicked: {
+                        isSuggestion = false
+                    },
+                onItemClicked: {
                         
-                    }
+                    })
                     
                 }.navigationBarBackButtonHidden(true)
             }

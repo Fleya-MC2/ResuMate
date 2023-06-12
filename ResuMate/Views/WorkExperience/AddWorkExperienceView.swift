@@ -126,13 +126,18 @@ struct AddWorkExperienceView: View {
                     }
                 }
             .sheet(isPresented: $isSuggestion) {
-                SelectItemSheet(text: "Work Experience", isClosedButtonClicked: {
-                    isSuggestion = false
-                }, isGeneratePhraseButtonEnabled: true) {
+                SelectItemSheet(
+                    text: "Work Experience",
+                    isGeneratePhraseButtonEnabled: true,
+                    onGeneratePhraseButtonClicked: {
                     isGenerate = true
-                } onItemClicked: {
+                },
+                    onClosedClicked: {
+                    isSuggestion = false
+                },
+                     onItemClicked: {
                     
-                }
+                })
                 
             }.navigationBarBackButtonHidden(true)
         }

@@ -170,11 +170,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddWorkExperienceClicked) {
             SelectItemSheet(
                 text: "Work Experience",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddWorkExperienceClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
@@ -183,11 +183,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddEducationClicked) {
             SelectItemSheet(
                 text: "Work Experience",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddEducationClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
@@ -196,11 +196,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddOrganizationClicked) {
             SelectItemSheet(
                 text: "Organization Experience",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddOrganizationClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
@@ -209,11 +209,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddVolunteeringClicked) {
             SelectItemSheet(
                 text: "Volunteering",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddVolunteeringClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
@@ -222,11 +222,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddAchievementClicked) {
             SelectItemSheet(
                 text: "Achievement",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddAchievementClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 }
@@ -236,11 +236,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddSkillClicked) {
             SelectItemSheet(
                 text: "Achievement",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddSkillClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
@@ -249,11 +249,11 @@ struct SelectResumeDataView: View {
         .sheet(isPresented: $isAddAchievementClicked) {
             SelectItemSheet(
                 text: "Achievement",
-                isClosedButtonClicked: {
+                isGeneratePhraseButtonEnabled: false,
+                onGeneratePhraseButtonClicked: {},
+                onClosedClicked: {
                     isAddSkillClicked = false
                 },
-                isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {},
                 onItemClicked: {
                     
                 })
