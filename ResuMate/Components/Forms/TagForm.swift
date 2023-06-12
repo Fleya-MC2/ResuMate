@@ -16,7 +16,7 @@ struct TagForm: View {
             Spacer()
             VStack(alignment: .leading){
                 HStack{
-                    Text("Search Skill")
+                    Text("Skill")
                         .blacktext17()
                         .fontWeight(.regular)
                         .padding(.bottom, 10)
@@ -24,8 +24,13 @@ struct TagForm: View {
                 }
                 Spacer().frame(height: 5)
                 HStack{
-                    TextField("placeholder", text: $newTag)
+                    TextField("Input Skill", text: $newTag)
                         .padding(.leading, 20)
+                        .submitLabel(.return)
+                        .onSubmit {
+                            tags.append(newTag)
+                            newTag = ""
+                        }
                     
                     
                 }.background(Rectangle().fill(.white)
@@ -36,7 +41,6 @@ struct TagForm: View {
                     )
                 )
                 .foregroundColor(.black)
-    //            BasedForm(placeholder: placeholder, fill: $fill, isCheck: $isCheck)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 30)

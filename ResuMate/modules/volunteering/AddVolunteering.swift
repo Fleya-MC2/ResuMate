@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddVolunteering: View {
+    var inputType: InputType
+    
     @EnvironmentObject var cardLists: CardLists
     @State var position: String = ""
     @State var volunteer: String = ""
@@ -31,7 +33,7 @@ struct AddVolunteering: View {
             Volunteering()
         }else{
             if isGenerate {
-                GeneratePhrases()
+                GeneratePhrases(inputType: inputType)
             }
             else{
                 NavigationStack{
@@ -94,21 +96,25 @@ struct AddVolunteering: View {
 
                             BigButton(text: "Submit", isButtonactive: isButtonActive) {
                                 if isButtonActive {
-                                    saveVolunteer()
-                                    isSubmit = true
+                                    switch inputType {
+                                    case .add:
+                                        saveVolunteer()
+                                        isSubmit = true
+                                    case .edit: break
+                                        // edit here
+                                    }
+                                    
+                                    
                                 }
                             }
-                        .onReceive(timer) { time in
-                            
-                            if position != "" &&
-                                volunteer != "" &&
-                                description != "" {
-                                isButtonActive = true
-                                print("%%%\(isButtonActive)")
-                                
-                            }else{
-                                isButtonActive = false
-                            }
+                        .onChange(of: position) { _ in
+                            updateButtonActive()
+                        }
+                        .onChange(of: volunteer) { _ in
+                            updateButtonActive()
+                        }
+                        .onChange(of: description) { _ in
+                            updateButtonActive()
                         }
                     }
                     .toolbar {
@@ -122,7 +128,7 @@ struct AddVolunteering: View {
                             }
                         }
                         ToolbarItem(placement: .principal){
-                            TitleToolbar(titleToolbar: "Add Volunteering Experience")
+                            TitleToolbar(titleToolbar: "\(inputType.rawValue) Volunteering Experience")
                         }
                     }
                 }.sheet(isPresented: $isSuggestion) {
@@ -133,6 +139,19 @@ struct AddVolunteering: View {
             }
         }
     }
+    
+    func updateButtonActive() {
+        if position != "" &&
+            volunteer != "" &&
+            description != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
+        }
+    }
+    
     func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
         BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
             .onChange(of: fill.wrappedValue, perform: { _ in

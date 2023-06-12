@@ -25,7 +25,7 @@ struct SQuestionView: View {
                     currentPage = .generatePhrases
                 }
                 InfoCard(info: "Squestion")
-                ProgressBar(progress: progress, step: step)
+                StepBar(progress: progress, step: step)
                 
                 GeneratePhrasesForm(question: "String", fill: $sqAnswer)
                    

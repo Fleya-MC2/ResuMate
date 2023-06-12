@@ -48,6 +48,6 @@ struct CustomToolbar: View {
 
 struct CustomToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomToolbar(titleToolbar: "String", destinationL: HomeView(selection: 1), destinationT: AddEducationView())
+        CustomToolbar(titleToolbar: "String", destinationL: HomeView(selection: 1), destinationT: AddEducationView(inputType: .add))
     }
 }

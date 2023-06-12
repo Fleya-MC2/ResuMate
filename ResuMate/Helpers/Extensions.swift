@@ -37,8 +37,15 @@ extension View {
         self.font(.system(size: 15)).foregroundColor(.white)
     }
     
+    func darkGray15() -> some View {
+        self.font(.system(size: 15)).foregroundColor(.darkGray)
+    }
     func darkGray17() -> some View {
         self.font(.system(size: 17)).foregroundColor(.darkGray)
+    }
+    
+    func lightGreen15() -> some View {
+        self.font(.system(size: 15)).foregroundColor(.lightGreen)
     }
     
     func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
@@ -50,6 +57,7 @@ extension Color {
     static let navy = Color("Navy")
     static let light = Color("light")
     static let lightBlue = Color("LightBlue")
+    static let mediumBlue = Color("MediumBlue")
     static let darkBlue = Color("DarkBlue")
     static let lightGray = Color("LightGray")
     static let mediumGray = Color("MediumGray")
@@ -58,4 +66,9 @@ extension Color {
     static let lightGreen = Color("LightGreen")
     static let lightYellow = Color("LightYellow")
     static let modal = Color("Modal")
+}
+
+enum InputType: String {
+    case add = "Add"
+    case edit = "Edit"
 }

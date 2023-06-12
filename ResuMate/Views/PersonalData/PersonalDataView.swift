@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PersonalDataView: View {
+    var inputType: InputType
+    
     //    @Binding var navigationItemPath: [NavigationItem]
     @EnvironmentObject var cardLists: CardLists
     @State var firstname: String = ""
@@ -37,7 +39,7 @@ struct PersonalDataView: View {
             DataView()
         }else{
             if isGenerate {
-                GeneratePhrasesView()
+                GeneratePhrasesView(inputType: inputType)
             }
             else{
                 VStack{
@@ -95,26 +97,38 @@ struct PersonalDataView: View {
                         .padding(.bottom, 30)
                     }
  
-                        BigButton(text: "Submit", isButtonactive: true) {
-                            saveBioData()
-                            cardLists.isPersonalDataFilled = true
-                            isSubmit = true
-                        }
-                                            .onReceive(timer) { time in
-                        
-                        if firstname != "" &&
-                            lastname != "" &&
-                            email != "" &&
-                            phone != "" &&
-                            motto != "" &&
-                            summary != "" {
-                            isButtonActive = true
-                            print("%%%\(isButtonActive)")
+                    BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                        if isButtonActive {
+                            switch inputType {
+                            case .add:
+                                saveBioData()
+                                cardLists.isPersonalDataFilled = true
+                                isSubmit = true
+                            case .edit: break
+//                                 edit here
+                            }
                             
-                        }else{
-                            isButtonActive = false
+                            
                         }
-                    }
+                        }
+                                            .onChange(of: firstname) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: lastname) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: email) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: phone) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: motto) { _ in
+                                                updateButtonActive()
+                                            }
+                                            .onChange(of: summary) { _ in
+                                                updateButtonActive()
+                                            }
                 }.sheet(isPresented: $isSuggestion) {
                     SelectItemSheet(
                         text: "Personal Data",
@@ -133,6 +147,22 @@ struct PersonalDataView: View {
             }
         }
     }
+    
+    func updateButtonActive() {
+        if firstname != "" &&
+            lastname != "" &&
+            email != "" &&
+            phone != "" &&
+            motto != "" &&
+            summary != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
+        }
+    }
+    
     private func updateFilledStatus() {
         isfirstname = !firstname.isEmpty
         islastname = !lastname.isEmpty
@@ -148,8 +178,8 @@ struct PersonalDataView: View {
             })
     }
      func saveBioData() {
-            let newBio = Bio(id: UUID(), firstname: firstname, lastname: lastname, email: email, phone: phone, motto: motto, summary: summary)
-        cardLists.bioData.append(newBio)
+            let newBio = Bio(firstname: firstname, lastname: lastname, email: email, phone: phone, motto: motto, summary: summary)
+        cardLists.bioData = newBio
          print(newBio)
             // Reset form fields
 //            firstname = ""
@@ -163,6 +193,6 @@ struct PersonalDataView: View {
 
 struct PersonalData_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalDataView()
+        PersonalDataView(inputType: .add)
     }
 }

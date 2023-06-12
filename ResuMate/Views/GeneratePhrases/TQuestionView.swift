@@ -23,7 +23,7 @@ struct TQuestionView: View {
                     currentPage = .sQuestion
                 }
                 InfoCard(info: "TQuestion")
-                ProgressBar(progress: progress, step: step)
+                StepBar(progress: progress, step: step)
                 GeneratePhrasesForm(question: "TQuestion", fill: $tqAnswer)
                 Spacer()
  

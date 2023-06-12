@@ -76,7 +76,7 @@ struct SaveResumeView: View {
     
     func createPDF() -> Data {
         let hostingController = UIHostingController(
-            rootView: FirstResume(bioTextHeight: $bioTextHeight)
+            rootView: FirstResume(bioTextHeight: .constant(0), biodata: BiodataModel(firstName: "Muhammad Adha Fajri", lastName: "Jonison", phoneNumber: "+6289676164742", email: "madhafajrij@gmail.com", professionalMotto: "learn by doing gitu lah pokoknyaa", professionalSummary: "learn by teaching gitu lah pokoknya"), workExperiences: [WorkExperienceModel(position: "Mobile Developer", company: "MHC Asia Group", startDate: "1 Dec 2020", endDate: "5 June 2023", description: "Work")], educations: [EducationModel(major: "Teknik Informatika", institution: "Politeknik Caltex Riau", startDate: "1 Dec 2020", endDate: "1 Dec 2023", gpa: "3.59", description: "Learn by teaching doing teaching")], organizations: [OrganizationModel(role: "Documentation leader", organization: "ITSA", startDate: "1 Dec 202", endDate: "2 Dec 2021", description: "Worked on a project")], achievements: [AchievementModel(title: "2nd place Animation KMIPN", year: "2018")], skills: ["React JS", "Node JS", "Swift", "Swift UI", "UIKIT"])
                 .scaleEffect(1.35)
         )
         
