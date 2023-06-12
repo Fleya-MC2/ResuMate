@@ -14,35 +14,37 @@ struct TQuestionView: View {
     @Binding var currentPage: GeneratePhrasesPage
     @EnvironmentObject var gpAnswer: GeneratePhrasesAnswer
     @State var isButtonActive: Bool = true
-
+    
     var body: some View {
-            VStack{
-                GeneratePhrasesToolbar(titleToolbar: "Auto Generate Phrases") {
-                    progress = progress - 0.20
-                    step = 2
-                    currentPage = .sQuestion
-                }
-                InfoCard(info: "TQuestion")
-                StepBar(progress: progress, step: step)
-                GeneratePhrasesForm(question: "TQuestion", fill: $tqAnswer)
-                Spacer()
- 
-                    BigButton(text: "Next", isButtonactive: true) {
-                        gpAnswer.tquestion = tqAnswer
-                             if progress == 1{
-                                 progress = 1
-                                 
-                             }
-                             else{
-                                 progress = progress + 0.20
-                                 currentPage = .aQuestion
-                                 step = 4
-                             }
-                    }
-                
-                
-                Spacer().frame(height: 50)
+        VStack{
+            GeneratePhrasesToolbar(titleToolbar: "Auto Generate Phrases") {
+                progress = progress - 0.20
+                step = 2
+                currentPage = .sQuestion
             }
+
+            InfoCard(info: "Explain the specific task or objective you needed to accomplish in that situation. Clearly define what you were responsible for.")
+            
+            StepBar(progress: progress, step: step)
+            
+            AreaForm(title: "Whats your responsibilty in that challenge?", fill: $tqAnswer, isCheck: .constant(false), isSuggestionEnabled: false) {}
+            
+            Spacer()
+            
+            BigButton(text: "Next", isButtonactive: true) {
+                gpAnswer.tquestion = tqAnswer
+                if progress == 1{
+                    progress = 1
+                    
+                }
+                else{
+                    progress = progress + 0.20
+                    currentPage = .aQuestion
+                    step = 4
+                }
+            }
+            Spacer().frame(height: 50)
+        }
         .navigationBarBackButtonHidden(true)
     }
 }

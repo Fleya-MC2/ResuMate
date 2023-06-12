@@ -66,7 +66,6 @@ struct HomeView: View {
                     .tabItem {
 
                     VStack{
-//                        Divider()
                         Image(systemName: "doc.fill.badge.plus")
                         Text("Resume")
                     }

@@ -52,10 +52,10 @@ struct SelectItemSheet: View {
                             ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingDraggable: false, isShowingClose: false) {}
                                 .padding(.horizontal)
                         }
-
-                        
+                    
                     }
                 }
+                
                 Spacer()
                 
                 if isGeneratePhraseButtonEnabled {

@@ -27,8 +27,7 @@ struct AddWorkExperienceView: View {
     var body: some View {
         if isGenerate {
             GeneratePhrasesView(inputType: inputType)
-        }
-        else{
+        } else {
                 VStack{
                 ScrollView{
                     VStack{
@@ -40,46 +39,10 @@ struct AddWorkExperienceView: View {
                             DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
                             DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
-                        VStack(alignment: .leading){
-                            HStack{
-                                Text("Description")
-                                    .blacktext17()
-                                    .fontWeight(.regular)
-                                    .padding(.bottom, 10)
-                                Spacer()
-                                
-                                Button{
-                                    isSuggestion.toggle()
-                                }label: {
-                                    HStack{
-                                        Text("Suggestion")
-                                            .strongblue15()
-                                            .fontWeight(.semibold)
-                                        Image(systemName: "sparkles")
-                                            .foregroundColor(.darkBlue)
-                                    }
-                                    .padding(.bottom, 10)
-                                }
-                                
-                            }
-                            HStack{
-                                TextField("String", text: $description)
-                                    .padding(.leading, 20)
-                                Spacer()
-                                
-                            }.background(Rectangle().fill(.white)
-                                .frame(height: 48)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                )
-                            )
-                            .foregroundColor(.black)
-                            
-                            
+                        
+                        AreaForm(title: "Description", fill: $description, isCheck: $isdescription, isSuggestionEnabled: true) {
+                            isSuggestion = true
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 30)
                     }
                     
                 }

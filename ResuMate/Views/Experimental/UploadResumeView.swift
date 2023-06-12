@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UploadResumeView: View {
+    @State private var textField = ""
+    
     //set text
     let text = """
     Afif Maruf Content Writer
@@ -39,20 +41,9 @@ struct UploadResumeView: View {
     
     var body: some View {
         VStack{
-            Text("Biodata: \(viewModel.biodata?.professionalSummary ?? "")")
-            Text("Education: \(viewModel.education.first?.institution ?? "")")
-            
-            Button("Fetch Resume Data"){
-                viewModel.fetchDataFromResume(resumeText: text)
-            }
-            
-            if viewModel.isLoading {
-                ProgressView()
-            }
-            
-            if viewModel.isError{
-                Text(viewModel.error ?? "Error cuy")
-            }
+            TextField("test", text: $textField)
+            TextEditor(text: $textField)
+                .padding()
         }
     }
 }

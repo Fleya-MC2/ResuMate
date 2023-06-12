@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "iPhone 14 - 19.png",
+      "filename" : "Loading.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iPhone 14 - 20.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iPhone 14 - 21.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

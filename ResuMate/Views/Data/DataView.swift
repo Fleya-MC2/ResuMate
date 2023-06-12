@@ -42,15 +42,7 @@ struct DataView: View {
                     Title(title: "Your Data")
                     Subtitle(subtitle: "Ceklist all this section below for create resume now!")
                 }.frame(width: 300)
-                //                ForEach(cardLists.bioData) { bio in
-                //                                VStack(alignment: .leading) {
-                //                                    Text("Name: \(bio.firstname) \(bio.lastname)").foregroundColor(.black)
-                //                                    Text("Email: \(bio.email)").foregroundColor(.black)
-                //                                    Text("Phone: \(bio.phone)").foregroundColor(.black)
-                //                                    Text("Motto: \(bio.motto)").foregroundColor(.black)
-                //                                    Text("Summary: \(bio.summary)").foregroundColor(.black)
-                //                                }
-                //                }
+                
                 Spacer().frame(height: 55)
                 
                 Spacer().frame(height: 20)
@@ -99,7 +91,6 @@ struct DataView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        //        }
         
     }
 }

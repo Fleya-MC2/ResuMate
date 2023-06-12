@@ -17,7 +17,7 @@ struct EmptyResumeDataView: View {
             Text("Upss we can’t find your data, please full fill")
                 .blacktext17()
                 .fontWeight(.medium)
-                
+            
             HStack{
                 Text("your data first to make resume easier")
                     .blacktext17()

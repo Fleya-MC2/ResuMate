@@ -27,22 +27,22 @@ struct SelectResumeDataView: View {
             CustomToolbar2(titleToolbar: "Select your data", destination: CreateResumeView())
             
             ScrollView {
-            VStack{
-                Text("Job Position").blacktext17()
-                
-                ZStack {
-                    BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
+                VStack{
+                    Text("Job Position").blacktext17()
                     
-                    HStack {
-                        Spacer()
-                        Image(systemName: "suitcase.fill")
-                            .foregroundColor(.darkGray)
+                    ZStack {
+                        BaseForm(placeholder: "Write your position you want  to apply", fill: $jobPosition).padding()
+                        
+                        HStack {
+                            Spacer()
+                            Image(systemName: "suitcase.fill")
+                                .foregroundColor(.darkGray)
+                        }
+                        .padding(.trailing, 24)
                     }
-                    .padding(.trailing, 24)
-                }
-                .padding(.bottom)
-                
-
+                    .padding(.bottom)
+                    
+                    
                     VStack {
                         Spacer()
                         
@@ -156,15 +156,17 @@ struct SelectResumeDataView: View {
                             }
                         )
                         .padding(.vertical)
-
                         
-                        BigButton(text: "Preview Resume", isButtonactive: true) {
-                            isPreviewClicked = true
-                        }
+                        
+
                     }
                     .padding()
                     .background(Color.mediumGray)
                 }
+            }
+            
+            BigButton(text: "Preview Resume", isButtonactive: true) {
+                isPreviewClicked = true
             }
         }
         .sheet(isPresented: $isAddWorkExperienceClicked) {
@@ -178,7 +180,7 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddEducationClicked) {
             SelectItemSheet(
@@ -191,7 +193,7 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddOrganizationClicked) {
             SelectItemSheet(
@@ -204,7 +206,7 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddVolunteeringClicked) {
             SelectItemSheet(
@@ -217,7 +219,7 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddAchievementClicked) {
             SelectItemSheet(
@@ -231,7 +233,7 @@ struct SelectResumeDataView: View {
                     
                 }
             )
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddSkillClicked) {
             SelectItemSheet(
@@ -244,7 +246,7 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddAchievementClicked) {
             SelectItemSheet(
@@ -257,20 +259,19 @@ struct SelectResumeDataView: View {
                 onItemClicked: {
                     
                 })
-                .presentationDetents([.medium])
+            .presentationDetents([.medium])
         }
         .sheet(isPresented: $isPreviewClicked) {
             PreviewResumeView(buttonType: .generate, isButtonClicked: $isGenerateResumeButtonClicked, onCloseClicked: {
                 isPreviewClicked = false
             })
-                .presentationDragIndicator(Visibility.visible)
-                
+            .presentationDragIndicator(Visibility.visible)
+            
         }
         .navigationDestination(isPresented: $isGenerateResumeButtonClicked, destination: {
             SaveResumeView()
         })
         .navigationBarBackButtonHidden(true)
-
     }
 }
 

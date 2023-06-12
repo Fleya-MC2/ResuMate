@@ -44,6 +44,10 @@ struct AddEducationView: View {
                             DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                         }
                         createBigForm(title: "GPA/Score", placeholder: "String", fill: $score, isCheck: $isscore)
+                        AreaForm(title: "Description", fill: $description, isCheck: $isdescription, isSuggestionEnabled: true) {
+                            isSuggestion = true
+                        }
+                        
                         VStack(alignment: .leading){
                             HStack{
                                 Text("Description")

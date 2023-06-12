@@ -101,7 +101,7 @@ struct AddAndDisplayItemsView_Previews: PreviewProvider {
                 isButtonEnabled: true,
                 onClicked: {},
                 items: .constant(["Test", "Test", "frwqklnrqw", "kdwqnklenwq", "fmqwkl"]),
-                itemType: .item,
+                itemType: .tag,
                 onItemRemoved: {_ in }
             )
         }

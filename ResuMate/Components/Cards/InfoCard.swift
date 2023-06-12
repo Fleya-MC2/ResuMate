@@ -10,8 +10,6 @@ import SwiftUI
 struct InfoCard: View {
     @State var info: String
     var body: some View {
-        VStack{
-            Spacer().frame(height: 16)
             HStack(alignment: .top){
                 Image(systemName: "info.circle.fill")
                     .foregroundColor(.darkBlue)
@@ -19,12 +17,12 @@ struct InfoCard: View {
                     .foregroundColor(.darkBlue)
                     .font(.system(size: 16))
                     .frame(width: 320)
+                    .bold(true)
             }
-            Spacer()
-        }
-        .frame(width: 368, height: 98)
-        .background(Color.mediumDarkGray.opacity(0.4))
-        .cornerRadius(10)
+            .padding()
+            .background(Color.mediumDarkGray.opacity(0.4))
+            .cornerRadius(10)
+            .padding()
     }
 }
 

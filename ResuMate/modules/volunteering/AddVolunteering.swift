@@ -23,10 +23,6 @@ struct AddVolunteering: View {
     @State var isGenerate: Bool = false
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-
-
     
     var body: some View {
         if isSubmit{
@@ -48,6 +44,16 @@ struct AddVolunteering: View {
                                     DateForm(title: "Start Date", placeholder: "Date", fill: $startDate)
                                     DateForm(title: "End Date", placeholder: "Date", fill: $endDate)
                                 }
+                                
+                                AreaForm(
+                                    title: "Description",
+                                    fill: $description,
+                                    isCheck: $isdescription,
+                                    isSuggestionEnabled: true
+                                ) {
+                                    isSuggestion = true
+                                }
+                                
                                 VStack(alignment: .leading){
                                     HStack{
                                         Text("Description")
@@ -56,18 +62,7 @@ struct AddVolunteering: View {
                                             .padding(.bottom, 10)
                                         Spacer()
                                         
-                                        Button{
-                                            isSuggestion.toggle()
-                                        }label: {
-                                            HStack{
-                                                Text("Suggestion")
-                                                    .strongblue15()
-                                                    .fontWeight(.semibold)
-                                                Image(systemName: "sparkles")
-                                                    .foregroundColor(.darkBlue)
-                                            }
-                                            .padding(.bottom, 10)
-                                        }
+                                        
                                         
                                     }
                                     HStack{
@@ -132,8 +127,18 @@ struct AddVolunteering: View {
                         }
                     }
                 }.sheet(isPresented: $isSuggestion) {
-                    ModalVolunteering(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                        .presentationDetents([.medium])
+                    SelectItemSheet(
+                        text: "Volunteering Experience",
+                        isGeneratePhraseButtonEnabled: true,
+                        onGeneratePhraseButtonClicked: {
+                        isGenerate = true
+                    },
+                        onClosedClicked: {
+                        isSuggestion = false
+                    },
+                         onItemClicked: {
+                        
+                    })
                     
                 }.navigationBarBackButtonHidden(true)
             }

@@ -24,7 +24,6 @@ struct ResumeView: View {
                             .foregroundColor(.darkBlue)
                     }
                     .padding(.trailing, 20)
-                    
                 }
             }
             
@@ -57,7 +56,7 @@ struct ResumeView: View {
                             .fontWeight(.light)
                     }
                 }
-
+                
                 Spacer()
             }.padding(.horizontal,35)
             

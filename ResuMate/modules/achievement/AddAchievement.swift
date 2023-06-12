@@ -26,63 +26,67 @@ struct AddAchievement: View {
     
     
     var body: some View {
-        if isSubmit{
-            AchievementView()
+        if isGenerate {
+            GeneratePhrases(inputType: inputType)
         } else{
-            if isGenerate {
-                GeneratePhrases(inputType: inputType)
-            }
-            else{
-                NavigationStack{
+            VStack{
+                ScrollView{
                     VStack{
-                        ScrollView{
-                            VStack{
-                                Spacer().frame(height: 50)
-                                
-                                createBigForm(title: "Achievement", placeholder: "String", fill: $achieve, isCheck: $isachieve)
-                                createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
-                                
-                            }
-                            
+                        Spacer().frame(height: 50)
+                        
+                        createBigForm(title: "Achievement", placeholder: "String", fill: $achieve, isCheck: $isachieve)
+                        createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
+                    }
+                }
+                Spacer()
+                BigButton(text: "Submit", isButtonactive: isButtonActive) {
+                    if isButtonActive {
+                        switch inputType {
+                        case .add:
+                            saveAchievement()
+                            isSubmit = true
+                        case .edit: break
+                            // edit her
                         }
-                        Spacer()
-                        BigButton(text: "Submit", isButtonactive: isButtonActive) {
-                            if isButtonActive {
-                                switch inputType {
-                                case .add:
-                                    saveAchievement()
-                                    isSubmit = true
-                                case .edit: break
-                                    // edit her
-                                }
-                                
-                            }
-                        }
-                        .onChange(of: achieve, perform: { _ in updateButtonActive() })
-                        .onChange(of: year, perform: { _ in updateButtonActive() })
-                        .onChange(of: isButtonActive, perform: { _ in updateButtonActive() })
                         
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading){
-                            NavigationLink{
-                                AchievementView()
-                            } label:{
-                                Image(systemName: "chevron.backward")
-                                    .frame(height: 17)
-                                    .foregroundColor(.black)
-                            }
-                        }
-                        ToolbarItem(placement: .principal){
-                            TitleToolbar(titleToolbar: "\(inputType.rawValue) Achievement")
-                        }
-                    }
-                }.sheet(isPresented: $isSuggestion) {
-                    ModalAchievement(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                        .presentationDetents([.medium])
-                    
-                }.navigationBarBackButtonHidden(true)
+                }
+                .onChange(of: achieve, perform: { _ in updateButtonActive() })
+                .onChange(of: year, perform: { _ in updateButtonActive() })
+                .onChange(of: isButtonActive, perform: { _ in updateButtonActive() })
+                
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading){
+                    NavigationLink{
+                        AchievementView()
+                    } label:{
+                        Image(systemName: "chevron.backward")
+                            .frame(height: 17)
+                            .foregroundColor(.black)
+                    }
+                }
+                ToolbarItem(placement: .principal){
+                    TitleToolbar(titleToolbar: "\(inputType.rawValue) Achievement")
+                }
+            }
+            .sheet(isPresented: $isSuggestion) {
+                SelectItemSheet(
+                    text: "Achievement",
+                    isGeneratePhraseButtonEnabled: true,
+                    onGeneratePhraseButtonClicked: {
+                        isGenerate = true
+                    },
+                    onClosedClicked: {
+                        isSuggestion = false
+                    },
+                    onItemClicked: {
+                        
+                    })
+            }.navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $isSubmit, destination: {
+                    AchievementView()
+                })
         }
     }
     
