@@ -14,10 +14,10 @@ struct EmptyResumeDataView: View {
                 .scaledToFit()
                 .frame(width: 154)
             
-                Text("Oops, we couldn't find your data. Please provide Your Data first to simplify the resume creation process.")
-                    .blacktext17()
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
+            Text("Oops, we couldn't find your data. Please provide Your Data first to simplify the resume creation process.")
+                .blacktext17()
+                .fontWeight(.medium)
+                .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.mediumDarkGray.opacity(0.4))

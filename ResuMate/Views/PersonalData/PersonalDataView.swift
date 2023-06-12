@@ -39,7 +39,7 @@ struct PersonalDataView: View {
                 CustomToolbar2(titleToolbar: "Personal Data", destination: HomeView(selection: 1))
                 ScrollView{
                     Spacer().frame(height: 17)
-                    Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
+                    Text("Start by filling in the basic information to help employers contact you for the next process.")
                         .blacktext17()
                         .fontWeight(.regular)
                     Spacer().frame(height: 40)

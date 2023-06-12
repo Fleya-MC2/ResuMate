@@ -19,7 +19,7 @@ struct WorkExperienceView: View {
         VStack{
             CustomToolbar(titleToolbar: "Work Experience", destinationL: HomeView(selection: 1), destinationT: AddWorkExperienceView(inputType: .add))
             Spacer().frame(height: 17)
-            Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
+            Text("Present your most recent and applicable experience, showcasing your relevant work history, including any internships, scholarships, relevant coursework, and academic achievements.")
                 .blacktext17()
                 .fontWeight(.regular)
             Spacer().frame(height: 40)

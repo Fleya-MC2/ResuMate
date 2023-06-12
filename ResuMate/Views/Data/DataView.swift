@@ -40,7 +40,7 @@ struct DataView: View {
                 VStack{
                     Spacer().frame(height: 60)
                     Title(title: "Your Data")
-                    Subtitle(subtitle: "Ceklist all this section below for create resume now!")
+                    Subtitle(subtitle: "Checklist all the section below to create your resume or upload your old resume to automatically fill in the data.")
                 }.frame(width: 300)
                 
                 Spacer().frame(height: 55)

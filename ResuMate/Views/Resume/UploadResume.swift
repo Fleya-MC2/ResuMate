@@ -24,7 +24,7 @@ struct UploadResume: View {
             CustomToolbar2(titleToolbar: "Upload Resume", destination: HomeView(selection: 0))
             
             VStack{
-                Subtitle(subtitle: "Make sure your resume are PDF format. When it processing don’t quit from this page or close the apps until finished.")
+                Subtitle(subtitle: "Ensure that your resume is in PDF format. Avoid exiting or closing the application until the processing is complete.")
             }.frame(width: 300)
             
             Spacer().frame(height: 60)

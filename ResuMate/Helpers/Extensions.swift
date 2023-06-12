@@ -18,10 +18,22 @@ extension View {
     func blacktext20() -> some View{
         self.font(.system(size: 20)).foregroundColor(.black)
     }
+    func blacktext22() -> some View{
+        self.font(.system(size: 22)).foregroundColor(.black)
+    }
+    func blacktext28() -> some View{
+        self.font(.system(size: 28)).foregroundColor(.black)
+    }
     
     
     func strongblue20() -> some View{
         self.font(.system(size: 20)).foregroundColor(.darkBlue)
+    }
+    func strongblue22() -> some View{
+        self.font(.system(size: 22)).foregroundColor(.darkBlue)
+    }
+    func strongblue28() -> some View{
+        self.font(.system(size: 28)).foregroundColor(.darkBlue)
     }
     func strongblue17() -> some View{
         self.font(.system(size: 17)).foregroundColor(.darkBlue)

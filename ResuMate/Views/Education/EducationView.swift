@@ -20,7 +20,7 @@ struct EducationView: View {
         VStack{
             CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationView(inputType: .add))
             Spacer().frame(height: 17)
-            Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
+            Text("Employers swiftly scan the education section. Include your most relevant education, including any programs you are currently enrolled in.")
                 .blacktext17()
                 .fontWeight(.light)
                 .padding(.horizontal, 20)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HomeView(selection: 0)
+        OnboardingView()
     }
 }
 
