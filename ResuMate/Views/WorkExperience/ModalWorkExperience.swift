@@ -41,8 +41,8 @@ struct ModalWorkExperience: View {
                 Divider()
                 Spacer().frame(height: 30)
                 ScrollView{
-                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
-                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd", isShowingThumbsUp:  false)
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false, isShowingDraggable: false, isShowingClose: false) {}
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabiahbhdbhwbhvdvewhvudveuwhvfuvdudvwfhvduvufvdsvfudvjfbjiwbfiubwuebfuewbd", isShowingThumbsUp:  false, isShowingDraggable: false, isShowingClose: false) {}
                     
                 }
                 Spacer()

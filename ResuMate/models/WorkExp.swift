@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkExp: Identifiable {
+struct WorkExp: Identifiable, Equatable {
     let id: UUID
     var position: String
     var company: String

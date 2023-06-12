@@ -17,12 +17,8 @@ struct EducationView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
                 VStack{
-                    CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationView())
+                    CustomToolbar(titleToolbar: "Educational Background", destinationL: HomeView(selection: 1), destinationT: AddEducationView(inputType: .add))
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
@@ -31,22 +27,28 @@ struct EducationView: View {
                     Spacer().frame(height: 40)
                     
                     ForEach(cardLists.education){ itm in
-                        HStack{
-                            Text("\(itm.major) - \(itm.Institution)")
-                                .blacktext15()
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.black)
-                            
-                        }.padding(.horizontal, 20)
-                        .frame(width: 338, height: 55)
-                            .cornerRadius(9)
-                            .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        NavigationLink {
+                            AddEducationView(inputType: .edit)
+                        } label: {
+                            HStack{
+                                Text("\(itm.major) - \(itm.Institution)")
+                                    .blacktext15()
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.black)
+                                
+                            }.padding(.horizontal, 20)
+                            .frame(width: 338, height: 55)
+                                .cornerRadius(9)
+                                .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        }
+
+
                         
                     }
                     if cardLists.education.count == 0 {
                         NavigationLink{
-                            AddEducationView()
+                            AddEducationView(inputType: .add)
                         }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")
@@ -64,19 +66,20 @@ struct EducationView: View {
                     
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.education.count != 0 {
+                    .onReceive(cardLists.$education) { newEducation in
+                        if newEducation.count != 0 {
                             isButtonActive = true
                         }
+                        
                         print(isButtonActive)
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        HomeView(selection: 1)
+                    })
                 
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
             
-        }
+        
     }
     
 }

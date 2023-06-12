@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RQuestionView: View {
+    var inputType: InputType
+    
     @State var rqAnswer: String = ""
     @Binding var step: Int
     @Binding var progress: CGFloat
@@ -22,17 +24,17 @@ struct RQuestionView: View {
         if isNextPage{
             switch cardLists.currentPageView {
             case "personalData":
-                PersonalDataView()
+                PersonalDataView(inputType: inputType)
             case "workExp":
-                WorkExperienceView()
+                AddWorkExperienceView(inputType: inputType)
             case "education":
-                EducationView()
+                AddEducationView(inputType: inputType)
             case "organization":
-                AddOrganization()
+                AddOrganization(inputType: inputType)
             case "volunteering":
-                AddVolunteering()
+                AddVolunteering(inputType: inputType)
             case "achievement":
-                AddAchievement()
+                AddAchievement(inputType: inputType)
             
             default:
                 LoadingScreen()
@@ -51,7 +53,7 @@ struct RQuestionView: View {
                         currentPage = .aQuestion
                     }
                     InfoCard(info: "RQuestion")
-                    ProgressBar(progress: progress, step: step)
+                    StepBar(progress: progress, step: step)
                     
                     GeneratePhrasesForm(question: "RQuestion", fill: $rqAnswer)
                     Spacer()

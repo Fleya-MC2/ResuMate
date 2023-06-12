@@ -31,7 +31,7 @@ import SwiftUI
 //    }
 //}
 
-struct ProgressBar: View {
+struct StepBar: View {
     var progress: CGFloat
     var step: Int
     
@@ -62,6 +62,6 @@ struct ProgressBar: View {
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(progress: 0.2, step: 1)
+        StepBar(progress: 0.2, step: 1)
     }
 }

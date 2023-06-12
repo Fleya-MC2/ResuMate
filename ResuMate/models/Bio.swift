@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct Bio: Identifiable {
-    let id: UUID
-    var firstname: String
-    var lastname: String
-    var email: String
-    var phone: String
-    var motto: String
-    var summary: String
+struct Bio: Identifiable, Equatable {
+    let id: UUID = UUID()
+    var firstname: String?
+    var lastname: String?
+    var email: String?
+    var phone: String?
+    var motto: String?
+    var summary: String?
 }

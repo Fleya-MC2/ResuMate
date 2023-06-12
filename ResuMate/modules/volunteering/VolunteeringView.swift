@@ -14,12 +14,9 @@ struct Volunteering: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        if isSubmit{
-            DataView()
-        }else{
-            NavigationStack{
+
                 VStack{
-                    CustomToolbar(titleToolbar: "Volunteering Experience", destinationL: HomeView(selection: 1), destinationT: AddVolunteering())
+                    CustomToolbar(titleToolbar: "Volunteering Experience", destinationL: HomeView(selection: 1), destinationT: AddVolunteering(inputType: .add))
                     Spacer().frame(height: 17)
                     Text("Borem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.")
                         .blacktext17()
@@ -27,22 +24,29 @@ struct Volunteering: View {
                         .padding(.horizontal, 20)
                     Spacer().frame(height: 40)
                     ForEach(cardLists.volunteer){ itm in
-                        HStack{
-                            Text("\(itm.position) - \(itm.volunteer)")
-                                .blacktext15()
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.black)
-                            
-                        }.padding(.horizontal, 20)
-                        .frame(width: 338, height: 55)
-                            .cornerRadius(9)
-                            .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        NavigationLink {
+                            AddVolunteering(inputType: .edit)
+                        } label: {
+                            HStack{
+                                Text("\(itm.position) - \(itm.volunteer)")
+                                    .blacktext15()
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.black)
+                                
+                            }.padding(.horizontal, 20)
+                            .frame(width: 338, height: 55)
+                                .cornerRadius(9)
+                                .overlay(RoundedRectangle(cornerRadius: 9).stroke(.gray, lineWidth: 1))
+                        }
+
+                        
+ 
                         
                     }
                     if cardLists.volunteer.count == 0 {
                         NavigationLink{
-                            AddVolunteering()
+                            AddVolunteering(inputType: .add)
                         }label:{
                             HStack{
                                 Image(systemName: "plus.circle.fill")
@@ -62,18 +66,19 @@ struct Volunteering: View {
                         })
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                    .onReceive(timer) { time in
-                        
-                        if cardLists.volunteer.count != 0 {
+                    .onReceive(cardLists.$volunteer) { newVolunteer in
+                        if newVolunteer.count != 0 {
                             isButtonActive = true
                         }
+                        
                         print(isButtonActive)
                     }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        HomeView(selection: 1)
+                    })
                 
                 
-            }.navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
             
-        }
     }
 }

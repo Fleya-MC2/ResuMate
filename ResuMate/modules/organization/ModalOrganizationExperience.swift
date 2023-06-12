@@ -41,8 +41,8 @@ struct ModalOrganizationExperience: View {
                 Divider()
                 Spacer().frame(height: 30)
                 ScrollView{
-                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
-                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false)
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false, isShowingDraggable: false, isShowingClose: false) {}
+                    ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: false, isShowingDraggable: false, isShowingClose: false) {}
                     
                 }
                 Spacer()

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Achievementt: Identifiable {
+struct Achievementt: Identifiable, Equatable {
     let id: UUID
     var achieve: String
     var year: String

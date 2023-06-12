@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddEducationView: View {
+    var inputType: InputType
+    
 //    @Binding var navigationItemPath: [NavigationItem]
     @EnvironmentObject var cardLists: CardLists
     @State var major: String = ""
@@ -30,15 +32,11 @@ struct AddEducationView: View {
     
     
     var body: some View {
-        if isSubmit{
-            EducationView()
-        } else{
             if isGenerate{
-                GeneratePhrases()
+                GeneratePhrases(inputType: inputType)
             } else {
-                NavigationStack{
                     VStack{
-                        CustomToolbar2(titleToolbar: "Add Education", destination: EducationView())
+                        CustomToolbar2(titleToolbar: "\(inputType.rawValue) Education", destination: EducationView())
                         createBigForm(title: "Major", placeholder: "String", fill: $major, isCheck: $ismajor)
                         createBigForm(title: "Institution", placeholder: "String", fill: $institution, isCheck: $isinstitution)
                         HStack{
@@ -91,39 +89,65 @@ struct AddEducationView: View {
                         
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                                 if isButtonActive == true {
-                                    saveEducation()
-                                    isSubmit = true
+                                    switch inputType {
+                                    case .add:
+                                        saveEducation()
+                                        isSubmit = true
+                                    case .edit: break
+                                        // edit here
+                                    }
+                                    
+
                                 }
                                 
                             }
-                        .onReceive(timer) { time in
-                            
-                            if major != "" &&
-                                institution != "" &&
-                                score != "" &&
-                                description != "" {
-                                isButtonActive = true
-                                print("%%%\(isButtonActive)")
-                                
-                            }else{
-                                isButtonActive = false
-                            }
+                        .onChange(of: major) { _ in
+                            updateButtonActive()
                         }
-                        
+                        .onChange(of: institution) { _ in
+                            updateButtonActive()
+                        }
+                        .onChange(of: score) { _ in
+                            updateButtonActive()
+                        }
+                        .onChange(of: description) { _ in
+                            updateButtonActive()
+                        }
                     }
-                    
-                    
-                    
-                    
-                }
+                    .navigationDestination(isPresented: $isSubmit, destination: {
+                        EducationView()
+                    })
                 .sheet(isPresented: $isSuggestion) {
-                    ModalEducation(isSuggestion: $isSuggestion, isGenerate: $isGenerate)
-                        .presentationDetents([.medium])
+                    SelectItemSheet(
+                        text: "Education Background",
+                        isGeneratePhraseButtonEnabled: true, onGeneratePhraseButtonClicked: {
+                        isGenerate = true
+                    },
+                        onClosedClicked: {
+                        isSuggestion = false
+                    },
+                onItemClicked: {
+                        
+                    })
                     
                 }.navigationBarBackButtonHidden(true)
             }
+        
+    }
+    
+    func updateButtonActive() {
+        if major != "" &&
+            institution != "" &&
+            score != "" &&
+            description != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+            
+        }else{
+            isButtonActive = false
         }
     }
+    
     func createBigForm(title: String, placeholder: String, fill: Binding<String>, isCheck: Binding<Bool>) -> some View {
         BigForm(title: title, placeholder: placeholder, fill: fill, isCheck: isCheck)
             .onChange(of: fill.wrappedValue, perform: { _ in

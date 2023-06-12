@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-struct Organize: Identifiable {
+struct Organize: Identifiable, Equatable {
     let id: UUID
     var position: String
     var organization: String

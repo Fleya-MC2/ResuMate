@@ -12,10 +12,11 @@ struct SelectItemSheet: View {
     
     var text: String
     
-    var isClosedButtonClicked: () -> Void
-    
     var isGeneratePhraseButtonEnabled: Bool
-    var isGeneratePhraseButtonClicked: () -> Void
+    let onGeneratePhraseButtonClicked: () -> Void
+    
+    let onClosedClicked: () -> Void
+    let onItemClicked: () -> Void
     
     var body: some View {
         NavigationStack{
@@ -27,7 +28,7 @@ struct SelectItemSheet: View {
                     
                     Spacer()
                     Button{
-                        isClosedButtonClicked()
+                        onClosedClicked()
                     }label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 13))
@@ -44,20 +45,28 @@ struct SelectItemSheet: View {
                 Spacer().frame(height: 30)
                 ScrollView{
                     ForEach(0..<3){_ in
-                        ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true)
-                            .padding(.horizontal)
+                        Button {
+                            onItemClicked()
+                            onClosedClicked()
+                        } label: {
+                            ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingDraggable: false, isShowingClose: false) {}
+                                .padding(.horizontal)
+                        }
+
+                        
                     }
                 }
                 Spacer()
                 
                 if isGeneratePhraseButtonEnabled {
                     BigButton(text: "Need something more?", isButtonactive: true) {
-                        isGeneratePhraseButtonClicked()
+                        onGeneratePhraseButtonClicked()
+                        onClosedClicked()
                     }
                 }
             }
-                .frame(maxWidth: .infinity, maxHeight: 500)
-                .background(Color.lightGray)
+            .frame(maxWidth: .infinity, maxHeight: 500)
+            .background(Color.lightGray)
         }
     }
 }
@@ -68,9 +77,10 @@ struct SuggestionSheetData_Previews: PreviewProvider {
         
         SelectItemSheet(
             text: "Personal Data",
-            isClosedButtonClicked: {},
             isGeneratePhraseButtonEnabled: true,
-            isGeneratePhraseButtonClicked: {}
+            onGeneratePhraseButtonClicked: {},
+            onClosedClicked: {},
+            onItemClicked: {}
         )
     }
 }

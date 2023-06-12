@@ -22,6 +22,7 @@ struct BigButton: View {
                 .fontWeight(.medium)
                 .frame(width: 328, height: 50)
                 .background(isButtonactive ? Color.lightBlue : .mediumDarkGray)
+                .disabled(!isButtonactive)
                 .cornerRadius(17)
         }
     }

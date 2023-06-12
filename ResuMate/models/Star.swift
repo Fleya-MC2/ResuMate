@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Star: Identifiable {
+struct Star: Identifiable, Equatable {
     let id: UUID
     var squestion: String
     var tquestion: String

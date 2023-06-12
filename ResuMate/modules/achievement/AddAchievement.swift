@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddAchievement: View {
+    var inputType: InputType
+    
     @EnvironmentObject var cardLists: CardLists
     
     @State var achieve: String = ""
@@ -19,50 +21,48 @@ struct AddAchievement: View {
     @State var isSubmit: Bool = false
     @State var isButtonActive: Bool = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    
     
     
     
     var body: some View {
         if isSubmit{
-           AchievementView()
+            AchievementView()
         } else{
             if isGenerate {
-                GeneratePhrases()
+                GeneratePhrases(inputType: inputType)
             }
             else{
                 NavigationStack{
                     VStack{
-                    ScrollView{
-                        VStack{
-                            Spacer().frame(height: 50)
-                            
-                            createBigForm(title: "Achievement", placeholder: "String", fill: $achieve, isCheck: $isachieve)
-                            createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
+                        ScrollView{
+                            VStack{
+                                Spacer().frame(height: 50)
+                                
+                                createBigForm(title: "Achievement", placeholder: "String", fill: $achieve, isCheck: $isachieve)
+                                createBigForm(title: "Year of Achievement", placeholder: "String", fill: $year, isCheck: $isyear)
+                                
+                            }
                             
                         }
-                        
-                    }
-                    Spacer()
+                        Spacer()
                         BigButton(text: "Submit", isButtonactive: isButtonActive) {
                             if isButtonActive {
-saveAchievement()
-isSubmit = true
+                                switch inputType {
+                                case .add:
+                                    saveAchievement()
+                                    isSubmit = true
+                                case .edit: break
+                                    // edit her
+                                }
+                                
                             }
                         }
+                        .onChange(of: achieve, perform: { _ in updateButtonActive() })
+                        .onChange(of: year, perform: { _ in updateButtonActive() })
+                        .onChange(of: isButtonActive, perform: { _ in updateButtonActive() })
                         
-                    .onReceive(timer) { time in
-                        
-                        if achieve != "" &&
-                            year != ""  {
-                            isButtonActive = true
-                            print("%%%\(isButtonActive)")
-                            
-                        }else{
-                            isButtonActive = false
-                        }
                     }
-                }
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink{
@@ -74,7 +74,7 @@ isSubmit = true
                             }
                         }
                         ToolbarItem(placement: .principal){
-                            TitleToolbar(titleToolbar: "Add Achievement")
+                            TitleToolbar(titleToolbar: "\(inputType.rawValue) Achievement")
                         }
                     }
                 }.sheet(isPresented: $isSuggestion) {
@@ -83,6 +83,15 @@ isSubmit = true
                     
                 }.navigationBarBackButtonHidden(true)
             }
+        }
+    }
+    
+    func updateButtonActive() {
+        if achieve != "" && year != "" {
+            isButtonActive = true
+            print("%%%\(isButtonActive)")
+        } else {
+            isButtonActive = false
         }
     }
     
