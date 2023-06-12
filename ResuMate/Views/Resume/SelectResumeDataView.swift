@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SelectResumeDataView: View {
+    @EnvironmentObject var viewModel: ResumeViewModel
+    @Environment(\.managedObjectContext) private var moc
     @State private var jobPosition: String = ""
     
     @State private var isAddWorkExperienceClicked: Bool = false
@@ -20,7 +22,8 @@ struct SelectResumeDataView: View {
     
     @State private var isGenerateResumeButtonClicked: Bool = false
     
-    @State private var items: [String] = ["test", "fdqwrt etst"]
+    @State private var itemsWorkExperience: [String] = []
+    @State private var items: [String] = []
     
     @State private var isDataEmpty: Bool = false
     
@@ -56,8 +59,9 @@ struct SelectResumeDataView: View {
                                     title: "Profile Data",
                                     isButtonEnabled: false,
                                     onClicked: {},
-                                    items: $items,
+                                    biodata: viewModel.biodata,
                                     itemType: .item,
+                                    resumeItemType: .biodata,
                                     onItemRemoved: { item in
                                         
                                         if let index = items.firstIndex(of: item) {
@@ -73,8 +77,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddWorkExperienceClicked = true
                                     },
-                                    items: $items,
+                                    workExperienceList: viewModel.workExperience,
                                     itemType: .item,
+                                    resumeItemType: .workExperience,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -89,8 +94,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddEducationClicked = true
                                     },
-                                    items: $items,
+                                    educationList: viewModel.education,
                                     itemType: .item,
+                                    resumeItemType: .education,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -105,8 +111,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddOrganizationClicked = true
                                     },
-                                    items: $items,
+                                    organizationList: viewModel.organization,
                                     itemType: .item,
+                                    resumeItemType: .organization,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -121,8 +128,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddVolunteeringClicked = true
                                     },
-                                    items: $items,
+                                    volunteerList: viewModel.volunteer,
                                     itemType: .item,
+                                    resumeItemType: .volunteer,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -137,8 +145,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddAchievementClicked = true
                                     },
-                                    items: $items,
+                                    achievementList: viewModel.achievement,
                                     itemType: .item,
+                                    resumeItemType: .achievement,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -153,8 +162,9 @@ struct SelectResumeDataView: View {
                                     onClicked: {
                                         isAddSkillClicked = true
                                     },
-                                    items: $items,
+                                    skillList: viewModel.skills,
                                     itemType: .tag,
+                                    resumeItemType: .skill,
                                     onItemRemoved: { item in
                                         if let index = items.firstIndex(of: item) {
                                             items.remove(at: index)
@@ -164,7 +174,7 @@ struct SelectResumeDataView: View {
                                 .padding(.vertical)
                                 
                                 
-
+                                
                             }
                             .padding()
                             .background(Color.mediumGray)
@@ -174,6 +184,18 @@ struct SelectResumeDataView: View {
                     BigButton(text: "Preview Resume", isButtonactive: true) {
                         isPreviewClicked = true
                     }
+                }
+                .onAppear{
+                    //get data from core data
+                    viewModel.biodata = fetchBiodataFromCoreData(context: moc)
+                    viewModel.education = fetchEducationFromCoreData(context: moc)
+                    viewModel.organization = fetchOrganizationFromCoreData(context: moc)
+                    viewModel.workExperience = fetchWorkExperienceFromCoreData(context: moc)
+                    viewModel.achievement = fetchAchivementFromCoreData(context: moc)
+                    viewModel.volunteer = fetchVolunteerFromCoreData(context: moc)
+                    viewModel.skills = fetchSkillFromCoreData(context: moc)
+                    
+                    isDataEmpty = viewModel.biodata == nil || viewModel.education == [] || viewModel.workExperience == [] || viewModel.organization == [] || viewModel.skills == []
                 }
             }
         }
@@ -304,7 +326,10 @@ struct SelectResumeDataView: View {
             .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $isPreviewClicked) {
-            PreviewResumeView(buttonType: .generate, isButtonClicked: $isGenerateResumeButtonClicked, onCloseClicked: {
+            PreviewResumeView(
+                buttonType: .generate,
+                isButtonClicked: $isGenerateResumeButtonClicked,
+                onCloseClicked: {
                 isPreviewClicked = false
             })
             .presentationDragIndicator(Visibility.visible)
@@ -314,8 +339,8 @@ struct SelectResumeDataView: View {
             SaveResumeView()
         })
         .navigationBarBackButtonHidden(true)
-
-
+        
+        
     }
 }
 
