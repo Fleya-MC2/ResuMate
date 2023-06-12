@@ -174,7 +174,10 @@ struct SelectResumeDataView: View {
                     isAddWorkExperienceClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddEducationClicked) {
@@ -184,7 +187,10 @@ struct SelectResumeDataView: View {
                     isAddEducationClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddOrganizationClicked) {
@@ -194,7 +200,10 @@ struct SelectResumeDataView: View {
                     isAddOrganizationClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddVolunteeringClicked) {
@@ -204,7 +213,10 @@ struct SelectResumeDataView: View {
                     isAddVolunteeringClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddAchievementClicked) {
@@ -214,7 +226,11 @@ struct SelectResumeDataView: View {
                     isAddAchievementClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                }
+            )
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddSkillClicked) {
@@ -224,7 +240,10 @@ struct SelectResumeDataView: View {
                     isAddSkillClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isAddAchievementClicked) {
@@ -234,7 +253,10 @@ struct SelectResumeDataView: View {
                     isAddSkillClicked = false
                 },
                 isGeneratePhraseButtonEnabled: false,
-                isGeneratePhraseButtonClicked: {})
+                isGeneratePhraseButtonClicked: {},
+                onItemClicked: {
+                    
+                })
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isPreviewClicked) {

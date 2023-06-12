@@ -17,6 +17,8 @@ struct SelectItemSheet: View {
     var isGeneratePhraseButtonEnabled: Bool
     var isGeneratePhraseButtonClicked: () -> Void
     
+    let onItemClicked: () -> Void
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -46,6 +48,9 @@ struct SelectItemSheet: View {
                     ForEach(0..<3){_ in
                         ItemCard(text: "ahbsiddhasbdsabdiasbidubasidbasidbasidbiasbdbasidsabid", isShowingThumbsUp: true, isShowingDraggable: false, isShowingClose: false) {}
                             .padding(.horizontal)
+                            .onTapGesture {
+                                onItemClicked() //add item here
+                            }
                     }
                 }
                 Spacer()
@@ -53,11 +58,12 @@ struct SelectItemSheet: View {
                 if isGeneratePhraseButtonEnabled {
                     BigButton(text: "Need something more?", isButtonactive: true) {
                         isGeneratePhraseButtonClicked()
+                        isClosedButtonClicked()
                     }
                 }
             }
-                .frame(maxWidth: .infinity, maxHeight: 500)
-                .background(Color.lightGray)
+            .frame(maxWidth: .infinity, maxHeight: 500)
+            .background(Color.lightGray)
         }
     }
 }
@@ -70,7 +76,8 @@ struct SuggestionSheetData_Previews: PreviewProvider {
             text: "Personal Data",
             isClosedButtonClicked: {},
             isGeneratePhraseButtonEnabled: true,
-            isGeneratePhraseButtonClicked: {}
+            isGeneratePhraseButtonClicked: {},
+            onItemClicked: {}
         )
     }
 }

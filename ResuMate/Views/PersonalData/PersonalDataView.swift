@@ -140,6 +140,8 @@ struct PersonalDataView: View {
                             cardLists.currentPageView = Page.personalData.rawValue
                             isSuggestion = false
                             isGenerate = true
+                        }, onItemClicked: {
+                            
                         })
                         .presentationDetents([.medium])
                     

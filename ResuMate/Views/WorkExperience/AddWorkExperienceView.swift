@@ -130,6 +130,8 @@ struct AddWorkExperienceView: View {
                     isSuggestion = false
                 }, isGeneratePhraseButtonEnabled: true) {
                     isGenerate = true
+                } onItemClicked: {
+                    
                 }
                 
             }.navigationBarBackButtonHidden(true)
