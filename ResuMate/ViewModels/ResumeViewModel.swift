@@ -16,6 +16,7 @@ class ResumeViewModel: ObservableObject{
     @Published var achievement: [AchievementModel] = []
     @Published var skills: [SkillModel] = []
     @Published var isLoading: Bool = false
+    @Published var loadingProgress: CGFloat = 0
     @Published var error: String?
     @Published var isError: Bool = false
     
@@ -35,6 +36,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchBiodataFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let biodata):
                                 self.biodata = biodata
@@ -50,6 +53,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchEducationFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let education):
                                 self.education = education
@@ -64,6 +69,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchWorkExperienceFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let workExperience):
                                 self.workExperience = workExperience
@@ -78,6 +85,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchOrganizationFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let organizations):
                                 self.organization = organizations
@@ -92,6 +101,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchVolunteerFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let volunteer):
                                 self.volunteer = volunteer
@@ -106,6 +117,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchAchievementFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let achievements):
                                 self.achievement = achievements
@@ -120,6 +133,8 @@ class ResumeViewModel: ObservableObject{
                 group.addTask {
                     self.chatGptService.fetchSkillsFromTextOnResume(resumeText: resumeText) { result in
                         DispatchQueue.main.async {
+                            self.loadingProgress += 1
+                            
                             switch result {
                             case .success(let skills):
                                 self.skills = skills
@@ -131,10 +146,6 @@ class ResumeViewModel: ObservableObject{
                         }
                     }
                 }
-            }
-            
-            DispatchQueue.main.async {
-                self.isLoading = false
             }
         }
     }

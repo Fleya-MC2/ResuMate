@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EmptyResumeDataView: View {
+    @State private var isGoToDataButtonClicked: Bool = false
+    
     var body: some View {
         VStack {
             Image("EmptyResumeData")
@@ -18,7 +20,15 @@ struct EmptyResumeDataView: View {
                     .blacktext17()
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
+                    .padding()
+            
+            BigButton(text: "Go to Data", isButtonactive: true) {
+                isGoToDataButtonClicked = true
+            }
         }
+        .navigationDestination(isPresented: $isGoToDataButtonClicked, destination: {
+            HomeView(selection: 1)
+        })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.mediumDarkGray.opacity(0.4))
     }
